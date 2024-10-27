@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
+		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
+		115A0C792CBE659E00BA45B2 /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* IndexModel.swift */; };
+		11665CDD2CBBB1CB00FC5D1C /* DiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */; };
+		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
+		116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */; };
+		117AA7D92CC39A5D00CA9CEF /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* CoverView.swift */; };
+		1184D46A2CCB6F37003D48C7 /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184D4692CCB6F37003D48C7 /* TextModel.swift */; };
+		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
+		11A7ADB62CC24BB000C21782 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADB52CC24BB000C21782 /* PlaySound.swift */; };
+		11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */; };
+		11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADBA2CC24E1100C21782 /* ButtonView.swift */; };
+		11A7ADBF2CC2587C00C21782 /* GameSettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADBE2CC2587C00C21782 /* GameSettingsData.swift */; };
+		11A8E7B82CBA7210005B5E19 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */; };
+		11B7ED062CBED65E008A7CB1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED052CBED65E008A7CB1 /* HeaderView.swift */; };
+		11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */; };
+		11B7ED2B2CBEE92F008A7CB1 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED2A2CBEE92F008A7CB1 /* ScoreBoard.swift */; };
+		11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F22CB28285001F6CE9 /* RowView.swift */; };
+		11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */; };
+		11D6C2FA2CB2B857001F6CE9 /* PanelBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F92CB2B857001F6CE9 /* PanelBackgroundView.swift */; };
+		11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExUIColor.swift */; };
+		11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */; };
+		11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E931D72CB67EBF0023D2BF /* AddUpView.swift */; };
+		11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EED8D42CA959350096CCA7 /* YahtzeeApp.swift */; };
+		11EED8D72CA959350096CCA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EED8D62CA959350096CCA7 /* ContentView.swift */; };
+		11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11EED8D82CA959360096CCA7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
+		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		115A0C782CBE659E00BA45B2 /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
+		11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceModel.swift; sourceTree = "<group>"; };
+		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
+		116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimateView.swift; sourceTree = "<group>"; };
+		117AA7D82CC39A5D00CA9CEF /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
+		1184D4692CCB6F37003D48C7 /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
+		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
+		11A7ADB52CC24BB000C21782 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceRoll.mp3; sourceTree = "<group>"; };
+		11A7ADBA2CC24E1100C21782 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		11A7ADBE2CC2587C00C21782 /* GameSettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsData.swift; sourceTree = "<group>"; };
+		11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		11B7ED052CBED65E008A7CB1 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPanelView.swift; sourceTree = "<group>"; };
+		11B7ED2A2CBEE92F008A7CB1 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
+		11D6C2F22CB28285001F6CE9 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRowView.swift; sourceTree = "<group>"; };
+		11D6C2F92CB2B857001F6CE9 /* PanelBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelBackgroundView.swift; sourceTree = "<group>"; };
+		11D826192CAFC9BF005228CC /* ExUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
+		11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahtzeeAnimateView.swift; sourceTree = "<group>"; };
+		11E931D72CB67EBF0023D2BF /* AddUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUpView.swift; sourceTree = "<group>"; };
+		11EED8D12CA959350096CCA7 /* Yahtzee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yahtzee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11EED8D42CA959350096CCA7 /* YahtzeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahtzeeApp.swift; sourceTree = "<group>"; };
+		11EED8D62CA959350096CCA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		11EED8D82CA959360096CCA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11EED8CE2CA959350096CCA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		113412082CAFC37800CF4120 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */,
+				11B7ED052CBED65E008A7CB1 /* HeaderView.swift */,
+				113412002CAFC0BE00CF4120 /* BoardView.swift */,
+				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
+				11A7ADBA2CC24E1100C21782 /* ButtonView.swift */,
+				11D6C2F22CB28285001F6CE9 /* RowView.swift */,
+				11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */,
+				11E931D72CB67EBF0023D2BF /* AddUpView.swift */,
+				11D6C2F92CB2B857001F6CE9 /* PanelBackgroundView.swift */,
+				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		113412102CAFC74200CF4120 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */,
+				11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */,
+				115A0C782CBE659E00BA45B2 /* IndexModel.swift */,
+				1184D4692CCB6F37003D48C7 /* TextModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		115B73DC2CBD03FD001FC1AF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				117AA7D82CC39A5D00CA9CEF /* CoverView.swift */,
+				11EED8D62CA959350096CCA7 /* ContentView.swift */,
+				1119711B2CC3B9CA00273BA6 /* EndView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		118DC90C2CC2AD2D005E8419 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				11A7ADBE2CC2587C00C21782 /* GameSettingsData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		11A7ADB72CC24C4800C21782 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		11B7ED092CBEE383008A7CB1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				11B7ED2A2CBEE92F008A7CB1 /* ScoreBoard.swift */,
+				11A7ADB52CC24BB000C21782 /* PlaySound.swift */,
+				118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		11D8261B2CAFC9C7005228CC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				11D826192CAFC9BF005228CC /* ExUIColor.swift */,
+				11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		11EED8C82CA959350096CCA7 = {
+			isa = PBXGroup;
+			children = (
+				11EED8D32CA959350096CCA7 /* Yahtzee */,
+				11EED8D22CA959350096CCA7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11EED8D22CA959350096CCA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11EED8D12CA959350096CCA7 /* Yahtzee.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11EED8D32CA959350096CCA7 /* Yahtzee */ = {
+			isa = PBXGroup;
+			children = (
+				11EED8D42CA959350096CCA7 /* YahtzeeApp.swift */,
+				115B73DC2CBD03FD001FC1AF /* App */,
+				113412082CAFC37800CF4120 /* View */,
+				113412102CAFC74200CF4120 /* Model */,
+				11D8261B2CAFC9C7005228CC /* Extension */,
+				11B7ED092CBEE383008A7CB1 /* Utility */,
+				118DC90C2CC2AD2D005E8419 /* Data */,
+				11A7ADB72CC24C4800C21782 /* Sound */,
+				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
+			);
+			path = Yahtzee;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11EED8D02CA959350096CCA7 /* Yahtzee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11EED8DF2CA959360096CCA7 /* Build configuration list for PBXNativeTarget "Yahtzee" */;
+			buildPhases = (
+				11EED8CD2CA959350096CCA7 /* Sources */,
+				11EED8CE2CA959350096CCA7 /* Frameworks */,
+				11EED8CF2CA959350096CCA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Yahtzee;
+			productName = Yahtzee;
+			productReference = 11EED8D12CA959350096CCA7 /* Yahtzee.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11EED8C92CA959350096CCA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					11EED8D02CA959350096CCA7 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 11EED8CC2CA959350096CCA7 /* Build configuration list for PBXProject "Yahtzee" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11EED8C82CA959350096CCA7;
+			productRefGroup = 11EED8D22CA959350096CCA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11EED8D02CA959350096CCA7 /* Yahtzee */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11EED8CF2CA959350096CCA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */,
+				11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11EED8CD2CA959350096CCA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1184D46A2CCB6F37003D48C7 /* TextModel.swift in Sources */,
+				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
+				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
+				11EED8D72CA959350096CCA7 /* ContentView.swift in Sources */,
+				118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */,
+				113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */,
+				116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */,
+				11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */,
+				11D6C2FA2CB2B857001F6CE9 /* PanelBackgroundView.swift in Sources */,
+				11665CDD2CBBB1CB00FC5D1C /* DiceModel.swift in Sources */,
+				11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */,
+				11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */,
+				11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */,
+				11B7ED2B2CBEE92F008A7CB1 /* ScoreBoard.swift in Sources */,
+				11A7ADB62CC24BB000C21782 /* PlaySound.swift in Sources */,
+				11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */,
+				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
+				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
+				117AA7D92CC39A5D00CA9CEF /* CoverView.swift in Sources */,
+				11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */,
+				115A0C792CBE659E00BA45B2 /* IndexModel.swift in Sources */,
+				11A8E7B82CBA7210005B5E19 /* ScoreModel.swift in Sources */,
+				11B7ED062CBED65E008A7CB1 /* HeaderView.swift in Sources */,
+				11A7ADBF2CC2587C00C21782 /* GameSettingsData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11EED8DD2CA959360096CCA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		11EED8DE2CA959360096CCA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11EED8E02CA959360096CCA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = WBC4T5V7CF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chiakuo-chen.Yahtzee";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11EED8E12CA959360096CCA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = WBC4T5V7CF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chiakuo-chen.Yahtzee";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11EED8CC2CA959350096CCA7 /* Build configuration list for PBXProject "Yahtzee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11EED8DD2CA959360096CCA7 /* Debug */,
+				11EED8DE2CA959360096CCA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11EED8DF2CA959360096CCA7 /* Build configuration list for PBXNativeTarget "Yahtzee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11EED8E02CA959360096CCA7 /* Debug */,
+				11EED8E12CA959360096CCA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11EED8C92CA959350096CCA7 /* Project object */;
+}
