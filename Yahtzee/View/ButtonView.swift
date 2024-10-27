@@ -73,23 +73,25 @@ struct ButtonView: View {
                 // PLAY BUTTON
                 if rollCount < 3 {
                     Button(action: {
-                                                           
-                        scoreboard.updateScoreBoard(diceArray: dicesArray)
-                        // WRITE DOWN THE SCORE
-                        
-                        for i in 0 ..< dicesArray.count {
-                            dicesArray[i].isHeld = false
-                            dicesArray[i].value = 0
+                                
+                        if scoreboard.penTarget != nil {
+                         
+                            scoreboard.updateScoreBoard(diceArray: dicesArray)
+                            // WRITE DOWN THE SCORE
+                            
+                            for i in 0 ..< dicesArray.count {
+                                dicesArray[i].isHeld = false
+                                dicesArray[i].value = 0
+                            }
+                            rollCount = 3
+                            // RESET THE ROLL BUTTON (NEW TURN)
+                            
+                            
+                            if !scoreboard.scoresArray.contains(nil) {
+                                goToEndView = true
+                            } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
+                            
                         }
-                        rollCount = 3
-                        // RESET THE ROLL BUTTON (NEW TURN)
-
-                        
-                        if !scoreboard.scoresArray.contains(nil) {
-                            goToEndView = true
-                        } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
-
-                        
 
                     }, label: {
                         ZStack {

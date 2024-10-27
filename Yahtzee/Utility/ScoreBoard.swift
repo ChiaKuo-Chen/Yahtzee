@@ -8,15 +8,15 @@ import Foundation
 class ScoreBoard: ObservableObject {
     
     @Published var scoresArray : [Int?] = Array(repeating: nil, count: 13) + [0]
-    @Published var targetArray : [Bool] = Array(repeating: false, count: 13)
+    @Published var penTarget : Int? = nil // ScoreArray or Nil
     let scoremodel = ScoreModel()
     
     func updateScoreBoard(diceArray: [Dice]) {
-        for i in 0..<targetArray.count {
-            if targetArray[i] == true {
-                scoresArray[i] = scoremodel.caculateScore(diceArray, index: i)
-            }
+        
+        if let penIndex = penTarget {
+            scoresArray[penIndex] = scoremodel.caculateScore(diceArray, index: penIndex)
         }
+        
     }
     
     func returnTotalScore() -> Int {

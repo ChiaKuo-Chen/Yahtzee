@@ -22,14 +22,12 @@ struct SecondPanelView: View {
     var body: some View {
         
         let score = scoremodel.caculateScore(dicesArray, index: categorymodel.returnIndex(category))
-        let _ = print(categorymodel.returnIndex(category))
-        
         let index = categorymodel.returnIndex(category)
         let scoreAlreadyWritten = ( scoreboard.scoresArray[ categorymodel.returnIndex(category) ] != nil )
 
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.white)
-            .fill( scoreAlreadyWritten ? Color.white : ( scoreboard.targetArray[index] ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
+            .fill( scoreAlreadyWritten ? Color.white : ( index == scoreboard.penTarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
             .scaledToFit()
             .shadow(radius: 0, y: 6)
             .overlay{
@@ -42,17 +40,17 @@ struct SecondPanelView: View {
                     Text("\(score)")
                         .font(score<=99 ? .title : .subheadline)
                         .fontWeight(.black)
-                        .foregroundStyle(scoreboard.targetArray[index] ? .black : .gray)
+                        .foregroundStyle( index == scoreboard.penTarget ? .black : .gray)
                 }
             }
             .onTapGesture {
                 if !(scoreAlreadyWritten) {
-                    if scoreboard.targetArray[index] == false {
-                        for i in 0 ..< scoreboard.targetArray.count {
-                            scoreboard.targetArray[i] = false
-                        }
+                    
+                    if index != scoreboard.penTarget {
+                        scoreboard.penTarget = index
+                    } else {
+                        scoreboard.penTarget = nil
                     }
-                    scoreboard.targetArray[index].toggle()
                 }
             }
         
