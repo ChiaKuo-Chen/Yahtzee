@@ -8,11 +8,13 @@ import SwiftUI
 struct RowView: View {
 
     // MARK: - PROPERTIES
-    let image: String
+    @EnvironmentObject var scoreboard : ScoreBoard
+    let categorymodel = CategoryModel()
+
+    let category: String
     let backGroundColor: String
     let dicesArray: [Dice]
     
-    @EnvironmentObject var scoreboard : ScoreBoard
 
     // MARK: - BODY
 
@@ -21,8 +23,8 @@ struct RowView: View {
             ZStack {
                 HStack {
                     
-                    if image != "yahtzee" {
-                        Image(image)
+                    if category != "yahtzee" {
+                        Image(categorymodel.returnPicString(category))
                             .resizable()
                             .scaledToFit()
                             .overlay(
@@ -34,7 +36,7 @@ struct RowView: View {
                             .resizable()
                             .scaledToFit()
                             .overlay(
-                                Image(image)
+                                Image("yahtzee")
                                     .resizable()
                                     .scaledToFit()
                                     .scaleEffect(1.3)
@@ -48,7 +50,7 @@ struct RowView: View {
                     }
                     // FIRST PANEL
 
-                    SecondPanelView(image: image, dicesArray: dicesArray)
+                    SecondPanelView(category: category, dicesArray: dicesArray)
 
                     // SECOND PANEL
 
@@ -58,10 +60,10 @@ struct RowView: View {
                             .resizable()
                             .scaledToFit()
                         
-                        Text(textModel().returnString(image))
+                        Text(categorymodel.returnRuleString(category))
                             .lineLimit(nil)
                             .fontWeight(.bold)
-                            .font(.system(image.contains("Dice") ? .subheadline : .caption , design: .rounded))
+                            .font(category.count<6 ? .subheadline : .caption )
                             .multilineTextAlignment(.center)
                             .lineSpacing(8)
                             .foregroundStyle(Color.white)
@@ -74,7 +76,7 @@ struct RowView: View {
                 .padding(.horizontal, 10)
                 .padding(.vertical, 10)
                 .background(
-                    PanelBackgroundView(panel: image, backGroundColor: backGroundColor)
+                    PanelBackgroundView(category: category, backGroundColor: backGroundColor)
                 )
             } // ZSTACK
         
@@ -87,10 +89,8 @@ struct RowView: View {
     struct Preview: View {
         
         
-        @State var dicearray = Array(repeating: Dice(value: 3), count: 5)
-
         var body: some View {
-            RowView(image: "redDice3", backGroundColor: "27ae60", dicesArray: dicearray)
+            RowView(category: "threes", backGroundColor: "27ae60", dicesArray: Array(repeating: Dice(value: 3), count: 5))
                 .environmentObject(ScoreBoard())
         }
     }

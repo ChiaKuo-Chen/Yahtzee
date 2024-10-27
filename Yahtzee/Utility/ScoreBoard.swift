@@ -9,16 +9,14 @@ class ScoreBoard: ObservableObject {
     
     @Published var scoresArray : [Int?] = Array(repeating: nil, count: 13) + [0]
     @Published var targetArray : [Bool] = Array(repeating: false, count: 13)
+    let scoremodel = ScoreModel()
     
-    func returnAddUpScore() -> Int {
-        var returnValue = 0
-        for i in 0...5 {
-            if let addScore = scoresArray[i]
-            {
-                returnValue += addScore
+    func updateScoreBoard(diceArray: [Dice]) {
+        for i in 0..<targetArray.count {
+            if targetArray[i] == true {
+                scoresArray[i] = scoremodel.caculateScore(diceArray, index: i)
             }
         }
-        return returnValue
     }
     
     func returnTotalScore() -> Int {
@@ -37,7 +35,18 @@ class ScoreBoard: ObservableObject {
         return returnValue
     }
 
-    func wetherAlreadyYahtzee() -> Bool {
+    func returnAddUpScore() -> Int {
+        var returnValue = 0
+        for i in 0...5 {
+            if let addScore = scoresArray[i]
+            {
+                returnValue += addScore
+            }
+        }
+        return returnValue
+    }
+
+    private func wetherAlreadyYahtzee() -> Bool {
         return self.scoresArray[11] == 50
     }
 

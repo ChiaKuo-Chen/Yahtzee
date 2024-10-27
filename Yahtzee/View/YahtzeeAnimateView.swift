@@ -9,7 +9,6 @@ struct YahtzeeAnimateView: View {
     
     // MARK: - PROPERTIES
     @State private var backgroundShow : Bool = true
-    
     @State private var animationFirst: Bool = true
     @State private var animationSecond: Bool = false
     
@@ -25,9 +24,6 @@ struct YahtzeeAnimateView: View {
                 .transition(.move(edge: .trailing))
         } // ZSTACK
         .ignoresSafeArea(.all)
-        
-//        let _ = animationFirst = false
-        //let _ = animationSecond = true
 
         
 

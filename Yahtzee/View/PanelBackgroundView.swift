@@ -7,15 +7,15 @@ import SwiftUI
 struct PanelBackgroundView: View {
     
     // MARK: - PROPERTIES
-    var panel: String
+    var category: String
     var backGroundColor: String
     
     // MARK: - BODY
     var body: some View {
         
-        switch panel {
+        switch category {
 
-        case "redDice1":
+        case "Ones":
 
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
@@ -29,7 +29,7 @@ struct PanelBackgroundView: View {
                     }
                 }
             
-        case "redDice2", "redDice3", "redDice4", "redDice5", "redDice6":
+        case "Twos", "Threes", "Fours", "Fives", "Sixes":
 
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
@@ -53,5 +53,5 @@ struct PanelBackgroundView: View {
 }
 
 #Preview {
-    PanelBackgroundView(panel: "redDice2", backGroundColor: "27ae60")
+    PanelBackgroundView(category: "twos", backGroundColor: "27ae60")
 }

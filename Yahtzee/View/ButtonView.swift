@@ -73,33 +73,21 @@ struct ButtonView: View {
                 // PLAY BUTTON
                 if rollCount < 3 {
                     Button(action: {
-                                   
-
-                        for index in 0 ..< scoreboard.targetArray.count {
-                            
-                            if scoreboard.targetArray[index] == true {
-                                                            
-                                scoreboard.targetArray[index] = false
-                                scoreboard.scoresArray[index] = scoreModel()
-                                    .caculateScore( dicesArray.getDicesNumber(), indexModel().returnString(index) )
-                                                                
-                                // WRITE DWON THE SCORE
-
-                                for i in 0 ..< dicesArray.count {
-                                    dicesArray[i].isHeld = false
-                                    dicesArray[i].value = 0
-                                }
-
-                                rollCount = 3
-                                
-                                // RESET THEROLL BUTTON
-                            }
-                            
+                                                           
+                        scoreboard.updateScoreBoard(diceArray: dicesArray)
+                        // WRITE DOWN THE SCORE
+                        
+                        for i in 0 ..< dicesArray.count {
+                            dicesArray[i].isHeld = false
+                            dicesArray[i].value = 0
                         }
+                        rollCount = 3
+                        // RESET THE ROLL BUTTON (NEW TURN)
+
                         
                         if !scoreboard.scoresArray.contains(nil) {
                             goToEndView = true
-                        } // GAME END, GO TO THE END VIEW
+                        } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
 
                         
 

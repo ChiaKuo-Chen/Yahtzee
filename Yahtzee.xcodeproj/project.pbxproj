@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
-		115A0C792CBE659E00BA45B2 /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* IndexModel.swift */; };
+		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
 		11665CDD2CBBB1CB00FC5D1C /* DiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
 		116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */; };
 		117AA7D92CC39A5D00CA9CEF /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* CoverView.swift */; };
-		1184D46A2CCB6F37003D48C7 /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184D4692CCB6F37003D48C7 /* TextModel.swift */; };
 		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
 		11A7ADB62CC24BB000C21782 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADB52CC24BB000C21782 /* PlaySound.swift */; };
 		11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */; };
@@ -38,12 +37,11 @@
 /* Begin PBXFileReference section */
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		115A0C782CBE659E00BA45B2 /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
+		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceModel.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
 		116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimateView.swift; sourceTree = "<group>"; };
 		117AA7D82CC39A5D00CA9CEF /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
-		1184D4692CCB6F37003D48C7 /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
 		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
 		11A7ADB52CC24BB000C21782 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceRoll.mp3; sourceTree = "<group>"; };
@@ -97,9 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				11665CDC2CBBB1CB00FC5D1C /* DiceModel.swift */,
+				115A0C782CBE659E00BA45B2 /* CategoryModel.swift */,
 				11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */,
-				115A0C782CBE659E00BA45B2 /* IndexModel.swift */,
-				1184D4692CCB6F37003D48C7 /* TextModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1184D46A2CCB6F37003D48C7 /* TextModel.swift in Sources */,
 				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
 				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
 				11EED8D72CA959350096CCA7 /* ContentView.swift in Sources */,
@@ -271,7 +267,7 @@
 				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
 				117AA7D92CC39A5D00CA9CEF /* CoverView.swift in Sources */,
 				11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */,
-				115A0C792CBE659E00BA45B2 /* IndexModel.swift in Sources */,
+				115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */,
 				11A8E7B82CBA7210005B5E19 /* ScoreModel.swift in Sources */,
 				11B7ED062CBED65E008A7CB1 /* HeaderView.swift in Sources */,
 				11A7ADBF2CC2587C00C21782 /* GameSettingsData.swift in Sources */,

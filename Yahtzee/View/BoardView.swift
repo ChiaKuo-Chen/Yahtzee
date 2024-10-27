@@ -21,47 +21,47 @@ struct BoardView: View {
         VStack(spacing: 0) {
             
             HStack(spacing: 0) {
-                RowView(image: "redDice1", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
-                                
-                RowView(image: "red3x", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                RowView(category: "ones", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                
+                RowView(category: "threeOfAKind", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+            }
+
+            HStack(spacing: 0) {
+                RowView(category: "twos", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                
+                RowView(category: "fourOfAKind", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
             }
             
             HStack(spacing: 0) {
-                RowView(image: "redDice2", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
+                RowView(category: "threes", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                 
-                RowView(image: "red4x", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
+                RowView(category: "fullHouse", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
             }
-            
+
             HStack(spacing: 0) {
-                RowView(image: "redDice3", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                RowView(category: "fours", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                 
-                RowView(image: "redHouse", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                RowView(category: "smallStraight", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
             }
-            
+
             HStack(spacing: 0) {
-                RowView(image: "redDice4", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
+                RowView(category: "fives", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                 
-                RowView(image: "redSmall", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
+                RowView(category: "largeStraight", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
             }
-            
+
             HStack(spacing: 0) {
-                RowView(image: "redDice5", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                RowView(category: "sixes", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                 
-                RowView(image: "redLarge", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                RowView(category: "yahtzee", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
             }
-            
-            HStack(spacing: 0) {
-                RowView(image: "redDice6", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
-                
-                RowView(image: "yahtzee", backGroundColor: boardBackgroundColor2, dicesArray: dicesArray)
-            }
-            
-            
+
             HStack(spacing: 0) {
                 AddUpView(addUp: scoreboard.returnAddUpScore(), backGroundColor: boardBackgroundColor1)
-                
-                RowView(image: "redChance", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
-            }
+
+                RowView(category: "chance", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
+                            }
+
             
         }// VSTACK
         .clipShape(RoundedRectangle(cornerRadius: 20))

@@ -39,7 +39,7 @@ struct ContentView: View {
                     
                 } // VSTACK
                 
-                if scoreModel().caculateScore(dicesArray.getDicesNumber(), "yahtzee") == 50 {
+                if ScoreModel().caculateScore(dicesArray, index: CategoryModel().returnIndex("yahtzee")) == 50 {
                     YahtzeeAnimateView()
                         .shadow(color: .black, radius: 0, x: 8, y: 8)
                         .scaleEffect(1.7)
