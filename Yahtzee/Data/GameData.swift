@@ -1,24 +1,35 @@
 //
-//  scoreBoard.swift
+//  SoundEffect.swift
 //  Yahtzee
 //
-
 import Foundation
+import SwiftData
 
-class ScoreBoard: ObservableObject {
+@Model
+class GameData {
     
-    @Published var scoresArray : [Int?] = Array(repeating: nil, count: 13) + [0]
-    @Published var penTarget : Int? = nil // ScoreArray or Nil
-    let scoremodel = ScoreModel()
+    var currentHighestScore: Int
+    var newHighestScore: Int
+    var soundEffect: Bool
+    var scoresArray : [Int?] = ( Array(repeating: nil, count: 13) + [0] )
+    var penTarget : Int? = nil // ScoreArray or Nil
+
+    init(currentHighestScore: Int, newHighestScore: Int, soundEffect: Bool, scoresArray: [Int?], penTarget: Int? = nil) {
+        self.currentHighestScore = currentHighestScore
+        self.newHighestScore = newHighestScore
+        self.soundEffect = soundEffect
+        self.scoresArray = scoresArray
+        self.penTarget = penTarget
+    }
     
-    func updateScoreBoard(diceArray: [Dice]) {
+    func updateScoreBoard(newScore: Int) {
         
         if let penIndex = penTarget {
-            scoresArray[penIndex] = scoremodel.caculateScore(diceArray, index: penIndex)
+            scoresArray[penIndex] = newScore
         }
         
     }
-    
+
     func returnTotalScore() -> Int {
         
         if self.returnAddUpScore() >= 63 {
@@ -50,5 +61,5 @@ class ScoreBoard: ObservableObject {
         return self.scoresArray[11] == 50
     }
 
-}
 
+}

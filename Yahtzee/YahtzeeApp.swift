@@ -11,8 +11,7 @@ struct YahtzeeApp: App {
     var body: some Scene {
         WindowGroup {
             CoverView()
-                .environmentObject(ScoreBoard())
-                .modelContainer(for: GameSettingsData.self)
+                .modelContainer(for: GameData.self)
         }
     }
 }

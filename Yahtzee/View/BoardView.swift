@@ -3,11 +3,12 @@
 //  Yahtzee
 
 import SwiftUI
+import SwiftData
 
 struct BoardView: View {
     
     // MARK: - PROPERTIES
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     @Binding var dicesArray :[Dice]
 
     let boardBackgroundColor1 = "27ae60"
@@ -57,7 +58,7 @@ struct BoardView: View {
             }
 
             HStack(spacing: 0) {
-                AddUpView(addUp: scoreboard.returnAddUpScore(), backGroundColor: boardBackgroundColor1)
+                AddUpView(addUp: gamedata[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
 
                 RowView(category: "chance", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                             }
@@ -76,7 +77,7 @@ struct BoardView: View {
         @State var dicearray = Array(repeating: Dice(value: 3), count: 5)
         var body: some View {
             BoardView(dicesArray: $dicearray)
-                .environmentObject(ScoreBoard())
+                .modelContainer(for: GameData.self)
         }
     }
     return Preview()

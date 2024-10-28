@@ -4,11 +4,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RowView: View {
 
     // MARK: - PROPERTIES
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     let categorymodel = CategoryModel()
 
     let category: String
@@ -91,7 +92,7 @@ struct RowView: View {
         
         var body: some View {
             RowView(category: "threes", backGroundColor: "27ae60", dicesArray: Array(repeating: Dice(value: 3), count: 5))
-                .environmentObject(ScoreBoard())
+                .modelContainer(for: GameData.self)
         }
     }
     return Preview()

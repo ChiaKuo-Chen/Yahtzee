@@ -9,8 +9,7 @@ import SwiftData
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    @Query var gameData: [GameSettingsData]
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     
     @State var dicesArray = Array(repeating: Dice(), count: 5)
     @State var rollCount = 3
@@ -22,7 +21,6 @@ struct ContentView: View {
     var body: some View {
         
         NavigationStack{
-            
             ZStack {
                                                 
                 VStack {
@@ -39,18 +37,12 @@ struct ContentView: View {
                     
                 } // VSTACK
                 
-                if ScoreModel().caculateScore(dicesArray, index: CategoryModel().returnIndex("yahtzee")) == 50 {
-                    YahtzeeAnimateView()
-                        .shadow(color: .black, radius: 0, x: 8, y: 8)
-                        .scaleEffect(1.7)
-                } // SPECIAL ANIMATION FOR YAHTZEE
                 
             } // ZTSACK
             .ignoresSafeArea(.all, edges: .bottom)
             .background(Color(UIColor(hex: backgroundColor)))
-            
-        } // NAVIGATIONSTACKl
-        
+
+        } // NAVIGATIONSTACK
         
     }
     
@@ -58,6 +50,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(ScoreBoard())
-        .modelContainer(for: GameSettingsData.self)
+        .modelContainer(for: GameData.self)
 }

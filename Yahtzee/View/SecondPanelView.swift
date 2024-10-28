@@ -4,11 +4,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SecondPanelView: View {
     
     // MARK: - PROPERTIES
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     let categorymodel = CategoryModel()
     let scoremodel = ScoreModel()
     
@@ -23,33 +24,33 @@ struct SecondPanelView: View {
         
         let score = scoremodel.caculateScore(dicesArray, index: categorymodel.returnIndex(category))
         let index = categorymodel.returnIndex(category)
-        let scoreAlreadyWritten = ( scoreboard.scoresArray[ categorymodel.returnIndex(category) ] != nil )
+        let scoreAlreadyWritten = ( gamedata[0].scoresArray[ categorymodel.returnIndex(category) ] != nil )
 
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.white)
-            .fill( scoreAlreadyWritten ? Color.white : ( index == scoreboard.penTarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
+            .fill( scoreAlreadyWritten ? Color.white : ( index == gamedata[0].penTarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
             .scaledToFit()
             .shadow(radius: 0, y: 6)
             .overlay{
                 if scoreAlreadyWritten {
-                    Text("\(scoreboard.scoresArray[index]!)")
-                        .font(scoreboard.scoresArray[index]!<=99 ? .title : .subheadline)
+                    Text("\(gamedata[0].scoresArray[index]!)")
+                        .font(gamedata[0].scoresArray[index]!<=99 ? .title : .subheadline)
                         .fontWeight(.black)
                         .foregroundStyle(.black)
                 } else {
                     Text("\(score)")
                         .font(score<=99 ? .title : .subheadline)
                         .fontWeight(.black)
-                        .foregroundStyle( index == scoreboard.penTarget ? .black : .gray)
+                        .foregroundStyle( index == gamedata[0].penTarget ? .black : .gray)
                 }
             }
             .onTapGesture {
                 if !(scoreAlreadyWritten) {
                     
-                    if index != scoreboard.penTarget {
-                        scoreboard.penTarget = index
+                    if index != gamedata[0].penTarget {
+                        gamedata[0].penTarget = index
                     } else {
-                        scoreboard.penTarget = nil
+                        gamedata[0].penTarget = nil
                     }
                 }
             }
@@ -64,7 +65,7 @@ struct SecondPanelView: View {
         
         var body: some View {
             SecondPanelView(category: "threes", dicesArray: diceArray)
-                .environmentObject(ScoreBoard())
+                .modelContainer(for: GameData.self)
         }
     }
     return Preview()

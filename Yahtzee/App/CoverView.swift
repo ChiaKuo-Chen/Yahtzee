@@ -10,8 +10,7 @@ struct CoverView: View {
     
     // MARK: - PROPERTIES
     @Environment(\.modelContext) private var modelContext
-    @Query var gameData: [GameSettingsData]
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
         
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -40,7 +39,7 @@ struct CoverView: View {
                             .foregroundStyle(Color.white)
                             .frame(alignment: .trailing)
                             .onTapGesture {
-                                modelContext.delete(gameData[0])
+                                modelContext.delete(gamedata[0])
                                 modelContext.insert(generateInitialData())
                             }
                             .padding()
@@ -49,12 +48,12 @@ struct CoverView: View {
                         
                         // BUTTON FOR DELETE SWIFT DATA
                         // ONLY USE FOR TEST
-                        Image(systemName: gameData.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
+                        Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                             .font(.system(size: 45, weight: .regular))
                             .foregroundStyle(Color.black)
                             .frame(alignment: .topTrailing)
                             .onTapGesture {
-                                gameData.first?.soundEffect.toggle()
+                                gamedata.first?.soundEffect.toggle()
                             }
                             .padding()
 
@@ -77,8 +76,7 @@ struct CoverView: View {
                     
                     NavigationLink(destination: {
                         ContentView()
-                            .environmentObject(ScoreBoard())
-                            .modelContainer(for: GameSettingsData.self)
+                            .modelContainer(for: GameData.self)
                             .navigationBarBackButtonHidden()
                         
                     }, label: {
@@ -99,7 +97,7 @@ struct CoverView: View {
                     
                     Spacer()
                     
-                    Text("High Score: \(gameData.first?.currentHighestScore ?? 0)")
+                    Text("High Score: \(gamedata.first?.currentHighestScore ?? 0)")
                         .bold()
                         .font(.system(size: 40))
                         .fontWeight(.black)
@@ -114,10 +112,10 @@ struct CoverView: View {
             } // ZSTACK
             .ignoresSafeArea(.all)
             .onAppear{                
-                if gameData.isEmpty {
+                if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 } else {
-                    let _ = ( gameData[0].currentHighestScore = gameData[0].newHighestScore )
+                    let _ = ( gamedata[0].currentHighestScore = gamedata[0].newHighestScore )
                 }
             } // ONAPPEAR
         } // NavigationStack
@@ -130,7 +128,6 @@ struct CoverView: View {
 
 #Preview {
     CoverView()
-        .modelContainer(for: GameSettingsData.self)
-        .environmentObject(ScoreBoard())
+        .modelContainer(for: GameData.self)
     
 }

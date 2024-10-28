@@ -5,8 +5,11 @@
 
 import Foundation
 
-func generateInitialData() -> GameSettingsData {
+func generateInitialData() -> GameData {
     
-    return GameSettingsData(currentHighestScore: 0, newHighestScore: 0, soundEffect: true)
+    return GameData(currentHighestScore: 0,
+                    newHighestScore: 0,
+                    soundEffect: true,
+                    scoresArray: Array(repeating: nil, count: 13) + [0])
     
 }

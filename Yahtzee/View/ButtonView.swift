@@ -9,13 +9,13 @@ import SwiftData
 struct ButtonView: View {
     
     // MARK: - PROPERTIES
-    @Query var gameSetting: [GameSettingsData]
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     
     @Binding var dicesArray: [Dice]
     @Binding var rollCount : Int
 
     @State private var goToEndView = false
+    let scoremodel = ScoreModel()
     
     // MARK: - BODY
     
@@ -28,7 +28,7 @@ struct ButtonView: View {
                     
                     if rollCount > 0 && dicesArray.getDicesHeld().filter({$0 == true}).count < 5 {
                         
-                        if gameSetting.first?.soundEffect == true {
+                        if gamedata.first?.soundEffect == true {
                             playSound(sound: "diceRoll", type: "mp3")
                         }
                         
@@ -73,10 +73,10 @@ struct ButtonView: View {
                 // PLAY BUTTON
                 if rollCount < 3 {
                     Button(action: {
-                                
-                        if scoreboard.penTarget != nil {
+                        
+                        if let penIndex = gamedata[0].penTarget {
                          
-                            scoreboard.updateScoreBoard(diceArray: dicesArray)
+                            gamedata[0].updateScoreBoard(newScore: scoremodel.caculateScore(dicesArray, index: penIndex) )
                             // WRITE DOWN THE SCORE
                             
                             for i in 0 ..< dicesArray.count {
@@ -87,7 +87,7 @@ struct ButtonView: View {
                             // RESET THE ROLL BUTTON (NEW TURN)
                             
                             
-                            if !scoreboard.scoresArray.contains(nil) {
+                            if !gamedata[0].scoresArray.contains(nil) {
                                 goToEndView = true
                             } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
                             
@@ -113,12 +113,10 @@ struct ButtonView: View {
         } // NAVIGATIONSTACK
         .navigationDestination(isPresented: $goToEndView){
             
-            EndView(finalScore: scoreboard.returnTotalScore())
+            EndView(finalScore: gamedata[0].returnTotalScore())
                     .navigationBarBackButtonHidden()
 
         } // GO TO ENDVIEW
-
-
 
     }
     
@@ -133,7 +131,7 @@ struct ButtonView: View {
         
         var body: some View {
             ButtonView(dicesArray: $dicesArray, rollCount: $rollCount)
-                .environmentObject(ScoreBoard())
+                .modelContainer(for: GameData.self)
         }
     }
     return Preview()

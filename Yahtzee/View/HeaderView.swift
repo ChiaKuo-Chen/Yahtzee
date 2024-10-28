@@ -8,8 +8,7 @@ import SwiftData
 struct HeaderView: View {
 
     // MARK: - PROPERTIES
-    @Query var gameSetting: [GameSettingsData]
-    @EnvironmentObject var scoreboard : ScoreBoard
+    @Query var gamedata: [GameData]
     
     // MARK: - BODY
 
@@ -18,8 +17,7 @@ struct HeaderView: View {
             
             NavigationLink(destination: {
                 CoverView()
-                    .environmentObject(ScoreBoard())
-                    .modelContainer(for: GameSettingsData.self)
+                    .modelContainer(for: GameData.self)
                     .navigationBarBackButtonHidden()
             },
                            label: {
@@ -31,7 +29,7 @@ struct HeaderView: View {
             
             Spacer()
 
-            Text("SCORE : \(scoreboard.returnTotalScore())")
+            Text("SCORE : \(gamedata[0].returnTotalScore())")
                 .font(.system(size: 30))
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.white)
@@ -39,11 +37,11 @@ struct HeaderView: View {
             
             Spacer()
             
-            Image(systemName: gameSetting.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
+            Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                 .font(.system(size: 30))
                 .foregroundStyle(Color.white)
                 .onTapGesture {
-                    gameSetting.first?.soundEffect.toggle()
+                    gamedata.first?.soundEffect.toggle()
                 }
 
                         
@@ -57,7 +55,8 @@ struct HeaderView: View {
         
         var body: some View {
             HeaderView()
-                .environmentObject(ScoreBoard())
+                .modelContainer(for: GameData.self)
+                .background(Color.gray)
         }
     }
     return  Preview()

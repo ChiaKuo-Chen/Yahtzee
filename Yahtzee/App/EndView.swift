@@ -9,7 +9,7 @@ import SwiftData
 struct EndView: View {
     
     // MARK: - PROPERTIES
-    @Query var gameData: [GameSettingsData]
+    @Query var gamedata: [GameData]
     
     var finalScore : Int
     private let backgroundGradientColor = [Color.white,
@@ -22,9 +22,9 @@ struct EndView: View {
     
     var body: some View {
         
-        let highscoreUpdate = ( finalScore > gameData[0].currentHighestScore )
+        let highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )
         if highscoreUpdate {
-            let _ = ( gameData.first?.newHighestScore = finalScore )
+            let _ = ( gamedata.first?.newHighestScore = finalScore )
         }
         
         NavigationStack {
@@ -39,12 +39,12 @@ struct EndView: View {
                         
                         Spacer()
                         
-                        Image(systemName: gameData.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
+                        Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                                 .font(.system(size: 45))
                                 .foregroundStyle(Color.white)
                                 .frame(alignment: .trailing)
                                 .onTapGesture {
-                                    gameData.first?.soundEffect.toggle()
+                                    gamedata.first?.soundEffect.toggle()
                                 }
                                 .padding()
                                 .frame(alignment: .topTrailing)
@@ -80,7 +80,8 @@ struct EndView: View {
 
                 } // VSTACK
                 .ignoresSafeArea(.all)
-                
+                .onAppear{
+                }
             }
             .background(
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -94,5 +95,5 @@ struct EndView: View {
 
 #Preview {
     EndView(finalScore: 60)
-        .modelContainer(for: GameSettingsData.self)
+        .modelContainer(for: GameData.self)
 }
