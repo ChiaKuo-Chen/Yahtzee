@@ -80,8 +80,8 @@ struct EndView: View {
 
                 } // VSTACK
                 .ignoresSafeArea(.all)
-                .onAppear{
-                }
+//                .onAppear{
+//                }
             }
             .background(
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)

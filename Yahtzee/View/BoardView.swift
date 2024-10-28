@@ -58,7 +58,7 @@ struct BoardView: View {
             }
 
             HStack(spacing: 0) {
-                AddUpView(addUp: gamedata[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
+                AddUpView(addUp: gamedata[0].scoreboard[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
 
                 RowView(category: "chance", backGroundColor: boardBackgroundColor1, dicesArray: dicesArray)
                             }

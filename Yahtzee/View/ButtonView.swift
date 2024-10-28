@@ -13,7 +13,7 @@ struct ButtonView: View {
     
     @Binding var dicesArray: [Dice]
     @Binding var rollCount : Int
-
+    
     @State private var goToEndView = false
     let scoremodel = ScoreModel()
     
@@ -74,25 +74,32 @@ struct ButtonView: View {
                 if rollCount < 3 {
                     Button(action: {
                         
-                        if let penIndex = gamedata[0].penTarget {
-                         
-                            gamedata[0].updateScoreBoard(newScore: scoremodel.caculateScore(dicesArray, index: penIndex) )
-                            // WRITE DOWN THE SCORE
+                        if gamedata[0].scoreboard[0].penTarget != nil {
                             
-                            for i in 0 ..< dicesArray.count {
-                                dicesArray[i].isHeld = false
-                                dicesArray[i].value = 0
+                            
+                            if let penIndex = gamedata[0].scoreboard[0].penTarget {
+                                
+                                gamedata[0].scoreboard[0].updateScoreBoard(newScore: scoremodel.caculateScore(dicesArray, index: penIndex), penIndex: penIndex)
+                                // WRITE DOWN THE SCORE
+                                
+                                gamedata[0].scoreboard[0].penTarget = nil
+                                // Let the Pen leave the scoreBoard
+                                
+                                for i in 0 ..< dicesArray.count {
+                                    dicesArray[i].isHeld = false
+                                    dicesArray[i].value = 0
+                                }
+                                rollCount = 3
+                                // RESET THE ROLL BUTTON (NEW TURN)
+                                
+                                
+                                if !gamedata[0].scoreboard[0].scoresArray.contains(nil) {
+                                    goToEndView = true
+                                } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
+                                
                             }
-                            rollCount = 3
-                            // RESET THE ROLL BUTTON (NEW TURN)
-                            
-                            
-                            if !gamedata[0].scoresArray.contains(nil) {
-                                goToEndView = true
-                            } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
                             
                         }
-
                     }, label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 15)
@@ -113,11 +120,11 @@ struct ButtonView: View {
         } // NAVIGATIONSTACK
         .navigationDestination(isPresented: $goToEndView){
             
-            EndView(finalScore: gamedata[0].returnTotalScore())
-                    .navigationBarBackButtonHidden()
-
+            EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore())
+                .navigationBarBackButtonHidden()
+            
         } // GO TO ENDVIEW
-
+        
     }
     
     

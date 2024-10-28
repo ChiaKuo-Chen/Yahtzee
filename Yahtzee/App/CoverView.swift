@@ -129,5 +129,6 @@ struct CoverView: View {
 #Preview {
     CoverView()
         .modelContainer(for: GameData.self)
+        
     
 }

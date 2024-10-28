@@ -29,7 +29,7 @@ struct HeaderView: View {
             
             Spacer()
 
-            Text("SCORE : \(gamedata[0].returnTotalScore())")
+            Text("SCORE : \(gamedata[0].scoreboard[0].returnTotalScore())")
                 .font(.system(size: 30))
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.white)
