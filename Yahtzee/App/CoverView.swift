@@ -9,8 +9,8 @@ import SwiftData
 struct CoverView: View {
     
     // MARK: - PROPERTIES
-    @Environment(\.modelContext) private var modelContext
     @Query var gamedata: [GameData]
+    @Environment(\.modelContext) private var modelContext
         
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -31,23 +31,19 @@ struct CoverView: View {
                 
                 VStack {
                     
-                    
-                    HStack {
+                    HStack {    
                         
-                        Image(systemName: "minus.circle")
-                            .font(.system(size: 45))
-                            .foregroundStyle(Color.white)
-                            .frame(alignment: .trailing)
+                        Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
+                            .font(.system(size: 45, weight: .regular))
+                            .foregroundStyle(Color.black)
+                            .frame(alignment: .topTrailing)
                             .onTapGesture {
-                                modelContext.delete(gamedata[0])
                                 modelContext.insert(generateInitialData())
                             }
                             .padding()
-
-                        Spacer()
                         
-                        // BUTTON FOR DELETE SWIFT DATA
-                        // ONLY USE FOR TEST
+                        Spacer()
+
                         Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                             .font(.system(size: 45, weight: .regular))
                             .foregroundStyle(Color.black)
@@ -111,7 +107,7 @@ struct CoverView: View {
                 } // VSTACK
             } // ZSTACK
             .ignoresSafeArea(.all)
-            .onAppear{                
+            .onAppear{
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 } else {
@@ -129,6 +125,4 @@ struct CoverView: View {
 #Preview {
     CoverView()
         .modelContainer(for: GameData.self)
-        
-    
 }

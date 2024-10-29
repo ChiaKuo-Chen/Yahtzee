@@ -5,7 +5,7 @@
 import SwiftUI
 import SwiftData
 
-struct HeaderView: View {
+struct ContentHeaderView: View {
 
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
@@ -29,7 +29,7 @@ struct HeaderView: View {
             
             Spacer()
 
-            Text("SCORE : \(gamedata[0].scoreboard[0].returnTotalScore())")
+            Text("SCORE : \(String(gamedata[0].scoreboard[0].returnTotalScore()))")
                 .font(.system(size: 30))
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.white)
@@ -54,7 +54,7 @@ struct HeaderView: View {
     struct Preview: View {
         
         var body: some View {
-            HeaderView()
+            ContentHeaderView()
                 .modelContainer(for: GameData.self)
                 .background(Color.gray)
         }

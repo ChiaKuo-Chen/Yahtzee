@@ -14,7 +14,6 @@ struct RowView: View {
 
     let category: String
     let backGroundColor: String
-    let dicesArray: [Dice]
     
 
     // MARK: - BODY
@@ -51,7 +50,7 @@ struct RowView: View {
                     }
                     // FIRST PANEL
 
-                    SecondPanelView(category: category, dicesArray: dicesArray)
+                    SecondPanelView(category: category)
 
                     // SECOND PANEL
 
@@ -91,7 +90,7 @@ struct RowView: View {
         
         
         var body: some View {
-            RowView(category: "threes", backGroundColor: "27ae60", dicesArray: Array(repeating: Dice(value: 3), count: 5))
+            RowView(category: "threes", backGroundColor: "27ae60")
                 .modelContainer(for: GameData.self)
         }
     }

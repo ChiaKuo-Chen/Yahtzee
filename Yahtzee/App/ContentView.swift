@@ -10,8 +10,6 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    @State var dicesArray = Array(repeating: Dice(), count: 5)
-    @State var rollCount = 3
     
     private let backgroundColor = "043940"
     
@@ -24,14 +22,14 @@ struct ContentView: View {
                                                 
                 VStack {
                     
-                    HeaderView()
+                    ContentHeaderView()
 
-                    BoardView(dicesArray: $dicesArray)
+                    BoardView()
                     
-                    DiceRowView(dicesArray: $dicesArray)
+                    DiceRowView()
                         .padding()
                     
-                    ButtonView(dicesArray: $dicesArray, rollCount: $rollCount)
+                    ButtonView()
                         .padding()
                     
                 } // VSTACK

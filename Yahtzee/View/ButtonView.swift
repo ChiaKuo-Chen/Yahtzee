@@ -10,32 +10,41 @@ struct ButtonView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    
-    @Binding var dicesArray: [Dice]
-    @Binding var rollCount : Int
-    
+    @State private var goToYahtzeeView = false
     @State private var goToEndView = false
-    let scoremodel = ScoreModel()
+    
+    
+    private let scoremodel = ScoreModel()
     
     // MARK: - BODY
     
     var body: some View {
+        
+        let scoreBoard = gamedata[0].scoreboard[0]
         
         NavigationStack {
             HStack {
                 // ROLL BUTTON
                 Button(action: {
                     
-                    if rollCount > 0 && dicesArray.getDicesHeld().filter({$0 == true}).count < 5 {
+                    if scoreBoard.rollCount > 0 && gamedata[0].diceArray.getDicesHeld().filter({$0 == true}).count < 5 {
                         
                         if gamedata.first?.soundEffect == true {
                             playSound(sound: "diceRoll", type: "mp3")
                         }
                         
-                        for item in 0 ..< dicesArray.count {
-                            dicesArray[item].roll()
+                        for item in 0 ..< 5 {
+                            gamedata[0].diceArray[item].roll()
                         }
-                        rollCount -= 1
+                        scoreBoard.rollCount -= 1
+                        
+                        
+                        for i in 1 ... 6 {
+                            if gamedata[0].diceArray.getDicesNumber().filter({$0 == i}).count == 5 {
+                                goToYahtzeeView = true
+                            }
+                        }
+                        // SPECIAL ANIMATE FOR YAHTZEE
                         
                     }
                 }, // ACTION
@@ -55,15 +64,15 @@ struct ButtonView: View {
                             Circle()
                                 .scaledToFit()
                                 .frame(maxWidth: 25)
-                                .foregroundStyle(rollCount > 0 ? Color.green : Color.gray)
+                                .foregroundStyle(scoreBoard.rollCount > 0 ? Color.green : Color.gray)
                             Circle()
                                 .scaledToFit()
                                 .frame(maxWidth: 25)
-                                .foregroundStyle(rollCount > 1 ? Color.green : Color.gray)
+                                .foregroundStyle(scoreBoard.rollCount > 1 ? Color.green : Color.gray)
                             Circle()
                                 .scaledToFit()
                                 .frame(maxWidth: 25)
-                                .foregroundStyle(rollCount > 2 ? Color.green : Color.gray)
+                                .foregroundStyle(scoreBoard.rollCount > 2 ? Color.green : Color.gray)
                             
                         } // HSTACK
                     } // ZSTACK
@@ -71,29 +80,30 @@ struct ButtonView: View {
                 ) // ROLL BUTTON
                 
                 // PLAY BUTTON
-                if rollCount < 3 {
+                if scoreBoard.rollCount < 3 {
                     Button(action: {
                         
-                        if gamedata[0].scoreboard[0].penTarget != nil {
+                        if scoreBoard.penTarget != nil {
                             
-                            
-                            if let penIndex = gamedata[0].scoreboard[0].penTarget {
+                            if let penIndex = scoreBoard.penTarget {
                                 
-                                gamedata[0].scoreboard[0].updateScoreBoard(newScore: scoremodel.caculateScore(dicesArray, index: penIndex), penIndex: penIndex)
+                                scoreBoard.updateScoreBoard(
+                                    newScore: scoremodel.caculateScore(
+                                        gamedata[0].diceArray,index: penIndex)
+                                    ,penIndex: penIndex)
                                 // WRITE DOWN THE SCORE
                                 
-                                gamedata[0].scoreboard[0].penTarget = nil
+                                scoreBoard.penTarget = nil
                                 // Let the Pen leave the scoreBoard
                                 
-                                for i in 0 ..< dicesArray.count {
-                                    dicesArray[i].isHeld = false
-                                    dicesArray[i].value = 0
+                                for i in 0 ..< 5 {
+                                    gamedata[0].diceArray[i].isHeld = false
+                                    gamedata[0].diceArray[i].value = 0
                                 }
-                                rollCount = 3
+                                scoreBoard.rollCount = 3
                                 // RESET THE ROLL BUTTON (NEW TURN)
                                 
-                                
-                                if !gamedata[0].scoreboard[0].scoresArray.contains(nil) {
+                                if !scoreBoard.scoresArray.contains(nil) {
                                     goToEndView = true
                                 } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
                                 
@@ -117,13 +127,16 @@ struct ButtonView: View {
                     }) // PLAY BUTTON
                 }
             } // HSTACK
+            .navigationDestination(isPresented: $goToYahtzeeView){
+                YahtzeeAnimateView()
+                    .navigationBarBackButtonHidden()
+            } // GO TO YahtzeeAnimateView
+            .navigationDestination(isPresented: $goToEndView){
+                EndView(finalScore: scoreBoard.returnTotalScore())
+                    .navigationBarBackButtonHidden()
+            } // GO TO ENDVIEW
+            
         } // NAVIGATIONSTACK
-        .navigationDestination(isPresented: $goToEndView){
-            
-            EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore())
-                .navigationBarBackButtonHidden()
-            
-        } // GO TO ENDVIEW
         
     }
     
@@ -133,11 +146,8 @@ struct ButtonView: View {
 #Preview {
     struct Preview: View {
         
-        @State var rollCount = 3
-        @State var dicesArray = Array(repeating: Dice(value: 3), count: 5)
-        
         var body: some View {
-            ButtonView(dicesArray: $dicesArray, rollCount: $rollCount)
+            ButtonView()
                 .modelContainer(for: GameData.self)
         }
     }

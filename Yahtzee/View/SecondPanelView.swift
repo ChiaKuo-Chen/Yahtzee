@@ -14,7 +14,6 @@ struct SecondPanelView: View {
     let scoremodel = ScoreModel()
     
     let category: String
-    let dicesArray: [Dice]
     
     private let unselectPanelColor = "#d8ffb2"
     
@@ -22,7 +21,7 @@ struct SecondPanelView: View {
     
     var body: some View {
         
-        let score = scoremodel.caculateScore(dicesArray, index: categorymodel.returnIndex(category))
+        let score = scoremodel.caculateScore(gamedata[0].diceArray, index: categorymodel.returnIndex(category))
         let index = categorymodel.returnIndex(category)
         let scoreAlreadyWritten = ( gamedata[0].scoreboard[0].scoresArray[ categorymodel.returnIndex(category) ] != nil )
 
@@ -61,10 +60,9 @@ struct SecondPanelView: View {
 #Preview {
     
     struct Preview: View {
-        @State var diceArray = Array(repeating: Dice(value: 3), count: 5)
         
         var body: some View {
-            SecondPanelView(category: "threes", dicesArray: diceArray)
+            SecondPanelView(category: "threes")
                 .modelContainer(for: GameData.self)
         }
     }

@@ -8,8 +8,9 @@ import SwiftData
 @Model
 class ScoreBoard {
     
-    var scoresArray : [Int?]
-    var penTarget : Int?
+    var scoresArray : [Int?] = Array(repeating: nil, count: 13) + [0]
+    var penTarget : Int? = nil
+    var rollCount : Int = 3
 
     init(scoresArray: [Int?], penTarget: Int?) {
         self.scoresArray = scoresArray
@@ -47,6 +48,12 @@ class ScoreBoard {
         return returnValue
     }
 
+    func NewScoreboard() {
+        self.scoresArray = Array(repeating: nil, count: 13) + [0]
+        self.penTarget = nil
+        self.rollCount = 3
+    }
+    
     private func wetherAlreadyYahtzee() -> Bool {
         return self.scoresArray[11] == 50
     }
