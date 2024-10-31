@@ -8,13 +8,11 @@ import SwiftData
 @Model
 class ScoreBoard {
     
-    var scoresArray : [Int?] = Array(repeating: nil, count: 13) + [0]
+    var scoresArray : [Int?] = [Int?](repeating: nil as Int?, count: 13)
     var penTarget : Int? = nil
     var rollCount : Int = 3
 
-    init(scoresArray: [Int?], penTarget: Int?) {
-        self.scoresArray = scoresArray
-        self.penTarget = penTarget
+    init() {
     }
     
     func updateScoreBoard(newScore: Int, penIndex: Int) {
@@ -22,12 +20,9 @@ class ScoreBoard {
     }
 
     func returnTotalScore() -> Int {
+            
+        var returnValue : Int = ( self.returnAddUpScore() >= 63 ? 35 : 0 )
         
-        if self.returnAddUpScore() >= 63 {
-            self.scoresArray[13] = 65
-        }
-        
-        var returnValue = 0
         for score in scoresArray {
             if let addScore = score
             {
@@ -38,7 +33,7 @@ class ScoreBoard {
     }
 
     func returnAddUpScore() -> Int {
-        var returnValue = 0
+        var returnValue : Int = 0
         for i in 0...5 {
             if let addScore = scoresArray[i]
             {

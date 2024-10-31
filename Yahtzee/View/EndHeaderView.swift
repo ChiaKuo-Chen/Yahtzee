@@ -10,7 +10,8 @@ struct EndHeaderView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    
+    @Environment(\.modelContext) private var modelContext
+
     // MARK: - BODY
 
     var body: some View {
@@ -36,6 +37,7 @@ struct EndHeaderView: View {
                     .frame(alignment: .trailing)
                     .onTapGesture {
                         gamedata.first?.soundEffect.toggle()
+                        try? modelContext.save()
                     }
                     .padding()
                     .frame(alignment: .topTrailing)

@@ -10,6 +10,8 @@ struct ButtonView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
+    @Environment(\.modelContext) private var modelContext
+
     @State private var goToYahtzeeView = false
     @State private var goToEndView = false
     
@@ -38,7 +40,8 @@ struct ButtonView: View {
                         }
                         scoreBoard.rollCount -= 1
                         
-                        
+                        try? modelContext.save()
+
                         for i in 1 ... 6 {
                             if gamedata[0].diceArray.getDicesNumber().filter({$0 == i}).count == 5 {
                                 goToYahtzeeView = true
@@ -103,6 +106,8 @@ struct ButtonView: View {
                                 scoreBoard.rollCount = 3
                                 // RESET THE ROLL BUTTON (NEW TURN)
                                 
+                                try? modelContext.save()
+
                                 if !scoreBoard.scoresArray.contains(nil) {
                                     goToEndView = true
                                 } // AFTER 13 TURN, GAME END, GO TO THE END VIEW

@@ -32,16 +32,7 @@ struct CoverView: View {
                 VStack {
                     
                     HStack {    
-                        
-                        Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
-                            .font(.system(size: 45, weight: .regular))
-                            .foregroundStyle(Color.black)
-                            .frame(alignment: .topTrailing)
-                            .onTapGesture {
-                                modelContext.insert(generateInitialData())
-                            }
-                            .padding()
-                        
+                                                
                         Spacer()
 
                         Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
@@ -50,6 +41,7 @@ struct CoverView: View {
                             .frame(alignment: .topTrailing)
                             .onTapGesture {
                                 gamedata.first?.soundEffect.toggle()
+                                try? modelContext.save()
                             }
                             .padding()
 
@@ -111,7 +103,7 @@ struct CoverView: View {
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 } else {
-                    let _ = ( gamedata[0].currentHighestScore = gamedata[0].newHighestScore )
+                    gamedata[0].currentHighestScore = gamedata[0].newHighestScore
                 }
             } // ONAPPEAR
         } // NavigationStack

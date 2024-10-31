@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		110783572CD0CC3A00EED477 /* EndHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110783562CD0CC3A00EED477 /* EndHeaderView.swift */; };
-		110783592CD0CD0E00EED477 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110783582CD0CD0E00EED477 /* TestView.swift */; };
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		110783562CD0CC3A00EED477 /* EndHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndHeaderView.swift; sourceTree = "<group>"; };
-		110783582CD0CD0E00EED477 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -78,14 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1107835A2CD0CD1200EED477 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				110783582CD0CD0E00EED477 /* TestView.swift */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		113412082CAFC37800CF4120 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +89,6 @@
 				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
 				11D6C2F92CB2B857001F6CE9 /* PanelBackgroundView.swift */,
 				110783562CD0CC3A00EED477 /* EndHeaderView.swift */,
-				1107835A2CD0CD1200EED477 /* Test */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,7 +252,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
-				110783592CD0CD0E00EED477 /* TestView.swift in Sources */,
 				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
 				11EED8D72CA959350096CCA7 /* ContentView.swift in Sources */,
 				118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */,

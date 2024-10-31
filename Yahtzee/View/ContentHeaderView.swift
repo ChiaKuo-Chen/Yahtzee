@@ -9,6 +9,7 @@ struct ContentHeaderView: View {
 
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
+    @Environment(\.modelContext) private var modelContext
     
     // MARK: - BODY
 
@@ -42,6 +43,7 @@ struct ContentHeaderView: View {
                 .foregroundStyle(Color.white)
                 .onTapGesture {
                     gamedata.first?.soundEffect.toggle()
+                    try? modelContext.save()
                 }
 
                         
