@@ -10,10 +10,12 @@ struct EndView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    
-    @State private var goBackToCoverView = false
-    @State private var ticketToGoBack = false
-    @State private var animationSwitch = false
+    @Environment(\.modelContext) private var modelContext
+
+    @State private var goBackToCoverView : Bool = false
+    @State private var ticketToGoBack : Bool = false
+    @State private var animationSwitch : Bool = false
+    @State private var highscoreUpdate : Bool = false
 
     var finalScore : Int
     private let backgroundGradientColor = [Color.white,
@@ -21,15 +23,10 @@ struct EndView: View {
                                            Color(UIColor(hex: "16a085")),
                                            Color(UIColor(hex: "27ae60")),
                                            Color.green ]
-    
     // MARK: - BODY
     
     var body: some View {
         
-        let highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )
-        if highscoreUpdate {
-            let _ = ( gamedata.first?.newHighestScore = finalScore )
-        }
         
         NavigationStack {
             
@@ -91,13 +88,16 @@ struct EndView: View {
                 
             } // ZSTACK
             .ignoresSafeArea()
-            .onDisappear{
-                gamedata[0].NewDiceArray()
-                gamedata[0].scoreboard[0].NewScoreboard()
+            .onAppear{
+                startAnimation()
+                highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )
+                if highscoreUpdate { gamedata[0].newHighestScore = finalScore }
+                gamedata[0].prepareToNewPlay()
+                try? modelContext.save()
             }
             .onTapGesture {
                 if ticketToGoBack {
-                    goBackToCoverView = true
+                    goBackToCoverView.toggle()
                 }
             }
             .navigationDestination(isPresented: $goBackToCoverView){
@@ -108,18 +108,18 @@ struct EndView: View {
             
         } // NavigationStack
         
-        let _ = DispatchQueue.main.asyncAfter(deadline: .now() + 0){
-            animationSwitch = true
-        }
-
-        let _ = DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+    }
+    
+    func startAnimation() {
+        animationSwitch = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5){
             ticketToGoBack = true
         }
-
     }
+    
 }
 
 #Preview {
-    EndView(finalScore: 200)
+    EndView(finalScore: 220)
         .modelContainer(for: GameData.self)
 }

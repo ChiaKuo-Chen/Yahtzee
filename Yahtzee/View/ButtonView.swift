@@ -10,12 +10,11 @@ struct ButtonView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext    
+    
+    @Binding var goToYahtzeeView : Bool
+    @Binding var goToEndView : Bool
 
-    @State private var goToYahtzeeView = false
-    @State private var goToEndView = false
-    
-    
     private let scoremodel = ScoreModel()
     
     // MARK: - BODY
@@ -24,7 +23,6 @@ struct ButtonView: View {
         
         let scoreBoard = gamedata[0].scoreboard[0]
         
-        NavigationStack {
             HStack {
                 // ROLL BUTTON
                 Button(action: {
@@ -43,12 +41,12 @@ struct ButtonView: View {
                         try? modelContext.save()
 
                         for i in 1 ... 6 {
-                            if gamedata[0].diceArray.getDicesNumber().filter({$0 == i}).count == 5 {
-                                goToYahtzeeView = true
+                            if ( gamedata[0].diceArray.getDicesNumber().filter({$0 == i}).count == 5 ) {
+                                goToYahtzeeView.toggle()
                             }
                         }
                         // SPECIAL ANIMATE FOR YAHTZEE
-                        
+
                     }
                 }, // ACTION
                        label: {
@@ -87,7 +85,7 @@ struct ButtonView: View {
                     Button(action: {
                         
                         if scoreBoard.penTarget != nil {
-                            
+                                                        
                             if let penIndex = scoreBoard.penTarget {
                                 
                                 scoreBoard.updateScoreBoard(
@@ -108,8 +106,8 @@ struct ButtonView: View {
                                 
                                 try? modelContext.save()
 
-                                if !scoreBoard.scoresArray.contains(nil) {
-                                    goToEndView = true
+                                if !(scoreBoard.scoresArray.contains(nil)) {
+                                    goToEndView.toggle()
                                 } // AFTER 13 TURN, GAME END, GO TO THE END VIEW
                                 
                             }
@@ -132,16 +130,7 @@ struct ButtonView: View {
                     }) // PLAY BUTTON
                 }
             } // HSTACK
-            .navigationDestination(isPresented: $goToYahtzeeView){
-                YahtzeeAnimateView()
-                    .navigationBarBackButtonHidden()
-            } // GO TO YahtzeeAnimateView
-            .navigationDestination(isPresented: $goToEndView){
-                EndView(finalScore: scoreBoard.returnTotalScore())
-                    .navigationBarBackButtonHidden()
-            } // GO TO ENDVIEW
             
-        } // NAVIGATIONSTACK
         
     }
     
@@ -150,9 +139,12 @@ struct ButtonView: View {
 
 #Preview {
     struct Preview: View {
-        
+       
+        @State private var goToYahtzeeView = false
+        @State private var goToEndView = false
+
         var body: some View {
-            ButtonView()
+            ButtonView(goToYahtzeeView: $goToYahtzeeView, goToEndView: $goToEndView)
                 .modelContainer(for: GameData.self)
         }
     }

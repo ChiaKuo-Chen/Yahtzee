@@ -15,6 +15,7 @@
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
 		116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */; };
 		117AA7D92CC39A5D00CA9CEF /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* CoverView.swift */; };
+		1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */; };
 		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
 		11A7ADB62CC24BB000C21782 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADB52CC24BB000C21782 /* PlaySound.swift */; };
 		11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */; };
@@ -44,6 +45,7 @@
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
 		116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimateView.swift; sourceTree = "<group>"; };
 		117AA7D82CC39A5D00CA9CEF /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
+		1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWindowView.swift; sourceTree = "<group>"; };
 		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
 		11A7ADB52CC24BB000C21782 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceRoll.mp3; sourceTree = "<group>"; };
@@ -106,9 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				117AA7D82CC39A5D00CA9CEF /* CoverView.swift */,
+				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
 				11EED8D62CA959350096CCA7 /* ContentView.swift */,
-				1119711B2CC3B9CA00273BA6 /* EndView.swift */,
 				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
+				1119711B2CC3B9CA00273BA6 /* EndView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				110783572CD0CC3A00EED477 /* EndHeaderView.swift in Sources */,
 				11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */,
 				11A7ADB62CC24BB000C21782 /* PlaySound.swift in Sources */,
+				1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */,
 				11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */,
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
 				11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */,

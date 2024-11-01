@@ -10,16 +10,22 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    
+    @Environment(\.modelContext) private var modelContext
+
+    @State var showingYahtzeeView = false
+    @State var goToEndView = false
+
     private let backgroundColor = "043940"
     
     // MARK: - BODY
     
     var body: some View {
-        
+                
         NavigationStack{
+            
             ZStack {
-                                                
+
+                
                 VStack {
                     
                     ContentHeaderView()
@@ -29,15 +35,25 @@ struct ContentView: View {
                     DiceRowView()
                         .padding()
                     
-                    ButtonView()
+                    ButtonView(goToYahtzeeView: $showingYahtzeeView, goToEndView: $goToEndView)
                         .padding()
                     
                 } // VSTACK
                 
+                if showingYahtzeeView {
+                    YahtzeeAnimateView(showingYahtzeeView: $showingYahtzeeView).ignoresSafeArea(.all)
+                }
                 
             } // ZTSACK
-            .ignoresSafeArea(.all, edges: .bottom)
-            .background(Color(UIColor(hex: backgroundColor)))
+            .background(Color(UIColor(hex: backgroundColor)).ignoresSafeArea(.all))
+            .onAppear{
+                gamedata[0].scoreboard[0].penTarget = nil
+            }
+            .navigationDestination(isPresented: $goToEndView){
+                EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore() )
+                    .modelContainer(for: GameData.self)
+                    .navigationBarBackButtonHidden()
+            } // GO TO ENDVIEW
 
         } // NAVIGATIONSTACK
         

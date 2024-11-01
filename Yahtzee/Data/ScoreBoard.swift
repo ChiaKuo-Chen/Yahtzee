@@ -42,11 +42,15 @@ class ScoreBoard {
         }
         return returnValue
     }
-
-    func NewScoreboard() {
-        self.scoresArray = Array(repeating: nil, count: 13) + [0]
-        self.penTarget = nil
-        self.rollCount = 3
+    
+    func isNewGame() -> Bool {
+        for item in self.scoresArray {
+            if item != nil { return false }
+        }
+        if self.penTarget != nil { return false }
+        if self.rollCount != 3 { return false }
+        
+        return true
     }
     
     private func wetherAlreadyYahtzee() -> Bool {

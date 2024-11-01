@@ -23,3 +23,8 @@ func generateInitialDiceArray() -> [Dice] {
     }
     return retrunValue
 }
+
+func generateInitialScoreBoard() -> [ScoreBoard] {
+    return [ScoreBoard()]
+}
+

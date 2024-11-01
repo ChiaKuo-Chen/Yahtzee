@@ -23,8 +23,9 @@ class GameData {
         self.diceArray = diceArray
     }
     
-    func NewDiceArray() {
+    func prepareToNewPlay() {
         self.diceArray = generateInitialDiceArray()
+        self.scoreboard = generateInitialScoreBoard()
     }
     
 }

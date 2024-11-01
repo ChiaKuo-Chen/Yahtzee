@@ -11,7 +11,9 @@ struct CoverView: View {
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
     @Environment(\.modelContext) private var modelContext
-        
+    
+    @State var showingContinueView = false
+    @State var goToContentView : Bool = false
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -62,11 +64,12 @@ struct CoverView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: {
-                        ContentView()
-                            .modelContainer(for: GameData.self)
-                            .navigationBarBackButtonHidden()
-                        
+                    Button(action: {
+                        if gamedata[0].scoreboard[0].isNewGame() {
+                            goToContentView = true
+                        } else {
+                            showingContinueView.toggle()
+                        }
                     }, label: {
                         Text("PLAY")
                             .bold()
@@ -81,8 +84,8 @@ struct CoverView: View {
                                     .fill(Color.pink)
                                     .shadow(color: Color.black, radius: 0, x:8, y:8)
                             )
-                    }) // NAVIGATIONLINK
-                    
+                    }) // BUTTON
+
                     Spacer()
                     
                     Text("High Score: \(gamedata.first?.currentHighestScore ?? 0)")
@@ -97,6 +100,10 @@ struct CoverView: View {
                     Spacer()
                     
                 } // VSTACK
+                
+                if showingContinueView {
+                    ContinueWindowView(showingContinueView: $showingContinueView, goToContentView: $goToContentView)
+                }
             } // ZSTACK
             .ignoresSafeArea(.all)
             .onAppear{
@@ -106,12 +113,18 @@ struct CoverView: View {
                     gamedata[0].currentHighestScore = gamedata[0].newHighestScore
                 }
             } // ONAPPEAR
+            .navigationDestination(isPresented: $goToContentView){
+                ContentView()
+                    .modelContainer(for: GameData.self)
+                    .navigationBarBackButtonHidden()
+            } // GO TO YahtzeeAnimateView
+
         } // NavigationStack
         
         
     }
     
-    
+
 }
 
 #Preview {

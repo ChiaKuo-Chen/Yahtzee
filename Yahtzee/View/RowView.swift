@@ -63,7 +63,7 @@ struct RowView: View {
                         Text(categorymodel.returnRuleString(category))
                             .lineLimit(nil)
                             .fontWeight(.bold)
-                            .font(category.count<6 ? .subheadline : .caption )
+                            .font(.caption)
                             .multilineTextAlignment(.center)
                             .lineSpacing(8)
                             .foregroundStyle(Color.white)

@@ -16,45 +16,53 @@ struct SecondPanelView: View {
     let category: String
     
     private let unselectPanelColor = "#d8ffb2"
-    
+
     // MARK: - BODY
     
     var body: some View {
         
-        let score = scoremodel.caculateScore(gamedata[0].diceArray, index: categorymodel.returnIndex(category))
-        let index = categorymodel.returnIndex(category)
-        let scoreAlreadyWritten = ( gamedata[0].scoreboard[0].scoresArray[ categorymodel.returnIndex(category) ] != nil )
 
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.white)
-            .fill( scoreAlreadyWritten ? Color.white : ( index == gamedata[0].scoreboard[0].penTarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
+            .fill( scoreAlreadyWritten() ? Color.white : ( categoryIndex() == pentarget() ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
             .scaledToFit()
             .shadow(radius: 0, y: 6)
             .overlay{
-                if scoreAlreadyWritten {
-                    Text("\(gamedata[0].scoreboard[0].scoresArray[index]!)")
-                        .font(gamedata[0].scoreboard[0].scoresArray[index]!<=99 ? .title : .subheadline)
+                if scoreAlreadyWritten() {
+                    Text("\(writtenScore()!)")
+                        .font(writtenScore()!<=99 ? .title : .subheadline)
                         .fontWeight(.black)
                         .foregroundStyle(.black)
                 } else {
-                    Text("\(score)")
-                        .font(score<=99 ? .title : .subheadline)
+                    Text("\(potentialScore())")
+                        .font(potentialScore()<=99 ? .title : .subheadline)
                         .fontWeight(.black)
-                        .foregroundStyle( index == gamedata[0].scoreboard[0].penTarget ? .black : .gray)
+                        .foregroundStyle( categoryIndex() == pentarget() ? .black : .gray)
                 }
             }
             .onTapGesture {
-                if !(scoreAlreadyWritten) {
+                if !(scoreAlreadyWritten()) {
                     
-                    if index != gamedata[0].scoreboard[0].penTarget {
-                        gamedata[0].scoreboard[0].penTarget = index
+                    if categoryIndex() != pentarget() {
+                        gamedata[0].scoreboard[0].penTarget = categoryIndex()
                     } else {
                         gamedata[0].scoreboard[0].penTarget = nil
                     }
                 }
+                
             }
         
     }
+    
+    // MARK: - FUNCTION TO REPLY VALUE
+    
+    func categoryIndex() -> Int { return categorymodel.returnIndex(category) }
+    func potentialScore() -> Int { return scoremodel.caculateScore(gamedata[0].diceArray, index: categoryIndex()) }
+    func writtenScore() -> Int? { return gamedata[0].scoreboard[0].scoresArray[categoryIndex()] }
+    func scoreAlreadyWritten() -> Bool { return  ( writtenScore() != nil ) }
+    func pentarget() -> Int? { return  gamedata[0].scoreboard[0].penTarget }
+
+
 }
 
 #Preview {
