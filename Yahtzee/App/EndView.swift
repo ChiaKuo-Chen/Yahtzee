@@ -17,7 +17,7 @@ struct EndView: View {
     @State private var animationSwitch : Bool = false
     @State private var highscoreUpdate : Bool = false
 
-    var finalScore : Int
+    let finalScore : Int
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -91,7 +91,9 @@ struct EndView: View {
             .onAppear{
                 startAnimation()
                 highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )
-                if highscoreUpdate { gamedata[0].newHighestScore = finalScore }
+            }
+            .onDisappear{
+                if highscoreUpdate { gamedata[0].currentHighestScore = finalScore }
                 gamedata[0].prepareToNewPlay()
                 try? modelContext.save()
             }
@@ -120,6 +122,6 @@ struct EndView: View {
 }
 
 #Preview {
-    EndView(finalScore: 220)
+    EndView(finalScore: 230)
         .modelContainer(for: GameData.self)
 }

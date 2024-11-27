@@ -5,76 +5,62 @@
 
 import Foundation
 
+
 class CategoryModel {
     
+    private let categoryArray : [String] = ["ones", "twos", "threes", "fours", "fives", "sixes",
+                                   "threeOfAKind", "fourOfAKind", "fullHouse", "smallStraight", "largeStraight", "yahtzee", "chance"]
+    
+    private let pictureDictionary : [String: String] = [ "ones" :"redDice1", "twos" :"redDice2", "threes" :"redDice3",
+                                                         "fours" :"redDice4", "fives" :"redDice5", "sixes" :"redDice6",
+                                                         "threeOfAKind" :"red3x", "fourOfAKind" :"red4x", "fullHouse" :"redHouse",
+                                                         "smallStraight" :"redSmall", "largeStraight" :"redLarge", "yahtzee":"yahtzee",
+                                                         "chance":"redChance" ]
+    
+    private let ruleDictionary : [String: String] = [ "ones" : "Ones", "twos" :"Twos", "threes" :"Threes", "fours" :"Fours",
+                                                      "fives" :"Fives", "sixes" :"Sixes", "threeOfAKind" : "Three of \n  a kind",
+                                                      "fourOfAKind" : "Four of \n  a kind", "fullHouse" : "Full \n House",
+                                                      "smallStraight" : "Small \n Straight", "largeStraight" : "Large \n Straight",
+                                                      "yahtzee" : "Yahtzee", "chance" : "Chance" ]
+
+    func returnCategory(_ index: Int) -> String {
+        guard index >= 0 && index < 13 else { return "" }
+        return categoryArray[index]
+    }
+    
+
     func returnIndex(_ category: String) -> Int {
         
-        switch category {
-            
-        case "ones" : return 0
-        case "twos" : return 1
-        case "threes" : return 2
-        case "fours" : return 3
-        case "fives" : return 4
-        case "sixes" : return 5
-        case "threeOfAKind" : return 6
-        case "fourOfAKind" : return 7
-        case "fullHouse" : return 8
-        case "smallStraight" : return 9
-        case "largeStraight" : return 10
-        case "yahtzee": return 11
-        case "chance": return 12
-        default: return -1
-
+        for (index, item) in categoryArray.enumerated() {
+            if item == category {
+                return index
+            }
         }
+        
+        return -1
+        
     }
     
     
     func returnPicString(_ category: String) -> String {
         
-        switch category {
-            
-        case "ones" : return "redDice1"
-        case "twos" : return "redDice2"
-        case "threes" : return "redDice3"
-        case "fours" : return "redDice4"
-        case "fives" : return "redDice5"
-        case "sixes" : return "redDice6"
-        case "threeOfAKind" : return "red3x"
-        case "fourOfAKind" : return "red4x"
-        case "fullHouse" : return "redHouse"
-        case "smallStraight" : return "redSmall"
-        case "largeStraight" : return "redLarge"
-        case "yahtzee": return "yahtzee"
-        case "chance": return "redChance"
-        default: return ""
-
+        if let returnValue = pictureDictionary[category] {
+            return returnValue
         }
+        
+        return ""
         
     }
 
 
     func returnRuleString(_ category: String) -> String {
         
-        switch category {
-            
-        case "ones" : return "Ones"
-        case "twos" : return "Twos"
-        case "threes" : return "Threes"
-        case "fours" : return "Fours"
-        case "fives" : return "Fives"
-        case "sixes" : return "Sixes"
-        case "threeOfAKind" : return "Three of \n  a kind"
-        case "fourOfAKind" : return "Four of \n  a kind"
-        case "fullHouse" : return "Full \n House"
-        case "smallStraight" : return "Small \n Straight"
-        case "largeStraight" : return "Large \n Straight"
-        case "yahtzee": return "Yahtzee"
-        case "chance": return "Chance"
-        default: return ""
-
+        if let returnValue = ruleDictionary[category] {
+            return returnValue
         }
         
+        return ""
+
     }
 
 

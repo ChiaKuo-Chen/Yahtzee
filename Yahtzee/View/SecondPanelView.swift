@@ -24,27 +24,27 @@ struct SecondPanelView: View {
 
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.white)
-            .fill( scoreAlreadyWritten() ? Color.white : ( categoryIndex() == pentarget() ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
+            .fill( scoreAlreadyWritten ? Color.white : ( categoryIndex == pentarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
             .scaledToFit()
             .shadow(radius: 0, y: 6)
             .overlay{
-                if scoreAlreadyWritten() {
-                    Text("\(writtenScore()!)")
-                        .font(writtenScore()!<=99 ? .title : .subheadline)
+                if scoreAlreadyWritten {
+                    Text("\(writtenScore!)")
+                        .font(writtenScore!<=99 ? .title : .subheadline)
                         .fontWeight(.black)
                         .foregroundStyle(.black)
                 } else {
-                    Text("\(potentialScore())")
-                        .font(potentialScore()<=99 ? .title : .subheadline)
+                    Text("\(potentialScore)")
+                        .font(potentialScore<=99 ? .title : .subheadline)
                         .fontWeight(.black)
-                        .foregroundStyle( categoryIndex() == pentarget() ? .black : .gray)
+                        .foregroundStyle( categoryIndex == pentarget ? .black : .gray)
                 }
             }
             .onTapGesture {
-                if !(scoreAlreadyWritten()) {
+                if !(scoreAlreadyWritten) {
                     
-                    if categoryIndex() != pentarget() {
-                        gamedata[0].scoreboard[0].penTarget = categoryIndex()
+                    if categoryIndex != pentarget {
+                        gamedata[0].scoreboard[0].penTarget = categoryIndex
                     } else {
                         gamedata[0].scoreboard[0].penTarget = nil
                     }
@@ -54,13 +54,13 @@ struct SecondPanelView: View {
         
     }
     
-    // MARK: - FUNCTION TO REPLY VALUE
+    // MARK: - TO SIMPLY THE CODE
     
-    func categoryIndex() -> Int { return categorymodel.returnIndex(category) }
-    func potentialScore() -> Int { return scoremodel.caculateScore(gamedata[0].diceArray, index: categoryIndex()) }
-    func writtenScore() -> Int? { return gamedata[0].scoreboard[0].scoresArray[categoryIndex()] }
-    func scoreAlreadyWritten() -> Bool { return  ( writtenScore() != nil ) }
-    func pentarget() -> Int? { return  gamedata[0].scoreboard[0].penTarget }
+    var potentialScore : Int { scoremodel.caculateScore(gamedata[0].diceArray, category: category) }
+    var categoryIndex : Int { categorymodel.returnIndex(category) }
+    var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
+    var writtenScore : Int? { gamedata[0].scoreboard[0].scoresArray[categoryIndex] }
+    var pentarget : Int? { gamedata[0].scoreboard[0].penTarget }
 
 
 }

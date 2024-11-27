@@ -15,24 +15,24 @@ struct DiceRowView: View {
     var body: some View {
         HStack {
             ForEach(0 ..< 5 , id: \.self) { index in
-                Image("dice\(gamedata[0].diceArray[index].value)")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 5)
-                    .onTapGesture {
-                        if gamedata[0].diceArray[index].value != 0 {
-                            gamedata[0].diceArray[index].isHeld.toggle()
-                        }
-                    }
-                    .overlay(
-                        Rectangle()
-                            .stroke(gamedata[0].diceArray[index].isHeld ? Color.yellow : Color.gray, lineWidth: 2)
-                    )
-                    .rotationEffect( .degrees(gamedata[0].diceArray[index].isRoll) )
-                    .animation(Animation.easeInOut(duration: 1), value: gamedata[0].diceArray[index].isRoll)
+                ZStack {
+                    Rectangle()
+                        .stroke(gamedata[0].diceArray[index].isHeld ? Color.yellow : Color.gray, lineWidth: 2)
+                        .scaledToFit()
 
-                
+                    Image("dice\(gamedata[0].diceArray[index].value)")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 5)
+                        .onTapGesture {
+                            if gamedata[0].diceArray[index].value != 0 {
+                                gamedata[0].diceArray[index].isHeld.toggle()
+                            }
+                        }
+                        .rotationEffect( .degrees(gamedata[0].diceArray[index].isRoll) )
+                        .animation(Animation.easeInOut(duration: 1), value: gamedata[0].diceArray[index].isRoll)
+                }
             }
         } // HSTACK
     }

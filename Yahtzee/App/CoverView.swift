@@ -109,8 +109,6 @@ struct CoverView: View {
             .onAppear{
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
-                } else {
-                    gamedata[0].currentHighestScore = gamedata[0].newHighestScore
                 }
             } // ONAPPEAR
             .navigationDestination(isPresented: $goToContentView){
