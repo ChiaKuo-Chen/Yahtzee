@@ -11,7 +11,8 @@ struct ButtonView: View {
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
     @Environment(\.modelContext) private var modelContext
-    
+    @EnvironmentObject var penObject: PenObject
+
     @Binding var goToYahtzeeView : Bool
     @Binding var goToEndView : Bool
     
@@ -80,14 +81,14 @@ struct ButtonView: View {
             if rollcount < 3 {
                 Button(action: {
                     
-                    if let penIndex = scoreboard.penTarget {
+                    if let penIndex = penObject.penTarget {
                         
                         scoreboard.updateScoreBoard(
                             newScore: scoremodel.caculateScore (dicearray, category: categorymodel.returnCategory(penIndex))
                             ,penIndex: penIndex)
                         // Write Score Down
                         
-                        scoreboard.penTarget = nil
+                        penObject.leavePaper()
                         // Let the Pen leave the scoreBoard
                         
                         for i in 0 ..< 5 {

@@ -9,7 +9,6 @@ import SwiftData
 class ScoreBoard {
     
     var scoresArray : [Int?] = [Int?](repeating: nil as Int?, count: 13)
-    var penTarget : Int? = nil
     var rollCount : Int = 3
 
     init() {
@@ -47,7 +46,6 @@ class ScoreBoard {
         for item in self.scoresArray {
             if item != nil { return false }
         }
-        if self.penTarget != nil { return false }
         if self.rollCount != 3 { return false }
         
         return true

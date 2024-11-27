@@ -10,18 +10,20 @@ struct SecondPanelView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
+    @EnvironmentObject var penObject: PenObject
+    
     let categorymodel = CategoryModel()
     let scoremodel = ScoreModel()
     
     let category: String
     
     private let unselectPanelColor = "#d8ffb2"
-
+    
     // MARK: - BODY
     
     var body: some View {
         
-
+        
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.white)
             .fill( scoreAlreadyWritten ? Color.white : ( categoryIndex == pentarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
@@ -41,16 +43,17 @@ struct SecondPanelView: View {
                 }
             }
             .onTapGesture {
-                if !(scoreAlreadyWritten) {
-                    
+                if scoreAlreadyWritten {
+                    penObject.leavePaper()
+                }
+                else {
                     if categoryIndex != pentarget {
-                        gamedata[0].scoreboard[0].penTarget = categoryIndex
-                    } else {
-                        gamedata[0].scoreboard[0].penTarget = nil
+                        penObject.takePaper(categoryIndex)
                     }
                 }
                 
             }
+        
         
     }
     
@@ -60,9 +63,9 @@ struct SecondPanelView: View {
     var categoryIndex : Int { categorymodel.returnIndex(category) }
     var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
     var writtenScore : Int? { gamedata[0].scoreboard[0].scoresArray[categoryIndex] }
-    var pentarget : Int? { gamedata[0].scoreboard[0].penTarget }
-
-
+    var pentarget : Int? { penObject.penTarget }
+    
+    
 }
 
 #Preview {

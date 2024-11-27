@@ -114,6 +114,7 @@ struct CoverView: View {
             .navigationDestination(isPresented: $goToContentView){
                 ContentView()
                     .modelContainer(for: GameData.self)
+                    .environmentObject(PenObject())
                     .navigationBarBackButtonHidden()
             } // GO TO YahtzeeAnimateView
 

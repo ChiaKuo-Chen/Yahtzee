@@ -46,15 +46,11 @@ struct ContentView: View {
                 
             } // ZTSACK
             .background(Color(UIColor(hex: backgroundColor)).ignoresSafeArea(.all))
-            .onAppear{
-                gamedata[0].scoreboard[0].penTarget = nil
-            }
             .navigationDestination(isPresented: $goToEndView){
                 EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore() )
                     .modelContainer(for: GameData.self)
                     .navigationBarBackButtonHidden()
             } // GO TO ENDVIEW
-
         } // NAVIGATIONSTACK
         
     }

@@ -3,7 +3,6 @@
 //  Yahtzee
 //
 
-import UIKit
 import SwiftUI
 
 extension UIColor {

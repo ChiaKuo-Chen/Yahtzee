@@ -11,11 +11,11 @@ struct ContinueWindowView: View {
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
     @Environment(\.modelContext) private var modelContext
-
+    
     @Binding var showingContinueView : Bool
     @Binding var goToContentView : Bool
-    
     @State var startAnimation : Bool = false
+    
     // MARK: - BODY
     
     var body: some View {

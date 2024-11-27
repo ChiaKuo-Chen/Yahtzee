@@ -19,12 +19,10 @@ class Dice {
     }
     
     func roll() {
-        
         if !isHeld {
             self.value = Int.random(in: 1...6)
             self.isRoll += 360
         }
-                
     }
     
 }

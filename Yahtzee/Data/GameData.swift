@@ -13,7 +13,7 @@ class GameData {
     
     var scoreboard : [ScoreBoard]
     var diceArray: [Dice]
-    
+
     init(currentHighestScore: Int, soundEffect: Bool, scoreboard: [ScoreBoard], diceArray: [Dice]) {
         self.currentHighestScore = currentHighestScore
         self.soundEffect = soundEffect
