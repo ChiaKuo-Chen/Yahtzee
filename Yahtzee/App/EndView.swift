@@ -122,6 +122,6 @@ struct EndView: View {
 }
 
 #Preview {
-    EndView(finalScore: 230)
+    EndView(finalScore: 70)
         .modelContainer(for: GameData.self)
 }
