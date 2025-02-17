@@ -103,7 +103,7 @@ struct EndView: View {
                 }
             }
             .navigationDestination(isPresented: $goBackToCoverView){
-                CoverView()
+                ContentView()
                     .modelContainer(for: GameData.self)
                     .navigationBarBackButtonHidden()
             } // GO TO ContentView

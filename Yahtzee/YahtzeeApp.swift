@@ -10,7 +10,7 @@ import SwiftData
 struct YahtzeeApp: App {
     var body: some Scene {
         WindowGroup {
-            CoverView()
+            ContentView()
                 .modelContainer(for: GameData.self)
         }
     }

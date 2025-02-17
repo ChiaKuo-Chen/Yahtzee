@@ -6,7 +6,7 @@
 import SwiftUI
 import SwiftData
 
-struct CoverView: View {
+struct ContentView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
@@ -112,7 +112,7 @@ struct CoverView: View {
                 }
             } // ONAPPEAR
             .navigationDestination(isPresented: $goToContentView){
-                ContentView()
+                GameTableView()
                     .modelContainer(for: GameData.self)
                     .environmentObject(PenObject())
                     .navigationBarBackButtonHidden()
@@ -127,6 +127,6 @@ struct CoverView: View {
 }
 
 #Preview {
-    CoverView()
+    ContentView()
         .modelContainer(for: GameData.self)
 }

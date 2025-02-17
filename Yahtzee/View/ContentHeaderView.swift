@@ -17,7 +17,7 @@ struct ContentHeaderView: View {
         HStack {
             
             NavigationLink(destination: {
-                CoverView()
+                ContentView()
                     .modelContainer(for: GameData.self)
                     .navigationBarBackButtonHidden()
             },

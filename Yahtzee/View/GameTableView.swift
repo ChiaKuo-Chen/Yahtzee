@@ -6,7 +6,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct GameTableView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
@@ -58,6 +58,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    GameTableView()
         .modelContainer(for: GameData.self)
 }
