@@ -46,7 +46,8 @@ struct GameTableView: View {
                 }
                 
             } // ZTSACK
-            .background(Color(UIColor(hex: backgroundColor)).ignoresSafeArea(.all))
+            .background(Color(UIColor(hex: backgroundColor))
+                .ignoresSafeArea(.all))
             .navigationDestination(isPresented: $goToEndView){
                 EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore() )
                     .modelContainer(for: GameData.self)

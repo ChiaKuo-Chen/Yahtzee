@@ -30,7 +30,8 @@ struct ContentView: View {
             ZStack {
                 
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
-                
+                    .ignoresSafeArea(.all)
+
                 VStack {
                     
                     HStack {    
@@ -105,7 +106,6 @@ struct ContentView: View {
                     ContinueWindowView(showingContinueView: $showingContinueView, goToContentView: $goToContentView)
                 }
             } // ZSTACK
-            .ignoresSafeArea(.all)
             .onAppear{
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
