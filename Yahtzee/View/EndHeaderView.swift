@@ -26,7 +26,6 @@ struct EndHeaderView: View {
                     .font(.system(size: 45))
                     .foregroundStyle(Color.black)
                     .frame(alignment: .trailing)
-                    .padding()
             })
             
             Spacer()
@@ -39,9 +38,9 @@ struct EndHeaderView: View {
                         gamedata.first?.soundEffect.toggle()
                         try? modelContext.save()
                     }
-                    .padding()
                     .frame(alignment: .topTrailing)
         }
+        .padding(.horizontal)
     }
 }
 

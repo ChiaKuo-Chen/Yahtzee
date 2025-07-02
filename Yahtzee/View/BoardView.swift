@@ -74,6 +74,7 @@ struct BoardView: View {
         var body: some View {
             BoardView()
                 .modelContainer(for: GameData.self)
+                .environmentObject(PenObject())
         }
     }
     return Preview()

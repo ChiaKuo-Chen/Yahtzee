@@ -33,6 +33,7 @@ struct EndView: View {
             ZStack {
                 
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .ignoresSafeArea()
 
                 VStack(alignment: .center) {
                     
@@ -87,7 +88,6 @@ struct EndView: View {
                 } // VSTACK
                 
             } // ZSTACK
-            .ignoresSafeArea()
             .onAppear{
                 startAnimation()
                 highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )

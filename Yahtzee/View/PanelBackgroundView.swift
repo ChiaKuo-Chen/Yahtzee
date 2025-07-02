@@ -15,7 +15,7 @@ struct PanelBackgroundView: View {
         
         switch category {
 
-        case "Ones":
+        case "ones":
 
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
@@ -29,7 +29,7 @@ struct PanelBackgroundView: View {
                     }
                 }
             
-        case "Twos", "Threes", "Fours", "Fives", "Sixes":
+        case "twos", "threes", "fours", "fives", "sixes":
 
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
@@ -52,6 +52,14 @@ struct PanelBackgroundView: View {
     }
 }
 
-#Preview {
-    PanelBackgroundView(category: "twos", backGroundColor: "27ae60")
+#Preview("one") {
+    PanelBackgroundView(category: "ones", backGroundColor: "27ae60")
+}
+
+#Preview("three") {
+    PanelBackgroundView(category: "threes", backGroundColor: "27ae60")
+}
+
+#Preview("other") {
+    PanelBackgroundView(category: "other", backGroundColor: "27ae60")
 }

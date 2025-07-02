@@ -17,6 +17,7 @@ struct AddUpView: View {
         
         let addUpLineColor: Color = {
             switch (addUp) {
+            case 0: return Color.gray
             case 63...: return Color.yellow
             default: return Color.white
             }
@@ -91,4 +92,11 @@ struct AddUpView: View {
 
 #Preview {
     AddUpView(addUp: 43, backGroundColor: "27ae60")
+        .environmentObject(PenObject())
+
+}
+
+#Preview(">=63") {
+    AddUpView(addUp: 63, backGroundColor: "27ae60")
+        .environmentObject(PenObject())
 }

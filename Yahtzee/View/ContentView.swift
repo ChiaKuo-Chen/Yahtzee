@@ -46,7 +46,7 @@ struct ContentView: View {
                                 gamedata.first?.soundEffect.toggle()
                                 try? modelContext.save()
                             }
-                            .padding()
+                            .padding(.horizontal)
 
                     }
                     

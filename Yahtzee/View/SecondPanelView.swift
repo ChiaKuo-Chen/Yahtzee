@@ -28,7 +28,7 @@ struct SecondPanelView: View {
             .fill(Color.white)
             .fill( scoreAlreadyWritten ? Color.white : ( categoryIndex == pentarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
             .scaledToFit()
-            .shadow(radius: 0, y: 6)
+            .shadow(radius: 0, y: scoreAlreadyWritten ? 0 : 6)
             .overlay{
                 if scoreAlreadyWritten {
                     Text("\(writtenScore!)")
@@ -74,6 +74,7 @@ struct SecondPanelView: View {
         
         var body: some View {
             SecondPanelView(category: "threes")
+                .environmentObject(PenObject())
                 .modelContainer(for: GameData.self)
         }
     }

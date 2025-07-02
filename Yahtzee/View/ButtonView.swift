@@ -144,6 +144,7 @@ struct ButtonView: View {
         var body: some View {
             ButtonView(audioManager: AudioManager(), goToYahtzeeView: $goToYahtzeeView, goToEndView: $goToEndView)
                 .modelContainer(for: GameData.self)
+                .environmentObject(PenObject())
         }
     }
     return Preview()
