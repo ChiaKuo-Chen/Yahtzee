@@ -11,6 +11,7 @@ struct GameTableView: View {
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
     @Environment(\.modelContext) private var modelContext
+    @StateObject var audioManager = AudioManager()
 
     @State var showingYahtzeeView = false
     @State var goToEndView = false
@@ -35,7 +36,7 @@ struct GameTableView: View {
                     DiceRowView()
                         .padding()
                     
-                    ButtonView(goToYahtzeeView: $showingYahtzeeView, goToEndView: $goToEndView)
+                    ButtonView(audioManager: audioManager, goToYahtzeeView: $showingYahtzeeView, goToEndView: $goToEndView)
                         .padding()
                     
                 } // VSTACK
@@ -52,12 +53,28 @@ struct GameTableView: View {
                     .navigationBarBackButtonHidden()
             } // GO TO ENDVIEW
         } // NAVIGATIONSTACK
+        .onAppear{
+            audioManager.isMuted = !gamedata[0].soundEffect
+        }
+        .onChange(of: gamedata[0].soundEffect) {
+            audioManager.isMuted = !gamedata[0].soundEffect
+        }
         
     }
     
 }
 
+
 #Preview {
-    GameTableView()
-        .modelContainer(for: GameData.self)
+    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+    let context = container.mainContext
+    let previewGameData = generateInitialData()
+
+    context.insert(previewGameData)
+    try? context.save()
+    
+    return GameTableView()
+        .modelContainer(container)
+        .environmentObject(PenObject())
 }
+

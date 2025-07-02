@@ -85,16 +85,16 @@ struct RowView: View {
 
 
 #Preview {
-    
-    struct Preview: View {
-        
-        
-        var body: some View {
-            RowView(category: "threes", backGroundColor: "27ae60")
-                .modelContainer(for: GameData.self)
-        }
-    }
-    return Preview()
+    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+    let context = container.mainContext
+    let previewGameData = generateInitialData()
 
+    context.insert(previewGameData)
+    try? context.save()
+    
+    return RowView(category: "threes", backGroundColor: "27ae60")
+        .modelContainer(container)
+        .environmentObject(PenObject())
 }
+
 

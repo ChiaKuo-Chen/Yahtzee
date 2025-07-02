@@ -12,7 +12,8 @@ struct ButtonView: View {
     @Query var gamedata: [GameData]
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var penObject: PenObject
-
+    @StateObject var audioManager : AudioManager
+    
     @Binding var goToYahtzeeView : Bool
     @Binding var goToEndView : Bool
     
@@ -30,9 +31,7 @@ struct ButtonView: View {
                 
                 if rollcount > 0 && dicearray.getDicesHeld().filter({$0 == true}).count < 5 {
                     
-                    if gamedata.first?.soundEffect == true {
-                        playSound(sound: "diceRoll", type: "mp3")
-                    }
+                    audioManager.playSound(sound: "diceRoll", type: "mp3")
                     
                     for item in 0 ..< 5 {
                         dicearray[item].roll()
@@ -143,7 +142,7 @@ struct ButtonView: View {
         @State private var goToEndView = false
         
         var body: some View {
-            ButtonView(goToYahtzeeView: $goToYahtzeeView, goToEndView: $goToEndView)
+            ButtonView(audioManager: AudioManager(), goToYahtzeeView: $goToYahtzeeView, goToEndView: $goToEndView)
                 .modelContainer(for: GameData.self)
         }
     }
