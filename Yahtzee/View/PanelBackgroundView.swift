@@ -24,7 +24,7 @@ struct PanelBackgroundView: View {
                         Rectangle()
                             .frame(width: 6, height: geometry.size.height/2)
                             .foregroundStyle(Color.gray)
-                            .offset(x: geometry.size.width/2 )
+                            .offset(x: geometry.size.width/2 - 3 )
                             .offset(y: geometry.size.height/2 )
                     }
                 }
@@ -38,7 +38,7 @@ struct PanelBackgroundView: View {
                         Rectangle()
                             .frame(width: 6, height: geometry.size.height)
                             .foregroundStyle(Color.gray)
-                            .offset(x: geometry.size.width/2 )
+                            .offset(x: geometry.size.width/2 - 3 )
                     }
                 }
 
