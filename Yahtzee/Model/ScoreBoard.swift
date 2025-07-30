@@ -3,13 +3,14 @@
 //  Yahtzee
 //
 import Foundation
+import SwiftUI
 import SwiftData
 
 @Model
 class ScoreBoard {
     
     var scoresArray : [Int?] = [Int?](repeating: nil as Int?, count: 13)
-    var rollCount : Int = 3
+    var rollCount: Int = 3
 
     init() {
     }

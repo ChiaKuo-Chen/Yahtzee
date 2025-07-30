@@ -22,6 +22,8 @@ class AudioManager: ObservableObject {
     
     
     func playSound(sound: String, type: String) {
+        guard !isMuted else { return }
+        
         if let url = Bundle.main.url(forResource: sound, withExtension: type) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url)
@@ -34,6 +36,8 @@ class AudioManager: ObservableObject {
     }
     
     func playSound(sound: String, type: String, duration: Double) {
+        guard !isMuted else { return }
+        
         if let url = Bundle.main.url(forResource: sound, withExtension: type) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url)

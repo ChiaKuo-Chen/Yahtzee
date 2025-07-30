@@ -9,16 +9,7 @@ import SwiftData
 struct ButtonView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
-    @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject var penObject: PenObject
-    @StateObject var audioManager : AudioManager
-    
-    @Binding var goToYahtzeeView : Bool
-    @Binding var goToEndView : Bool
-    
-    private let categorymodel = CategoryModel()
-    private let scoremodel = ScoreModel()
+    @StateObject var viewModel: ButtonViewModel
     
     // MARK: - BODY
     
@@ -28,26 +19,7 @@ struct ButtonView: View {
         HStack {
             // ROLL BUTTON
             Button(action: {
-                
-                if rollcount > 0 && dicearray.getDicesHeld().filter({$0 == true}).count < 5 {
-                    
-                    audioManager.playSound(sound: "diceRoll", type: "mp3")
-                    
-                    for item in 0 ..< 5 {
-                        dicearray[item].roll()
-                    }
-                    gamedata[0].scoreboard[0].rollCount -= 1
-                    
-                    try? modelContext.save()
-                    
-                    for i in 1 ... 6 {
-                        if ( dicearray.getDicesNumber().filter({$0 == i}).count == 5 ) {
-                            goToYahtzeeView.toggle()
-                        }
-                    }
-                    // SPECIAL ANIMATION FOR YAHTZEE
-                    
-                }
+                viewModel.rollDice()
             }, // ACTION
                    label: {
                 ZStack {
@@ -67,8 +39,7 @@ struct ButtonView: View {
                             Circle()
                                 .scaledToFit()
                                 .frame(maxWidth: 25)
-                                .foregroundStyle(rollcount > index ? Color.green : Color.gray)
-                            
+                                .foregroundStyle(viewModel.rollCount > index ? Color.green : Color.gray)
                         }
                         
                     } // HSTACK
@@ -77,36 +48,9 @@ struct ButtonView: View {
             ) // ROLL BUTTON
             
             // PLAY BUTTON
-            if rollcount < 3 {
+            if viewModel.rollCount < 3 {
                 Button(action: {
-                    
-                    if let penIndex = penObject.penTarget {
-                        
-                        scoreboard.updateScoreBoard(
-                            newScore: scoremodel.caculateScore (dicearray, category: categorymodel.returnCategory(penIndex))
-                            ,penIndex: penIndex)
-                        // Write Score Down
-                        
-                        penObject.leavePaper()
-                        // Let the Pen leave the scoreBoard
-                        
-                        for i in 0 ..< 5 {
-                            dicearray[i].isHeld = false
-                            dicearray[i].value = 0
-                        }
-                        scoreboard.rollCount = 3
-                        // RESET THE ROLL BUTTON (NEW TURN)
-                        
-                        try? modelContext.save()
-                        
-                        if !(scoreboard.scoresArray.contains(nil)) {
-                            goToEndView.toggle()
-                        }
-                        // AFTER 13 TURN, GAME END, GO TO THE END VIEW
-                        
-                    }
-                    
-                    
+                    viewModel.play()
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
@@ -125,27 +69,34 @@ struct ButtonView: View {
             }
         } // HSTACK
         
-        // MARK: - TO SIMPLY THE CODE
-        var scoreboard : ScoreBoard { gamedata[0].scoreboard[0] }
-        var rollcount : Int { scoreboard.rollCount }
-        var dicearray : [Dice] { gamedata[0].diceArray }
-        
     }
     
     
 }
 
-#Preview {
-    struct Preview: View {
-        
-        @State private var goToYahtzeeView = false
-        @State private var goToEndView = false
-        
-        var body: some View {
-            ButtonView(audioManager: AudioManager(), goToYahtzeeView: $goToYahtzeeView, goToEndView: $goToEndView)
-                .modelContainer(for: GameData.self)
-                .environmentObject(PenObject())
-        }
-    }
-    return Preview()
+#Preview("Preview") {
+
+    let container = try! ModelContainer(for: GameData.self, ScoreBoard.self, Dice.self)
+    let context = container.mainContext
+
+    let previewGameData = generateInitialData()
+    context.insert(previewGameData)
+    try? context.save()
+
+    let penObject = PenObject()
+    let router = Router()
+    let audioManager = AudioManager()
+
+    let viewModel = ButtonViewModel(
+        gameData: previewGameData,
+        modelContext: context,
+        penObject: penObject,
+        router: router,
+        audioManager: audioManager
+    )
+
+    return ButtonView(viewModel: viewModel)
+        .environmentObject(penObject)
+        .environmentObject(router)
+        .modelContainer(container)
 }

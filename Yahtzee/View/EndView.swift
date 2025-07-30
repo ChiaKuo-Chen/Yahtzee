@@ -9,10 +9,11 @@ import SwiftData
 struct EndView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
+    @Bindable var gameData: GameData
     @Environment(\.modelContext) private var modelContext
 
-    @State private var goBackToCoverView : Bool = false
+    @EnvironmentObject var router: Router
+
     @State private var ticketToGoBack : Bool = false
     @State private var animationSwitch : Bool = false
     @State private var highscoreUpdate : Bool = false
@@ -28,8 +29,6 @@ struct EndView: View {
     var body: some View {
         
         
-        NavigationStack {
-            
             ZStack {
                 
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -37,8 +36,9 @@ struct EndView: View {
 
                 VStack(alignment: .center) {
                     
-                    EndHeaderView()
-                    
+                    HeaderView(gameData: gameData, showingScore: false)
+                        .foregroundStyle(Color.black)
+
                     Image("yahtzee")
                         .scaledToFill()
                         .scaleEffect(1.6)
@@ -90,26 +90,19 @@ struct EndView: View {
             } // ZSTACK
             .onAppear{
                 startAnimation()
-                highscoreUpdate = ( finalScore > gamedata[0].currentHighestScore )
+                highscoreUpdate = ( finalScore > gameData.currentHighestScore )
             }
             .onDisappear{
-                if highscoreUpdate { gamedata[0].currentHighestScore = finalScore }
-                gamedata[0].prepareToNewPlay()
+                if highscoreUpdate { gameData.currentHighestScore = finalScore }
+                gameData.prepareToNewPlay()
                 try? modelContext.save()
             }
             .onTapGesture {
                 if ticketToGoBack {
-                    goBackToCoverView.toggle()
+                    router.path.removeAll()
                 }
             }
-            .navigationDestination(isPresented: $goBackToCoverView){
-                ContentView()
-                    .modelContainer(for: GameData.self)
-                    .navigationBarBackButtonHidden()
-            } // GO TO ContentView
-            
-        } // NavigationStack
-        
+                    
     }
     
     func startAnimation() {
@@ -122,6 +115,28 @@ struct EndView: View {
 }
 
 #Preview {
-    EndView(finalScore: 70)
-        .modelContainer(for: GameData.self)
+    
+    struct Preview: View {
+        let container: ModelContainer
+        let context: ModelContext
+        var router = Router()
+        
+        init() {
+            container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+            context = container.mainContext
+            let previewGameData = generateInitialData()
+            context.insert(previewGameData)
+            try? context.save()
+            router.path.append(.end(finalScore: 80))
+        }
+        
+        var body: some View {
+            ContentView()
+                .modelContainer(container)
+                .environmentObject(PenObject())
+                .environmentObject(router)
+        }
+    }
+    
+    return Preview()
 }

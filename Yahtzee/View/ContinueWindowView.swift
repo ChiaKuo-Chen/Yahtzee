@@ -9,11 +9,12 @@ import SwiftData
 struct ContinueWindowView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
+    @Bindable var gameData: GameData
+
     @Environment(\.modelContext) private var modelContext
-    
+    @EnvironmentObject var router: Router
+
     @Binding var showingContinueView : Bool
-    @Binding var goToContentView : Bool
     @State var startAnimation : Bool = false
     
     // MARK: - BODY
@@ -103,11 +104,10 @@ Would you like to conitinue your previous game or start a new one?
     
     var newGameButton: some View {
         Button {
-            gamedata[0].prepareToNewPlay()
+            gameData.prepareToNewPlay()
             try? modelContext.save()
-            
-            goToContentView.toggle()
-
+            self.showingContinueView.toggle()
+            router.path.append(.gameTable)
         } label: {
             Text("NEW GAME")
                 .font(.headline)
@@ -124,7 +124,8 @@ Would you like to conitinue your previous game or start a new one?
 
     var continueGameButton: some View {
         Button {
-            goToContentView.toggle()
+            self.showingContinueView.toggle()
+            router.path.append(.gameTable)
         } label: {
             Text("CONTINUE")
                 .font(.headline)
@@ -143,14 +144,32 @@ Would you like to conitinue your previous game or start a new one?
 
 #Preview {
     struct Preview: View {
-        
-        @State private var showingContinueView: Bool = true
-        @State var goToContentView : Bool = false
+        @State var showingContinueView = true
+        @StateObject var router = Router()
 
         var body: some View {
-            ContinueWindowView(showingContinueView: $showingContinueView, goToContentView: $goToContentView)
-                .modelContainer(for: GameData.self)
+            let initialScoreBoard = [ScoreBoard()]
+            let initialDiceArray = [
+                Dice(value: 1, isHeld: false, isRoll: 0),
+                Dice(value: 2, isHeld: false, isRoll: 0),
+                Dice(value: 3, isHeld: false, isRoll: 0),
+                Dice(value: 4, isHeld: false, isRoll: 0),
+                Dice(value: 5, isHeld: false, isRoll: 0),
+            ]
+            let gameData = GameData(
+                currentHighestScore: 0,
+                soundEffect: true,
+                scoreboard: initialScoreBoard,
+                diceArray: initialDiceArray
+            )
+
+            ContinueWindowView(
+                gameData: gameData,
+                showingContinueView: $showingContinueView
+            )
+            .environmentObject(router)
         }
     }
+
     return Preview()
 }

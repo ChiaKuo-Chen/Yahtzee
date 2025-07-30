@@ -5,79 +5,74 @@
 
 import SwiftUI
 import SwiftData
-
 struct SecondPanelView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
     @EnvironmentObject var penObject: PenObject
-    
-    let categorymodel = CategoryModel()
-    let scoremodel = ScoreModel()
+    @Bindable var gameData: GameData
     
     let category: String
+    let categoryModel = CategoryModel()
+    let scoreModel = ScoreModel()
     
     private let unselectPanelColor = "#d8ffb2"
-    
+
     // MARK: - BODY
-    
     var body: some View {
-        
-        
         RoundedRectangle(cornerRadius: 10)
-            .fill(Color.white)
-            .fill( scoreAlreadyWritten ? Color.white : ( categoryIndex == pentarget ? Color.green : Color(UIColor(hex: unselectPanelColor)) ) )
+            .fill(panelColor)
             .scaledToFit()
             .shadow(radius: 0, y: scoreAlreadyWritten ? 0 : 6)
-            .overlay{
+            .overlay {
                 if scoreAlreadyWritten {
                     Text("\(writtenScore!)")
-                        .font(writtenScore!<=99 ? .title : .subheadline)
+                        .font(writtenScore! <= 99 ? .title : .subheadline)
                         .fontWeight(.black)
                         .foregroundStyle(.black)
                 } else {
                     Text("\(potentialScore)")
-                        .font(potentialScore<=99 ? .title : .subheadline)
+                        .font(potentialScore <= 99 ? .title : .subheadline)
                         .fontWeight(.black)
-                        .foregroundStyle( categoryIndex == pentarget ? .black : .gray)
+                        .foregroundStyle(categoryIndex == penTarget ? .black : .gray)
                 }
             }
             .onTapGesture {
                 if scoreAlreadyWritten {
                     penObject.leavePaper()
+                } else {
+                    penObject.takePaper(categoryIndex)
                 }
-                else {
-                    if categoryIndex != pentarget {
-                        penObject.takePaper(categoryIndex)
-                    }
-                }
-                
+                //print(penObject.penTarget ?? "Not found")
             }
-        
-        
     }
-    
-    // MARK: - TO SIMPLY THE CODE
-    
-    var potentialScore : Int { scoremodel.caculateScore(gamedata[0].diceArray, category: category) }
-    var categoryIndex : Int { categorymodel.returnIndex(category) }
-    var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
-    var writtenScore : Int? { gamedata[0].scoreboard[0].scoresArray[categoryIndex] }
-    var pentarget : Int? { penObject.penTarget }
-    
-    
+
+    // MARK: - 狀態&輔助運算
+    var diceArray: [Dice] { gameData.diceArray }
+    var scoreboard: ScoreBoard { gameData.scoreboard[0] }
+    var potentialScore: Int { scoreModel.caculateScore(diceArray, category: category) }
+    var categoryIndex: Int { categoryModel.returnIndex(category) }
+    var scoreAlreadyWritten: Bool { writtenScore != nil }
+    var writtenScore: Int? { scoreboard.scoresArray[categoryIndex] }
+    var penTarget: Int? { penObject.penTarget }
+
+    var panelColor: Color {
+        if scoreAlreadyWritten {
+            return Color.white
+        } else if categoryIndex == penTarget {
+            return Color.green
+        } else {
+            return Color(UIColor(hex: unselectPanelColor))
+        }
+    }
 }
 
 #Preview {
-    
-    struct Preview: View {
-        
-        var body: some View {
-            SecondPanelView(category: "threes")
-                .environmentObject(PenObject())
-                .modelContainer(for: GameData.self)
-        }
-    }
-    return Preview()
-    
+    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+    let previewGameData = generateInitialData()
+    let penObject = PenObject()
+
+    // 範例選一個 category
+    return SecondPanelView(gameData: previewGameData, category: "threes")
+        .environmentObject(penObject)
+        .modelContainer(container)
 }

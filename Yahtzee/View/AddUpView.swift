@@ -92,11 +92,8 @@ struct AddUpView: View {
 
 #Preview {
     AddUpView(addUp: 43, backGroundColor: "27ae60")
-        .environmentObject(PenObject())
-
 }
 
 #Preview(">=63") {
     AddUpView(addUp: 63, backGroundColor: "27ae60")
-        .environmentObject(PenObject())
 }

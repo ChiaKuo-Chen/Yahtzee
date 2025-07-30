@@ -8,8 +8,8 @@ import SwiftData
 struct BoardView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
-    
+    @Bindable var gameData: GameData
+
     let boardBackgroundColor1 = "27ae60"
     let boardBackgroundColor2 = "16a085"
     
@@ -21,44 +21,44 @@ struct BoardView: View {
         VStack(spacing: 0) {
             
             HStack(spacing: 0) {
-                RowView(category: "ones", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "ones", backGroundColor: boardBackgroundColor1)
                 
-                RowView(category: "threeOfAKind", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "threeOfAKind", backGroundColor: boardBackgroundColor1)
             }
             
             HStack(spacing: 0) {
-                RowView(category: "twos", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "twos", backGroundColor: boardBackgroundColor2)
                 
-                RowView(category: "fourOfAKind", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "fourOfAKind", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
-                RowView(category: "threes", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "threes", backGroundColor: boardBackgroundColor1)
                 
-                RowView(category: "fullHouse", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "fullHouse", backGroundColor: boardBackgroundColor1)
             }
             
             HStack(spacing: 0) {
-                RowView(category: "fours", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "fours", backGroundColor: boardBackgroundColor2)
                 
-                RowView(category: "smallStraight", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "smallStraight", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
-                RowView(category: "fives", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "fives", backGroundColor: boardBackgroundColor1)
                 
-                RowView(category: "largeStraight", backGroundColor: boardBackgroundColor1)            }
+                RowView(gameData: gameData, category: "largeStraight", backGroundColor: boardBackgroundColor1)            }
             
             HStack(spacing: 0) {
-                RowView(category: "sixes", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "sixes", backGroundColor: boardBackgroundColor2)
                 
-                RowView(category: "yahtzee", backGroundColor: boardBackgroundColor2)
+                RowView(gameData: gameData, category: "yahtzee", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
-                AddUpView(addUp: gamedata[0].scoreboard[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
+                AddUpView(addUp: gameData.scoreboard[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
                 
-                RowView(category: "chance", backGroundColor: boardBackgroundColor1)
+                RowView(gameData: gameData, category: "chance", backGroundColor: boardBackgroundColor1)
             }
             
         } // VSTACK
@@ -67,17 +67,15 @@ struct BoardView: View {
 
     }
 }
+
 #Preview {
     
-    struct Preview: View {
-        
-        var body: some View {
-            BoardView()
-                .modelContainer(for: GameData.self)
-                .environmentObject(PenObject())
-        }
-    }
-    return Preview()
-    
+    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+    let previewGameData = generateInitialData()
+    let penObject = PenObject()
+
+    BoardView(gameData: previewGameData)
+        .environmentObject(penObject)
+        .modelContainer(container)
 }
 

@@ -9,73 +9,72 @@ import SwiftData
 struct GameTableView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
+    @Bindable var gameData: GameData
+
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var penObject: PenObject
+    @EnvironmentObject var router: Router
+    
     @StateObject var audioManager = AudioManager()
-
-    @State var showingYahtzeeView = false
-    @State var goToEndView = false
-
+    
     private let backgroundColor = "043940"
     
     // MARK: - BODY
     
     var body: some View {
-                
-        NavigationStack{
+        
+        
+        ZStack {
             
-            ZStack {
+            
+            VStack {
+                
+                HeaderView(gameData: gameData, showingScore: true)
+                    .foregroundStyle(Color.white)
+                
+                BoardView(gameData: gameData)
+                
+                DiceRowView(gameData: gameData)
+                    .padding()
+                
+                ButtonView(viewModel: ButtonViewModel(
+                    gameData: gameData,
+                    modelContext: modelContext,
+                    penObject: penObject,
+                    router: router,
+                    audioManager: audioManager
+                ))
+                .padding()
 
-                
-                VStack {
-                    
-                    ContentHeaderView()
-
-                    BoardView()
-                    
-                    DiceRowView()
-                        .padding()
-                    
-                    ButtonView(audioManager: audioManager, goToYahtzeeView: $showingYahtzeeView, goToEndView: $goToEndView)
-                        .padding()
-                    
-                } // VSTACK
-                
-                if showingYahtzeeView {
-                    YahtzeeAnimateView(showingYahtzeeView: $showingYahtzeeView).ignoresSafeArea(.all)
-                }
-                
-            } // ZTSACK
-            .background(Color(UIColor(hex: backgroundColor))
-                .ignoresSafeArea(.all))
-            .navigationDestination(isPresented: $goToEndView){
-                EndView(finalScore: gamedata[0].scoreboard[0].returnTotalScore() )
-                    .modelContainer(for: GameData.self)
-                    .navigationBarBackButtonHidden()
-            } // GO TO ENDVIEW
-        } // NAVIGATIONSTACK
+            } // VSTACK
+                        
+        } // ZTSACK
+        .background(Color(UIColor(hex: backgroundColor))
+            .ignoresSafeArea(.all))
         .onAppear{
-            audioManager.isMuted = !gamedata[0].soundEffect
+            audioManager.isMuted = !gameData.soundEffect
         }
-        .onChange(of: gamedata[0].soundEffect) {
-            audioManager.isMuted = !gamedata[0].soundEffect
+        .onChange(of: gameData.soundEffect) {
+            audioManager.isMuted = !gameData.soundEffect
         }
         
     }
     
 }
 
-
 #Preview {
+    
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
     let context = container.mainContext
     let previewGameData = generateInitialData()
+    let penObject = PenObject()
+    let router = Router()
 
     context.insert(previewGameData)
     try? context.save()
-    
-    return GameTableView()
-        .modelContainer(container)
-        .environmentObject(PenObject())
-}
 
+    return GameTableView(gameData: previewGameData)
+        .modelContainer(container)
+        .environmentObject(penObject)
+        .environmentObject(router)
+}

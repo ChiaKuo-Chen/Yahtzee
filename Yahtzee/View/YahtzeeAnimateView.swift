@@ -7,8 +7,8 @@ struct YahtzeeAnimateView: View {
     
     // MARK: - PROPERTIES
     @State private var animationSwitch : Bool = false
-    @Binding var showingYahtzeeView : Bool
-    
+    @EnvironmentObject var router: Router
+
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -42,7 +42,7 @@ struct YahtzeeAnimateView: View {
         animationSwitch = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            showingYahtzeeView = false
+            router.path.removeLast()
         }
 
     }
@@ -50,16 +50,27 @@ struct YahtzeeAnimateView: View {
     
 }
 
+import SwiftData
 
 #Preview {
+    
     struct Preview: View {
-        
-        @State private var showingYahtzeeView: Bool = true
+        var router = Router()
 
+        init() {
+            for _ in 0...100 {
+                router.path.append(.yahtzee)
+            }
+        }
+        
         var body: some View {
-            YahtzeeAnimateView(showingYahtzeeView: $showingYahtzeeView)
+            ContentView()
+                .environmentObject(router)
         }
     }
+    
     return Preview()
-
 }
+
+
+

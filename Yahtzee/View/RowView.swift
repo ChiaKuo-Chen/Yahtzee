@@ -9,12 +9,12 @@ import SwiftData
 struct RowView: View {
 
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
+    @Bindable var gameData: GameData
     let categorymodel = CategoryModel()
-
     let category: String
     let backGroundColor: String
     let list23456 = ["twos", "threes", "fours", "fives", "sixes"]
+    
     // MARK: - BODY
 
     var body: some View {
@@ -50,7 +50,7 @@ struct RowView: View {
                     // FIRST PANEL
 
                     ZStack {
-                        SecondPanelView(category: category)
+                        SecondPanelView(gameData: gameData, category: category)
                         
                     }
 
@@ -88,58 +88,39 @@ struct RowView: View {
     // MARK: - TO SIMPLY THE CODE
     var categoryIndex : Int { categorymodel.returnIndex(category) }
     var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
-    var writtenScore : Int? { gamedata[0].scoreboard[0].scoresArray[categoryIndex] }
+    var writtenScore : Int? { gameData.scoreboard[0].scoresArray[categoryIndex] }
 
 }
 
-#Preview {
+
+#Preview ("one") {
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-    let context = container.mainContext
     let previewGameData = generateInitialData()
+    let penObject = PenObject()
 
-    context.insert(previewGameData)
-    try? context.save()
-    
-    return RowView(category: "threes", backGroundColor: "27ae60")
+    RowView(gameData: previewGameData, category: "ones", backGroundColor: "27ae60")
+        .environmentObject(penObject)
         .modelContainer(container)
-        .environmentObject(PenObject())
 }
 
-#Preview ("one"){
+#Preview ("threeOfAKind") {
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-    let context = container.mainContext
     let previewGameData = generateInitialData()
+    let penObject = PenObject()
 
-    context.insert(previewGameData)
-    try? context.save()
-    
-    return RowView(category: "ones", backGroundColor: "27ae60")
+    RowView(gameData: previewGameData, category: "threeOfAKind", backGroundColor: "27ae60")
+        .environmentObject(penObject)
         .modelContainer(container)
-        .environmentObject(PenObject())
 }
 
-#Preview ("threeOfAKind"){
-    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-    let context = container.mainContext
-    let previewGameData = generateInitialData()
-
-    context.insert(previewGameData)
-    try? context.save()
-    
-    return RowView(category: "threeOfAKind", backGroundColor: "27ae60")
-        .modelContainer(container)
-        .environmentObject(PenObject())
-}
 
 #Preview ("yahtzee"){
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-    let context = container.mainContext
     let previewGameData = generateInitialData()
-
-    context.insert(previewGameData)
-    try? context.save()
+    let penObject = PenObject()
     
-    return RowView(category: "yahtzee", backGroundColor: "27ae60")
+    return RowView(gameData: previewGameData, category: "yahtzee", backGroundColor: "27ae60")
+        .environmentObject(penObject)
         .modelContainer(container)
-        .environmentObject(PenObject())
+
 }
