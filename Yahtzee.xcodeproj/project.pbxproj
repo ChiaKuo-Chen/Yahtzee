@@ -116,13 +116,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		118DC90C2CC2AD2D005E8419 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		11A7ADB72CC24C4800C21782 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +166,6 @@
 				113412102CAFC74200CF4120 /* Model */,
 				11D8261B2CAFC9C7005228CC /* Extension */,
 				11B7ED092CBEE383008A7CB1 /* Utility */,
-				118DC90C2CC2AD2D005E8419 /* Data */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
 				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
 			);
