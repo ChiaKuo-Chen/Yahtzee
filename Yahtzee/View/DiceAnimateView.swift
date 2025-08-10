@@ -21,7 +21,6 @@ struct DiceAnimateView: View {
                 .animation(.easeInOut(duration: 3).repeatForever(), value: pulsateAnimation)
         }
         .onAppear{
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.pulsateAnimation = true
             }

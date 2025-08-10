@@ -58,6 +58,7 @@ class ButtonViewModel: ObservableObject {
 
         try? modelContext.save()
 
+        // Check Is it Yahttzee ?
         for i in 1...6 {
             if diceArray.getDicesNumber().filter({ $0 == i }).count == diceArray.count {
                 try? modelContext.save()
@@ -85,6 +86,7 @@ class ButtonViewModel: ObservableObject {
 
         try? modelContext.save()
 
+        // The game is finish
         if !scoreboard.scoresArray.contains(nil) {
             router.path.append(.end(finalScore: scoreboard.returnTotalScore()))
         }

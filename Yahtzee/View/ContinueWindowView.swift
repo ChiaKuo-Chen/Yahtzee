@@ -63,9 +63,6 @@ struct ContinueWindowView: View {
 
                         }
 
-                        
-
-
                     Text(
 """
 Would you like to conitinue your previous game or start a new one?

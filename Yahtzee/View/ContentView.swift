@@ -30,6 +30,7 @@ struct ContentView: View {
         NavigationStack(path: $router.path) {
             ZStack {
                 
+                // BACKGROUND
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 
@@ -39,6 +40,7 @@ struct ContentView: View {
                         
                         Spacer()
                         
+                        // Audio Switch
                         Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                             .font(.system(size: 45, weight: .regular))
                             .foregroundStyle(Color.black)
@@ -62,6 +64,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
+                    // That Red Big Dice
                     DiceAnimateView()
                     
                     Spacer()

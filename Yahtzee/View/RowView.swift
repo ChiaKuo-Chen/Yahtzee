@@ -7,7 +7,7 @@ import SwiftUI
 import SwiftData
 
 struct RowView: View {
-
+    
     // MARK: - PROPERTIES
     @Bindable var gameData: GameData
     let categorymodel = CategoryModel()
@@ -16,72 +16,61 @@ struct RowView: View {
     let list23456 = ["twos", "threes", "fours", "fives", "sixes"]
     
     // MARK: - BODY
-
+    
     var body: some View {
         
-            ZStack {
-                HStack {
+            HStack {
+                
+                // FIRST PANEL
+                if category != "yahtzee" {
+                    Image(categorymodel.returnPicString(category))
+                        .resizable()
+                        .scaledToFit()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(UIColor.white), lineWidth: 2)
+                        )
+                } else {
+                    Image("redPanel")
+                        .resizable()
+                        .scaledToFit()
+                        .overlay(
+                            Image("yahtzee")
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(1.3)
+                                .shadow(color: .black, radius: 0, x: 2, y: 2)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(UIColor.white), lineWidth: 2)
+                        )
                     
-                    if category != "yahtzee" {
-                        Image(categorymodel.returnPicString(category))
-                            .resizable()
-                            .scaledToFit()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(UIColor.white), lineWidth: 2)
-                            )
-                    } else {
-                        Image("redPanel")
-                            .resizable()
-                            .scaledToFit()
-                            .overlay(
-                                Image("yahtzee")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .scaleEffect(1.3)
-                                    .shadow(color: .black, radius: 0, x: 2, y: 2)
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(UIColor.white), lineWidth: 2)
-                            )
+                }
+                
+                // SECOND PANEL
+                SecondPanelView(gameData: gameData, category: category)
 
-                    }
-                    // FIRST PANEL
-
-                    ZStack {
-                        SecondPanelView(gameData: gameData, category: category)
-                        
-                    }
-
-                    
-                    // SECOND PANEL
-
-
-                    ZStack {
-                        Image("emptyPanel")
-                            .resizable()
-                            .scaledToFit()
-                        
+                // THIRD PANEL
+                Image("emptyPanel")
+                    .resizable()
+                    .scaledToFit()
+                    .overlay{
                         Text(categorymodel.returnRuleString(category))
                             .lineLimit(nil)
-                            .fontWeight(.bold)
-                            .font(.caption)
+                            .fontWeight(.black)
+                            .font(category.count<6 ? .callout : .caption2)
                             .multilineTextAlignment(.center)
                             .lineSpacing(8)
                             .foregroundStyle(Color.white)
                     }
-                    // THIRD PANEL
-                    
-
-                    
-                } // HSTACK
-                .padding(.horizontal, 10)
-                .padding(.vertical, 10)
-                .background(
-                    PanelBackgroundView(category: category, backGroundColor: backGroundColor)
-                )
-            } // ZSTACK
+                
+            } // HSTACK
+            .padding(.horizontal, 10)
+            .padding(.vertical, 10)
+            .background(
+                PanelBackgroundView(category: category, backGroundColor: backGroundColor)
+            )
         
     }
     
@@ -89,7 +78,7 @@ struct RowView: View {
     var categoryIndex : Int { categorymodel.returnIndex(category) }
     var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
     var writtenScore : Int? { gameData.scoreboard[0].scoresArray[categoryIndex] }
-
+    
 }
 
 
@@ -97,7 +86,7 @@ struct RowView: View {
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
     let previewGameData = generateInitialData()
     let penObject = PenObject()
-
+    
     RowView(gameData: previewGameData, category: "ones", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
@@ -107,7 +96,7 @@ struct RowView: View {
     let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
     let previewGameData = generateInitialData()
     let penObject = PenObject()
-
+    
     RowView(gameData: previewGameData, category: "threeOfAKind", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
@@ -122,5 +111,5 @@ struct RowView: View {
     return RowView(gameData: previewGameData, category: "yahtzee", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
-
+    
 }

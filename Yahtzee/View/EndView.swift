@@ -31,6 +31,7 @@ struct EndView: View {
         
             ZStack {
                 
+                // BACKGROUND
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
 

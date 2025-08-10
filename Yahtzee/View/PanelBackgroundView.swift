@@ -20,12 +20,14 @@ struct PanelBackgroundView: View {
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
                 .overlay{
-                    GeometryReader { geometry in
+                    VStack {
                         Rectangle()
-                            .frame(width: 6, height: geometry.size.height/2)
+                            .frame(width: 6)
+                            .opacity(0.0)
+
+                        Rectangle()
+                            .frame(width: 6)
                             .foregroundStyle(Color.gray)
-                            .offset(x: geometry.size.width/2 - 3 )
-                            .offset(y: geometry.size.height/2 )
                     }
                 }
             
@@ -34,14 +36,27 @@ struct PanelBackgroundView: View {
             Rectangle()
                 .foregroundStyle(Color(UIColor(hex: backGroundColor)))
                 .overlay{
-                    GeometryReader { geometry in
                         Rectangle()
-                            .frame(width: 6, height: geometry.size.height)
+                            .frame(width: 6)
                             .foregroundStyle(Color.gray)
-                            .offset(x: geometry.size.width/2 - 3 )
-                    }
                 }
 
+        case "addUps":
+
+            Rectangle()
+                .foregroundStyle(Color(UIColor(hex: backGroundColor)))
+                .overlay{
+                    VStack {
+                        Rectangle()
+                            .frame(width: 6)
+                            .foregroundStyle(Color.gray)
+
+                        Rectangle()
+                            .frame(width: 6)
+                            .opacity(0.0)
+
+                    }
+                }
 
         default:
             
