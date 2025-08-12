@@ -41,11 +41,12 @@ struct ButtonView: View {
                                 .frame(maxWidth: 25)
                                 .foregroundStyle(viewModel.rollCount > index ? Color.green : Color.gray)
                         }
-                        
                     } // HSTACK
+
                 } // ZSTACK
             } // LABEL
             ) // ROLL BUTTON
+            .buttonStyle(ScaleButtonModifier())
             
             // PLAY BUTTON
             if viewModel.rollCount < 3 {
@@ -59,13 +60,17 @@ struct ButtonView: View {
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .shadow(color: .black, radius: 0, x: 2, y: 2)
+
                         
                         Text("PLAY")
                             .bold()
                             .foregroundStyle(Color.white)
                             .shadow(color: .black, radius: 0, x: 2, y: 2)
                     }
+
                 }) // PLAY BUTTON
+                .buttonStyle(ScaleButtonModifier())
+
             }
         } // HSTACK
         

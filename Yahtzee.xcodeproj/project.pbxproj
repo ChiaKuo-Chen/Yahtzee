@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
+		113841ED2E4B2AA300B2E404 /* ScaleButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
 		11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* Dice.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonModifier.swift; sourceTree = "<group>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		11665CDC2CBBB1CB00FC5D1C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		113841EB2E4B2A7700B2E404 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
 		11A7ADB72CC24C4800C21782 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +179,7 @@
 				113412082CAFC37800CF4120 /* View */,
 				11F9D5402E2A45FC00615115 /* ViewModel */,
 				113412102CAFC74200CF4120 /* Model */,
+				113841EB2E4B2A7700B2E404 /* Modifier */,
 				11D8261B2CAFC9C7005228CC /* Extension */,
 				11B7ED092CBEE383008A7CB1 /* Utility */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
@@ -280,6 +291,7 @@
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
 				11E32D112CF702F80072F280 /* PenObject.swift in Sources */,
 				11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */,
+				113841ED2E4B2AA300B2E404 /* ScaleButtonModifier.swift in Sources */,
 				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
 				117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */,
 				11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */,
