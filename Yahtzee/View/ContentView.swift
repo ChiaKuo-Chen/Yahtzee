@@ -111,6 +111,7 @@ struct ContentView: View {
                         ContinueWindowView(gameData: gameData, showingContinueView: $showingContinueView)
                     }
                 }
+                
             } // ZSTACK
             .onAppear{
                 if gamedata.isEmpty {

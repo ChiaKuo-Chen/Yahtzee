@@ -5,63 +5,74 @@
 
 import Foundation
 
+enum Category: String, CaseIterable {
+    
+    case ones, twos, threes, fours, fives, sixes
+    case threeOfAKind, fourOfAKind, fullHouse, smallStraight, largeStraight, yahtzee, chance
+
+    var displayName: String {
+        switch self {
+        case .ones: return "Ones"
+        case .twos: return "Twos"
+        case .threes: return "Threes"
+        case .fours: return "Fours"
+        case .fives: return "Fives"
+        case .sixes: return "Sixes"
+        case .threeOfAKind: return "Three of a kind"
+        case .fourOfAKind: return "Four of a kind"
+        case .fullHouse: return "Full House"
+        case .smallStraight: return "Small Straight"
+        case .largeStraight: return "Large Straight"
+        case .yahtzee: return "Yahtzee"
+        case .chance: return "Chance"
+        }
+    }
+
+    var pictureName: String {
+        switch self {
+        case .ones: return "redDice1"
+        case .twos: return "redDice2"
+        case .threes: return "redDice3"
+        case .fours: return "redDice4"
+        case .fives: return "redDice5"
+        case .sixes: return "redDice6"
+        case .threeOfAKind: return "red3x"
+        case .fourOfAKind: return "red4x"
+        case .fullHouse: return "redHouse"
+        case .smallStraight: return "redSmall"
+        case .largeStraight: return "redLarge"
+        case .yahtzee: return "yahtzee"
+        case .chance: return "redChance"
+        }
+    }
+
+    static func category(at index: Int) -> Category? {
+        guard index >= 0 && index < Category.allCases.count else { return nil }
+        return Category.allCases[index]
+    }
+
+    var index: Int {
+        return Category.allCases.firstIndex(of: self)!
+    }
+}
 
 class CategoryModel {
-    
-    private let categoryArray : [String] = ["ones", "twos", "threes", "fours", "fives", "sixes",
-                                   "threeOfAKind", "fourOfAKind", "fullHouse", "smallStraight", "largeStraight", "yahtzee", "chance"]
-    
-    private let pictureDictionary : [String: String] = [ "ones" :"redDice1", "twos" :"redDice2", "threes" :"redDice3",
-                                                         "fours" :"redDice4", "fives" :"redDice5", "sixes" :"redDice6",
-                                                         "threeOfAKind" :"red3x", "fourOfAKind" :"red4x", "fullHouse" :"redHouse",
-                                                         "smallStraight" :"redSmall", "largeStraight" :"redLarge", "yahtzee":"yahtzee",
-                                                         "chance":"redChance" ]
-    
-    private let ruleDictionary : [String: String] = [ "ones" : "Ones", "twos" :"Twos", "threes" :"Threes", "fours" :"Fours",
-                                                      "fives" :"Fives", "sixes" :"Sixes", "threeOfAKind" : "Three of \n  a kind",
-                                                      "fourOfAKind" : "Four of \n  a kind", "fullHouse" : "Full \n House",
-                                                      "smallStraight" : "Small \n Straight", "largeStraight" : "Large \n Straight",
-                                                      "yahtzee" : "Yahtzee", "chance" : "Chance" ]
 
     func returnCategory(_ index: Int) -> String {
-        guard index >= 0 && index < 13 else { return "" }
-        return categoryArray[index]
+        return Category.category(at: index)?.rawValue ?? ""
     }
-    
 
     func returnIndex(_ category: String) -> Int {
-        
-        for (index, item) in categoryArray.enumerated() {
-            if item == category {
-                return index
-            }
-        }
-        
-        return -1
-        
-    }
-    
-    
-    func returnPicString(_ category: String) -> String {
-        
-        if let returnValue = pictureDictionary[category] {
-            return returnValue
-        }
-        
-        return ""
-        
+        return Category(rawValue: category)?.index ?? -1
     }
 
+    func returnPicString(_ category: String) -> String {
+        guard let cat = Category(rawValue: category) else { return "" }
+        return cat.pictureName
+    }
 
     func returnRuleString(_ category: String) -> String {
-        
-        if let returnValue = ruleDictionary[category] {
-            return returnValue
-        }
-        
-        return ""
-
+        guard let cat = Category(rawValue: category) else { return "" }
+        return cat.displayName
     }
-
-
 }

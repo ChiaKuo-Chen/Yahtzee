@@ -24,6 +24,8 @@
 		11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */; };
 		11B7ED062CBED65E008A7CB1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED052CBED65E008A7CB1 /* HeaderView.swift */; };
 		11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */; };
+		11CCF33A2E49E73200613DFC /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 11CCF3392E49E73200613DFC /* Vortex */; };
+		11CCF33C2E49E8FC00613DFC /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCF33B2E49E8FC00613DFC /* EmptyView.swift */; };
 		11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F22CB28285001F6CE9 /* RowView.swift */; };
 		11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */; };
 		11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExUIColor.swift */; };
@@ -56,6 +58,7 @@
 		11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		11B7ED052CBED65E008A7CB1 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPanelView.swift; sourceTree = "<group>"; };
+		11CCF33B2E49E8FC00613DFC /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		11D6C2F22CB28285001F6CE9 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRowView.swift; sourceTree = "<group>"; };
 		11D826192CAFC9BF005228CC /* ExUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11CCF33A2E49E73200613DFC /* Vortex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +103,7 @@
 				11E931D72CB67EBF0023D2BF /* AddUpView.swift */,
 				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
 				11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */,
+				11CCF33B2E49E8FC00613DFC /* EmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +231,9 @@
 				Base,
 			);
 			mainGroup = 11EED8C82CA959350096CCA7;
+			packageReferences = (
+				11CCF3382E49E73200613DFC /* XCRemoteSwiftPackageReference "Vortex" */,
+			);
 			productRefGroup = 11EED8D22CA959350096CCA7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,6 +272,7 @@
 				11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */,
 				11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */,
 				11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */,
+				11CCF33C2E49E8FC00613DFC /* EmptyView.swift in Sources */,
 				11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */,
 				11A7ADB62CC24BB000C21782 /* AudioManager.swift in Sources */,
 				1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */,
@@ -484,6 +493,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		11CCF3382E49E73200613DFC /* XCRemoteSwiftPackageReference "Vortex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Vortex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11CCF3392E49E73200613DFC /* Vortex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11CCF3382E49E73200613DFC /* XCRemoteSwiftPackageReference "Vortex" */;
+			productName = Vortex;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11EED8C92CA959350096CCA7 /* Project object */;
 }

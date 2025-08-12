@@ -5,6 +5,7 @@
 
 import SwiftUI
 import SwiftData
+import Vortex
 
 struct EndView: View {
     
@@ -17,6 +18,8 @@ struct EndView: View {
     @State private var ticketToGoBack : Bool = false
     @State private var animationSwitch : Bool = false
     @State private var highscoreUpdate : Bool = false
+    @State private var renderedImage = Image(systemName: "photo")
+    @Environment(\.displayScale) var displayScale
 
     let finalScore : Int
     private let backgroundGradientColor = [Color.white,
@@ -88,6 +91,16 @@ struct EndView: View {
 
                 } // VSTACK
                 
+                if highscoreUpdate {
+                    VortexView(.fireworks) {
+                        Circle()
+                            .fill(Color.white)
+                            .blendMode(.plusLighter)
+                            .frame(width: 32)
+                            .tag("circle")
+                    }
+                }
+
             } // ZSTACK
             .onAppear{
                 startAnimation()
@@ -103,6 +116,7 @@ struct EndView: View {
                     router.path.removeAll()
                 }
             }
+        
                     
     }
     
@@ -114,6 +128,8 @@ struct EndView: View {
     }
     
 }
+
+
 
 #Preview {
     
@@ -128,7 +144,7 @@ struct EndView: View {
             let previewGameData = generateInitialData()
             context.insert(previewGameData)
             try? context.save()
-            router.path.append(.end(finalScore: 80))
+            router.path.append(.end(finalScore: 83))
         }
         
         var body: some View {
@@ -141,3 +157,5 @@ struct EndView: View {
     
     return Preview()
 }
+
+
