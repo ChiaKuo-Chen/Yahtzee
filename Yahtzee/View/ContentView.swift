@@ -26,7 +26,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        
+
         NavigationStack(path: $router.path) {
             ZStack {
                 
@@ -76,12 +76,48 @@ struct ContentView: View {
                             showingContinueView.toggle()
                         }
                     }, label: {
-                        Text("PLAY")
-                            .bold()
-                            .font(.system(size: 60))
-                            .fontWeight(.black)
-                            .foregroundStyle(Color.white)
-                            .padding(.horizontal, 28)
+                        HStack {
+                            Image("whiteDiceIcon")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .padding(.horizontal, 8)
+
+                            Text("PLAY")
+                                .bold()
+                                .font(.system(size: 60))
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                                .shadow(color: Color.black, radius: 0, x:4, y:4)
+                        } // HSTACK
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.pink)
+                                .shadow(color: Color.black, radius: 0, x:8, y:8)
+                        )
+                    } // LABEL
+                    ) // BUTTON
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        router.path.append(.leaderboard(playerScore: gamedata.first?.currentHighestScore ?? 0))
+                    }, label: {
+                        HStack {
+                            HStack {
+                                Image("leaderBoardIcon")
+                                    .resizable()
+                                    .frame(width: 60, height: 40)
+                                    .padding(.horizontal, 8)
+
+                                Text("Rankings")
+                                    .bold()
+                                    .font(.system(size: 40))
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.white)
+                            }
+                            .padding(.horizontal, 20)
                             .padding(.vertical, 8)
                             .shadow(color: Color.black, radius: 0, x:4, y:4)
                             .background(
@@ -89,8 +125,10 @@ struct ContentView: View {
                                     .fill(Color.pink)
                                     .shadow(color: Color.black, radius: 0, x:8, y:8)
                             )
+
+                        }
                     }) // BUTTON
-                    
+
                     Spacer()
                     
                     Text("High Score: \(gamedata.first?.currentHighestScore ?? 0)")
@@ -135,13 +173,20 @@ struct ContentView: View {
                     }
                 case .yahtzee:
                     YahtzeeAnimateView()
+                        .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
-                        .environmentObject(router)
+
+                case .leaderboard(let playerScore):
+                    LeaderBoardView(playerScore: playerScore)
+                        .environmentObject(penObject)
+                        .navigationBarBackButtonHidden()
                 }
             }
             
         } // NavigationStack
-        
+
+
+
     }
     
     

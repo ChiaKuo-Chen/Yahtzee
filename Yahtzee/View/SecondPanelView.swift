@@ -36,6 +36,7 @@ struct SecondPanelView: View {
                         .foregroundStyle(categoryIndex == penTarget ? .black : .gray)
                 }
             }
+            .offset(y: scoreAlreadyWritten ? 0 : -6)
             .onTapGesture {
                 if scoreAlreadyWritten {
                     penObject.leavePaper()
@@ -46,7 +47,7 @@ struct SecondPanelView: View {
             }
     }
 
-    // MARK: - 狀態&輔助運算
+    // MARK: - TO SIMPLY CODE
     var diceArray: [Dice] { gameData.diceArray }
     var scoreboard: ScoreBoard { gameData.scoreboard[0] }
     var potentialScore: Int { scoreModel.caculateScore(diceArray, category: category) }
