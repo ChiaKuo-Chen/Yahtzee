@@ -111,22 +111,22 @@
 			children = (
 				117AA7D82CC39A5D00CA9CEF /* ContentView.swift */,
 				1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */,
+				118D70502E76D1E000587152 /* LeaderBoardBarView.swift */,
 				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
+				118D704A2E7561A400587152 /* LeaderBoardView.swift */,
 				11EED8D62CA959350096CCA7 /* GameTableView.swift */,
-				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
 				1119711B2CC3B9CA00273BA6 /* EndView.swift */,
 				116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */,
 				11B7ED052CBED65E008A7CB1 /* HeaderView.swift */,
 				113412002CAFC0BE00CF4120 /* BoardView.swift */,
-				11A7ADBA2CC24E1100C21782 /* ButtonView.swift */,
 				11D6C2F22CB28285001F6CE9 /* RowView.swift */,
+				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
+				11A7ADBA2CC24E1100C21782 /* ButtonView.swift */,
+				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
 				11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */,
 				112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */,
 				11E931D72CB67EBF0023D2BF /* AddUpView.swift */,
-				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
 				11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */,
-				118D704A2E7561A400587152 /* LeaderBoardView.swift */,
-				118D70502E76D1E000587152 /* LeaderBoardBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

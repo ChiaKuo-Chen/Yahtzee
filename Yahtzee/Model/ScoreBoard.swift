@@ -52,7 +52,7 @@ class ScoreBoard {
         return true
     }
     
-    private func wetherAlreadyYahtzee() -> Bool {
+    func wetherAlreadyYahtzee() -> Bool {
         return self.scoresArray[11] == 50
     }
 

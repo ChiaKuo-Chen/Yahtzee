@@ -80,13 +80,14 @@ class ButtonViewModel  {
             print("penObject.penTarget is nil!")
             return
         }
-        let newScore = scoreModel.caculateScore(diceArray, category: categoryModel.returnCategory(penIndex))
+        let newScore = scoreModel.caculateScore(diceArray, category: categoryModel.returnCategory(penIndex), scoreBoard: scoreboard)
         scoreboard.updateScoreBoard(newScore: newScore, penIndex: penIndex)
         penObject.leavePaper()
 
         for i in 0..<diceArray.count {
-            diceArray[i].isHeld = false
             diceArray[i].value = 0
+            diceArray[i].isHeld = false
+            diceArray[i].isRoll = 0
         }
         rollCount = 3
 
