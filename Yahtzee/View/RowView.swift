@@ -19,58 +19,67 @@ struct RowView: View {
     
     var body: some View {
         
-            HStack {
-                
-                // FIRST PANEL
-                if category != "yahtzee" {
-                    Image(categorymodel.returnPicString(category))
-                        .resizable()
-                        .scaledToFit()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(UIColor.white), lineWidth: 2)
-                        )
-                } else {
-                    Image("redPanel")
-                        .resizable()
-                        .scaledToFit()
-                        .overlay(
-                            Image("yahtzee")
-                                .resizable()
-                                .scaledToFit()
-                                .scaleEffect(1.3)
-                                .shadow(color: .black, radius: 0, x: 2, y: 2)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(UIColor.white), lineWidth: 2)
-                        )
-                    
-                }
-                
-                // SECOND PANEL
-                SecondPanelView(gameData: gameData, category: category)
-
-                // THIRD PANEL
-                Image("emptyPanel")
+        HStack {
+            
+            // FIRST PANEL
+            if category != "yahtzee" {
+                Image(categorymodel.returnPicString(category))
                     .resizable()
                     .scaledToFit()
-                    .overlay{
-                        Text(categorymodel.returnRuleString(category))
-                            .lineLimit(nil)
-                            .fontWeight(.black)
-                            .font(category.count<6 ? .callout : .caption2)
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(8)
-                            .foregroundStyle(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(UIColor.white), lineWidth: 2)
+                    )
+            } else {
+                Image("redPanel")
+                    .resizable()
+                    .scaledToFit()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(UIColor.white), lineWidth: 2)
+                    )
+            }
+            
+            // SECOND PANEL
+            SecondPanelView(gameData: gameData, category: category)
+            
+            // THIRD PANEL
+            Image("emptyPanel")
+                .resizable()
+                .scaledToFit()
+                .overlay{
+                    Text(categorymodel.returnRuleString(category))
+                        .lineLimit(nil)
+                        .fontWeight(.black)
+                        .font(category.count<6 ? .callout : .caption2)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(8)
+                        .foregroundStyle(Color.white)
+                }
+            
+        } // HSTACK
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .overlay(
+            HStack {
+                if category == "yahtzee" {
+                    ForEach(0..<3, id: \.self) { index in
+                        Image("yahtzee")
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(1.2)
+                            .shadow(color: Color.black, radius: 0, x: 2, y: 2)
+                            .shadow(color: Color.black, radius: 0, x: 2, y: -2)
+                            .shadow(color: Color.black, radius: 0, x: -2, y: 2)
+                            .shadow(color: Color.black, radius: 0, x: -2, y: -2)
+                            .opacity(index==0 ? 1 : 0)
                     }
-                
+                }
             } // HSTACK
-            .padding(.horizontal, 10)
-            .padding(.vertical, 10)
-            .background(
-                PanelBackgroundView(category: category, backGroundColor: backGroundColor)
-            )
+        )
+        .background(
+            PanelBackgroundView(category: category, backGroundColor: backGroundColor)
+        )
         
     }
     
