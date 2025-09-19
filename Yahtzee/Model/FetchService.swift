@@ -19,13 +19,13 @@ struct FetchService {
     private let baseURL = URL(string: "https://chiakuo-chen.github.io")!
     
     func fetchUsers() async throws -> [Player] {
-        
+
         // Build fetch url
         let fetchURL = baseURL.appending(path: "yahtzeeLeaderboardApi/data.json")
         
         // Fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
-        
+
         // Handle response
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw FetchError.badResponse

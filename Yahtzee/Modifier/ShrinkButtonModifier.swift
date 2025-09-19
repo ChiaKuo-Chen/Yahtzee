@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScaleButtonModifier: ButtonStyle {
+struct ShrinkButtonModifier: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.95 : 1)

@@ -16,6 +16,6 @@ enum Page: Hashable {
     case gameTable
     case end(finalScore: Int)
     case yahtzee
-    case leaderboard(playerScore: Int)
+    case leaderboard(playerName: String, playerID: UUID, playerScore: Int)
 }
 

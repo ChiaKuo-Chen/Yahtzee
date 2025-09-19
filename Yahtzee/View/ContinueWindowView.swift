@@ -33,8 +33,7 @@ struct ContinueWindowView: View {
                         .fontWeight(.black)
                         .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 5)
-                        .padding()
+                        .padding(.vertical, 20)
                         .background(Color.orange)
                         .overlay{
                         
@@ -115,7 +114,7 @@ Would you like to conitinue your previous game or start a new one?
                 .frame(maxWidth: .infinity)
                 .background(Color.orange)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: Color.gray ,radius: 0, x: 2, y: 2)
+                .shadow(color: Color.gray ,radius: 4, x: 0, y: 4)
         }
     }
 
@@ -133,7 +132,7 @@ Would you like to conitinue your previous game or start a new one?
                 .frame(maxWidth: .infinity)
                 .background(Color.green)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: Color.gray ,radius: 0, x: 2, y: 2)
+                .shadow(color: Color.gray ,radius: 4, x: 0, y: 4)
         }
     }
 

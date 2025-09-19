@@ -10,10 +10,12 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
+    @Query var playerData: [PlayerData]
     @Environment(\.modelContext) private var modelContext
     @StateObject private var penObject = PenObject()
     @EnvironmentObject var router: Router
     
+    @State var showingChangeNameView = false
     @State var showingContinueView = false
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -26,7 +28,7 @@ struct ContentView: View {
     
     var body: some View {
         
-
+        
         NavigationStack(path: $router.path) {
             ZStack {
                 
@@ -37,6 +39,26 @@ struct ContentView: View {
                 VStack {
                     
                     HStack {
+                        
+                        HStack {
+                            Image(systemName: "person.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(Color.yellow)
+                            
+                            Text(playerData.first?.name ?? "Player")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                        } // HSTACK
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.black
+                            .opacity(0.4)
+                            .clipShape(RoundedRectangle(cornerRadius: 8)))
+                        .padding(.horizontal, 20)
+                        .onTapGesture {
+                            showingChangeNameView.toggle()
+                        }
                         
                         Spacer()
                         
@@ -49,9 +71,9 @@ struct ContentView: View {
                                 gamedata.first?.soundEffect.toggle()
                                 try? modelContext.save()
                             }
-                            .padding(.horizontal)
-                        
-                    }
+                            .padding(.horizontal, 20)
+
+                    } // HSTACK
                     
                     Spacer()
                     
@@ -81,7 +103,8 @@ struct ContentView: View {
                                 .resizable()
                                 .frame(width: 60, height: 60)
                                 .padding(.horizontal, 8)
-
+                                .shadow(color: Color.black, radius: 0, x:4, y:4)
+                            
                             Text("PLAY")
                                 .bold()
                                 .font(.system(size: 60))
@@ -91,18 +114,14 @@ struct ContentView: View {
                         } // HSTACK
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.pink)
-                                .shadow(color: Color.black, radius: 0, x:8, y:8)
-                        )
                     } // LABEL
                     ) // BUTTON
+                    .buttonStyle(ShadowButtonModifier())
                     
                     Spacer()
                     
                     Button(action: {
-                        router.path.append(.leaderboard(playerScore: gamedata.first?.currentHighestScore ?? 0))
+                        router.path.append(.leaderboard(playerName: playerData.first?.name ?? "Player", playerID: playerData.first?.id ?? UUID(), playerScore: gamedata.first?.currentHighestScore ?? 0))
                     }, label: {
                         HStack {
                             HStack {
@@ -110,7 +129,8 @@ struct ContentView: View {
                                     .resizable()
                                     .frame(width: 60, height: 40)
                                     .padding(.horizontal, 8)
-
+                                    .shadow(color: Color.black, radius: 0, x:2, y:2)
+                                
                                 Text("Rankings")
                                     .bold()
                                     .font(.system(size: 40))
@@ -120,15 +140,10 @@ struct ContentView: View {
                             .padding(.horizontal, 20)
                             .padding(.vertical, 8)
                             .shadow(color: Color.black, radius: 0, x:4, y:4)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.pink)
-                                    .shadow(color: Color.black, radius: 0, x:8, y:8)
-                            )
-
                         }
                     }) // BUTTON
-
+                    .buttonStyle(ShadowButtonModifier())
+                    
                     Spacer()
                     
                     Text("High Score: \(gamedata.first?.currentHighestScore ?? 0)")
@@ -144,6 +159,13 @@ struct ContentView: View {
                     
                 } // VSTACK
                 
+                if showingChangeNameView {
+                    if let playerData = playerData.first {
+                        ChangeNameView(playerData: playerData, showingChangeNameView: $showingChangeNameView)
+                    }
+                }
+                
+                
                 if showingContinueView {
                     if let gameData = gamedata.first {
                         ContinueWindowView(gameData: gameData, showingContinueView: $showingContinueView)
@@ -154,6 +176,11 @@ struct ContentView: View {
             .onAppear{
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
+                }
+                
+                if playerData.isEmpty {
+                    let newPlayer = PlayerData()
+                    modelContext.insert(newPlayer)
                 }
             } // ONAPPEAR
             .navigationDestination(for: Page.self) { page in
@@ -175,44 +202,45 @@ struct ContentView: View {
                     YahtzeeAnimateView()
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
-
-                case .leaderboard(let playerScore):
-                    LeaderBoardView(playerScore: playerScore)
+                    
+                case .leaderboard(let playerName, let playerID, let playerScore):
+                    LeaderBoardView(playerName: playerName, playerID: playerID, playerScore: playerScore)
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                 }
             }
             
         } // NavigationStack
-
-
-
+        
+        
+        
     }
     
     
 }
 
 #Preview {
+    let container = try! ModelContainer(
+        for: GameData.self,
+        Dice.self,
+        ScoreBoard.self,
+        PlayerData.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let context = container.mainContext
     
-    struct Preview: View {
-        let container: ModelContainer
-        let context: ModelContext
-        
-        init() {
-            container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-            context = container.mainContext
-            let previewGameData = generateInitialData()
-            context.insert(previewGameData)
-            try? context.save()
-        }
-        
-        var body: some View {
-            ContentView()
-                .modelContainer(container)
-                .environmentObject(PenObject())
-                .environmentObject(Router())
-        }
-    }
+    let previewGameData = generateInitialData()
+    context.insert(previewGameData)
     
-    return Preview()
+    let testPlayer = PlayerData()
+    context.insert(testPlayer)
+    
+    
+    try? context.save()
+    
+    return ContentView()
+        .modelContainer(container)
+        .environmentObject(PenObject())
+        .environmentObject(Router())
 }
+

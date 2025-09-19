@@ -6,13 +6,11 @@
 import Foundation
 
 func generateInitialData() -> GameData {
-    
     return GameData(currentHighestScore: 0,
                     soundEffect: true,
                     scoreboard: [ScoreBoard()],
                     diceArray: generateInitialDiceArray()
                     )
-    
 }
 
 func generateInitialDiceArray() -> [Dice] {

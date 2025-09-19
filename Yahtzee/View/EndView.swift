@@ -40,8 +40,18 @@ struct EndView: View {
 
                 VStack(alignment: .center) {
                     
-                    HeaderView(gameData: gameData, showingScore: false)
-                        .foregroundStyle(Color.black)
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
+                            .font(.system(size: 30))
+                            .onTapGesture {
+                                gameData.soundEffect.toggle()
+                                try? modelContext.save()
+                            }
+                            .foregroundStyle(Color.black)
+                            .padding(.horizontal, 20)
+                    }
 
                     Image("yahtzee")
                         .scaledToFill()

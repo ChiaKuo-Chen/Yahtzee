@@ -9,7 +9,7 @@ import SwiftData
 struct ButtonView: View {
     
     // MARK: - PROPERTIES
-    @StateObject var viewModel: ButtonViewModel
+    @State var viewModel: ButtonViewModel
     
     // MARK: - BODY
     
@@ -46,7 +46,7 @@ struct ButtonView: View {
                 } // ZSTACK
             } // LABEL
             ) // ROLL BUTTON
-            .buttonStyle(ScaleButtonModifier())
+            .buttonStyle(ShrinkButtonModifier())
             
             // PLAY BUTTON
             if viewModel.rollCount < 3 {
@@ -69,7 +69,7 @@ struct ButtonView: View {
                     }
 
                 }) // PLAY BUTTON
-                .buttonStyle(ScaleButtonModifier())
+                .buttonStyle(ShrinkButtonModifier())
 
             }
         } // HSTACK

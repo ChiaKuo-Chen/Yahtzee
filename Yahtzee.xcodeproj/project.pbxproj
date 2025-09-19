@@ -10,7 +10,7 @@
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
 		112FB5E92E4C6E6B0067D2CB /* JumpCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
-		113841ED2E4B2AA300B2E404 /* ScaleButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */; };
+		113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
 		11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* Dice.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
@@ -18,12 +18,14 @@
 		116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */; };
 		117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* ContentView.swift */; };
 		1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */; };
+		1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */; };
 		118D70472E755F4600587152 /* sampleusers.json in Resources */ = {isa = PBXBuildFile; fileRef = 118D70462E755F4600587152 /* sampleusers.json */; };
 		118D70492E75601E00587152 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70482E75601900587152 /* FetchService.swift */; };
 		118D704B2E7561A400587152 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D704A2E7561A400587152 /* LeaderBoardView.swift */; };
 		118D704D2E7569DB00587152 /* FetchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D704C2E7569D300587152 /* FetchViewModel.swift */; };
 		118D70512E76D1E200587152 /* LeaderBoardBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70502E76D1E000587152 /* LeaderBoardBarView.swift */; };
 		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
+		1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */; };
 		11A7ADB62CC24BB000C21782 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADB52CC24BB000C21782 /* AudioManager.swift */; };
 		11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */; };
 		11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADBA2CC24E1100C21782 /* ButtonView.swift */; };
@@ -52,7 +54,7 @@
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpCellView.swift; sourceTree = "<group>"; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonModifier.swift; sourceTree = "<group>"; };
+		113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonModifier.swift; sourceTree = "<group>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		11665CDC2CBBB1CB00FC5D1C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
@@ -60,12 +62,14 @@
 		116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimateView.swift; sourceTree = "<group>"; };
 		117AA7D82CC39A5D00CA9CEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWindowView.swift; sourceTree = "<group>"; };
+		1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonModifier.swift; sourceTree = "<group>"; };
 		118D70462E755F4600587152 /* sampleusers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sampleusers.json; sourceTree = "<group>"; };
 		118D70482E75601900587152 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		118D704A2E7561A400587152 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		118D704C2E7569D300587152 /* FetchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchViewModel.swift; sourceTree = "<group>"; };
 		118D70502E76D1E000587152 /* LeaderBoardBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardBarView.swift; sourceTree = "<group>"; };
 		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
+		1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
 		11A7ADB52CC24BB000C21782 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceRoll.mp3; sourceTree = "<group>"; };
 		11A7ADBA2CC24E1100C21782 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				117AA7D82CC39A5D00CA9CEF /* ContentView.swift */,
+				1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */,
 				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
 				11EED8D62CA959350096CCA7 /* GameTableView.swift */,
 				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
@@ -131,8 +136,8 @@
 			children = (
 				11A7ADBE2CC2587C00C21782 /* GameData.swift */,
 				11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */,
-				118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */,
 				11665CDC2CBBB1CB00FC5D1C /* Dice.swift */,
+				118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */,
 				11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */,
 				115A0C782CBE659E00BA45B2 /* CategoryModel.swift */,
 				118D70482E75601900587152 /* FetchService.swift */,
@@ -145,7 +150,8 @@
 		113841EB2E4B2A7700B2E404 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
-				113841EC2E4B2A9100B2E404 /* ScaleButtonModifier.swift */,
+				1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */,
+				113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 				113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */,
 				116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */,
 				118D70492E75601E00587152 /* FetchService.swift in Sources */,
+				1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */,
 				11F9D5442E2A795600615115 /* ButtonViewModel.swift in Sources */,
 				112FB5E92E4C6E6B0067D2CB /* JumpCellView.swift in Sources */,
 				118D704B2E7561A400587152 /* LeaderBoardView.swift in Sources */,
@@ -319,6 +326,7 @@
 				11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */,
 				118D704D2E7569DB00587152 /* FetchViewModel.swift in Sources */,
 				11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */,
+				1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */,
 				11A7ADB62CC24BB000C21782 /* AudioManager.swift in Sources */,
 				1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */,
 				11DDF81C2E7AC5EF00532DD6 /* PlayerData.swift in Sources */,
@@ -326,7 +334,7 @@
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
 				11E32D112CF702F80072F280 /* PenObject.swift in Sources */,
 				11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */,
-				113841ED2E4B2AA300B2E404 /* ScaleButtonModifier.swift in Sources */,
+				113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */,
 				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
 				117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */,
 				11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */,

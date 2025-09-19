@@ -9,12 +9,19 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-class ButtonViewModel: ObservableObject {
+@Observable
+@MainActor
 
-    @Bindable var gameData: GameData
-    @Bindable var scoreboard: ScoreBoard
-    @Published var rollCount: Int
+class ButtonViewModel  {
+
+    var gameData: GameData
+    var scoreboard: ScoreBoard
     
+    var rollCount: Int {
+        get { scoreboard.rollCount }
+        set { scoreboard.rollCount = newValue }
+    }
+
     private let modelContext: ModelContext
     private let penObject: PenObject
     private let router: Router
@@ -38,7 +45,6 @@ class ButtonViewModel: ObservableObject {
     ) {
         self.gameData = gameData
         self.scoreboard = gameData.scoreboard[0]
-        self.rollCount = gameData.scoreboard[0].rollCount
         self.modelContext = modelContext
         self.penObject = penObject
         self.router = router

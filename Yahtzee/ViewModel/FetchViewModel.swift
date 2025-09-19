@@ -9,6 +9,7 @@ import Foundation
 
 @Observable
 @MainActor
+
 class FetchViewModel {
     enum FetchStatus {
         case notStatred
