@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
-		112FB5E92E4C6E6B0067D2CB /* JumpCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
@@ -52,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
-		112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpCellView.swift; sourceTree = "<group>"; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonModifier.swift; sourceTree = "<group>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				11A7ADBA2CC24E1100C21782 /* ButtonView.swift */,
 				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
 				11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */,
-				112FB5E82E4C6E6B0067D2CB /* JumpCellView.swift */,
 				11E931D72CB67EBF0023D2BF /* AddUpView.swift */,
 				11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */,
 			);
@@ -318,7 +315,6 @@
 				118D70492E75601E00587152 /* FetchService.swift in Sources */,
 				1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */,
 				11F9D5442E2A795600615115 /* ButtonViewModel.swift in Sources */,
-				112FB5E92E4C6E6B0067D2CB /* JumpCellView.swift in Sources */,
 				118D704B2E7561A400587152 /* LeaderBoardView.swift in Sources */,
 				11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */,
 				11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */,
