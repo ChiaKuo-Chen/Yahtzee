@@ -1,4 +1,4 @@
-## Yahztee Written In Swift
+## Yahtzee Written In Swift
 
 這是用 Swift 所撰寫的一個 Yahztee 程式
 有一些基礎的功能，像是：即時存檔，音效開關跟紀錄歷史高分
