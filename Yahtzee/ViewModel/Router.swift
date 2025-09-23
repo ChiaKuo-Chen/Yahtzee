@@ -14,8 +14,8 @@ class Router: ObservableObject {
 
 enum Page: Hashable {
     case gameTable
-    case end(finalScore: Int)
+    case end(finalScore: Int, playerName: String)
     case yahtzee
-    case leaderboard(playerName: String, playerID: UUID, playerScore: Int)
+    case leaderboard(playerName: String, playerID: String, playerScore: Int, playerTimeStamp: String)
 }
 

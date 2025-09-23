@@ -13,14 +13,28 @@ struct LeaderBoardBarView: View {
     let name: String
     let score: Int
     
-    private let scoreColor = Color(uiColor: UIColor(hex: "FFD93D"))
-    private let barBackgroundColor = Color(uiColor: UIColor(hex: "93DA97"))
+    private var scoreColor: Color {
+        switch index {
+        case 1: Color(uiColor: UIColor(hex: "FCEF91"))
+        case 2: Color(uiColor: UIColor(hex: "F8F4E1"))
+        case 3: Color(uiColor: UIColor(hex: "FAA533"))
+        default: Color(uiColor: UIColor(hex: "FFD93D"))
+        }
+    }
+    
+    private var barBackgroundColor: Color {
+        if index == 1 || index == 2 || index == 3 {
+            return Color.blue
+        } else {
+            return Color(uiColor: UIColor(hex: "93DA97"))
+        }
+    }
 
     private var textColor: Color {
         switch index {
         case 1: Color(uiColor: UIColor(hex: "FCEF91"))
         case 2: Color(uiColor: UIColor(hex: "F8F4E1"))
-        case 3: Color(uiColor: UIColor(hex: "973131"))
+        case 3: Color(uiColor: UIColor(hex: "FAA533"))
         default: Color.black
         }
     }
@@ -71,10 +85,16 @@ struct LeaderBoardBarView: View {
         .frame(height: 50)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(barBackgroundColor)
-                .stroke(Color.black, lineWidth: 2)
+                .shadow(color: Color.black, radius: 0, y: 4)
+                .foregroundStyle(barBackgroundColor)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 2)
+                        .foregroundStyle(Color.black)
+                }
         )
         .padding(.horizontal)
+    
 
     }
 

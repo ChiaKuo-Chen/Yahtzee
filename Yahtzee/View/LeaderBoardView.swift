@@ -12,26 +12,30 @@ struct LeaderBoardView: View {
     
     // MARK: - PROPERTIES
     @EnvironmentObject var router: Router
-
+    
     @State private var selectedOption = "你的名次"
     let options = ["你的名次", "TOP100"]
     @State var viewmodel = FetchViewModel()
     
     @State var playerName: String
-    @State var playerID: UUID
+    @State var playerID: String
     @State var playerScore: Int
+    @State var playerTimeStamp: String
+    @State var firebasePlayers: [Player] = []
 
-
+    let firebasemodel = FirebaseModel()
     private var localPlayer: Player {
         Player(id: playerID,
                name: playerName,
-               score: playerScore)
+               score: playerScore,
+               timestamp: playerTimeStamp)
     }
-        
+
+
     private let backgroundColor = Color(uiColor: UIColor(hex: "5E936C"))
     
     var leaderBoard: [Player] {
-        let combined = viewmodel.users + [localPlayer]
+        let combined = viewmodel.users + [localPlayer] + firebasePlayers
         return combined.sorted { $0.score > $1.score }
     }
     
@@ -55,16 +59,17 @@ struct LeaderBoardView: View {
         })
     }
     
-    var switchOn: Bool {
-        return selectedOption == "你的名次"
+    var leaderboardToShow: [(rank: Int, player: Player)] {
+        let slice = selectedOption == "你的名次" ? trimmedLeaderboard : top100Leaderboard
+        return Array(slice)
     }
-    
+        
     // MARK: - BODY
     var body: some View {
         
         
         VStack(alignment: .center) {
-                        
+            
             HStack(spacing: 10) {
                 Button(action: {
                     router.path.removeAll()
@@ -74,7 +79,7 @@ struct LeaderBoardView: View {
                         .frame(alignment: .trailing)
                         .foregroundStyle(Color.white)
                 })
-
+                
                 ForEach(options, id: \.self) { option in
                     Text(option)
                         .foregroundStyle(selectedOption == option ? Color.black : Color.white)
@@ -135,11 +140,14 @@ struct LeaderBoardView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.white, lineWidth: 2)
                             )
-
-                        } else {
-                            let leaderboardToShow = selectedOption == "你的名次" ? trimmedLeaderboard : top100Leaderboard
                             
-                            ForEach(leaderboardToShow, id: \.rank) { rank, player in
+                        } else {
+                            
+                            ForEach(leaderboardToShow, id: \.player.id) { item in
+                                
+                                let rank = item.rank
+                                let player = item.player
+                                
                                 VStack {
                                     LeaderBoardBarView(index: rank, name: player.name, score: player.score)
                                         .id(player.id)
@@ -166,17 +174,6 @@ struct LeaderBoardView: View {
                                     }
                                 }
                             }
-                            .onChange(of: switchOn) {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    withAnimation {
-                                        if switchOn {
-                                            proxy.scrollTo(localPlayer.id, anchor: .center)
-                                        } else {
-                                            proxy.scrollTo("top")
-                                        }
-                                    }
-                                }
-                            }
                         }
                         
                     case .failed(let error):
@@ -185,6 +182,17 @@ struct LeaderBoardView: View {
                 } // SCROLLVIEW
                 .scrollDisabled(selectedOption == "你的名次" && playerScore == 0 ? true : false)
                 .scrollIndicators(.hidden)
+                .onChange(of: selectedOption) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation {
+                            if selectedOption == "你的名次" {
+                                proxy.scrollTo(localPlayer.id, anchor: .center)
+                            } else {
+                                proxy.scrollTo("top")
+                            }
+                        }
+                    }
+                }
                 .onAppear{
                     Task {
                         await viewmodel.getUserData()
@@ -193,6 +201,9 @@ struct LeaderBoardView: View {
                                 proxy.scrollTo(localPlayer.id, anchor: .center)
                             }
                         }
+                    } // Scroll To Player
+                    firebasemodel.fetchLeaderboard { players in
+                        firebasePlayers = players
                     }
                 }
             }
@@ -203,5 +214,5 @@ struct LeaderBoardView: View {
 }
 
 #Preview {
-    LeaderBoardView(playerName: "YOU", playerID: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!, playerScore: 0)
+    LeaderBoardView(playerName: "YOU", playerID: "00000000-0000-0000-0000-000000000000", playerScore: 290, playerTimeStamp: "2025-09-14T09:49:16.029418Z")
 }

@@ -42,7 +42,7 @@ struct ButtonView: View {
                                 .foregroundStyle(viewModel.rollCount > index ? Color.green : Color.gray)
                         }
                     } // HSTACK
-
+                    
                 } // ZSTACK
             } // LABEL
             ) // ROLL BUTTON
@@ -51,7 +51,9 @@ struct ButtonView: View {
             // PLAY BUTTON
             if viewModel.rollCount < 3 {
                 Button(action: {
-                    viewModel.play()
+                    Task {
+                        await viewModel.play()
+                    }
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
@@ -60,17 +62,17 @@ struct ButtonView: View {
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .shadow(color: .black, radius: 0, x: 2, y: 2)
-
+                        
                         
                         Text("PLAY")
                             .bold()
                             .foregroundStyle(Color.white)
                             .shadow(color: .black, radius: 0, x: 2, y: 2)
                     }
-
+                    
                 }) // PLAY BUTTON
                 .buttonStyle(ShrinkButtonModifier())
-
+                
             }
         } // HSTACK
         
@@ -80,26 +82,28 @@ struct ButtonView: View {
 }
 
 #Preview("Preview") {
-
+    
     let container = try! ModelContainer(for: GameData.self, ScoreBoard.self, Dice.self)
     let context = container.mainContext
-
+    
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
     try? context.save()
-
+    
     let penObject = PenObject()
     let router = Router()
     let audioManager = AudioManager()
-
+    let playerData = PlayerData(id: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
+    
     let viewModel = ButtonViewModel(
+        playerData: playerData,
         gameData: previewGameData,
         modelContext: context,
         penObject: penObject,
         router: router,
         audioManager: audioManager
     )
-
+    
     return ButtonView(viewModel: viewModel)
         .environmentObject(penObject)
         .environmentObject(router)

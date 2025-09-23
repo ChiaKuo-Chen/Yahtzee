@@ -12,15 +12,17 @@ struct EndView: View {
     // MARK: - PROPERTIES
     @Bindable var gameData: GameData
     @Environment(\.modelContext) private var modelContext
-
+    
     @EnvironmentObject var router: Router
-
+    
     @State private var ticketToGoBack : Bool = false
     @State private var animationSwitch : Bool = false
     @State private var highscoreUpdate : Bool = false
     @State private var renderedImage = Image(systemName: "photo")
     @Environment(\.displayScale) var displayScale
-
+    
+    let firebasemodel = FirebaseModel()
+    let playerName: String
     let finalScore : Int
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -32,102 +34,108 @@ struct EndView: View {
     var body: some View {
         
         
-            ZStack {
+        ZStack {
+            
+            // BACKGROUND
+            LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea()
+            
+            VStack(alignment: .center) {
                 
-                // BACKGROUND
-                LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .ignoresSafeArea()
-
-                VStack(alignment: .center) {
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
-                            .font(.system(size: 30))
-                            .onTapGesture {
-                                gameData.soundEffect.toggle()
-                                try? modelContext.save()
-                            }
-                            .foregroundStyle(Color.black)
-                            .padding(.horizontal, 20)
-                    }
-
-                    Image("yahtzee")
-                        .scaledToFill()
-                        .scaleEffect(1.6)
-                        .frame(maxWidth: .infinity)
-                        .shadow(color: Color.black, radius: 0, x:8, y:8)
-                        .padding(.vertical, 50)
-                    
-                    Text("SCORE")
-                        .scaleEffect(animationSwitch ? 1 : 0)
-                        .animation(.spring, value: animationSwitch)
-                        .font(.system (size: 30))
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.white)
-                        .shadow(color: .black ,radius: 0, x: 4, y: 4)
-                    
-                    Text("\(finalScore)")
-                        .scaleEffect(animationSwitch ? 1 : 0)
-                        .animation(.spring.delay(1), value: animationSwitch)
-                        .font(.system (size: 80))
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.white)
-                        .shadow(color: .black ,radius: 0, x: 4, y: 4)
-
-
-                    Text("NEW HIGH SCORE!!")
-                        .scaleEffect(animationSwitch ? 1 : 0)
-                        .animation(.spring.delay(2), value: animationSwitch)
-                        .font(.system(size: 30))
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.white)
-                        .shadow(color: .black ,radius: 0, x: 4, y: 4)
-                        .opacity(highscoreUpdate ? 1 : 0)
-                        .padding()
-                    
+                HStack {
                     Spacer()
                     
-                    Text(ticketToGoBack ? "PRESS TO RETURN" : "")
-                        .opacity(animationSwitch ? 1 : 0)
-                        .animation(.bouncy(duration: 1).repeatForever(), value: animationSwitch)
+                    Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
                         .font(.system(size: 30))
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.white)
-                        .shadow(color: .black ,radius: 0, x: 4, y: 4)
-                        .padding(.vertical, 70)
-
-
-                } // VSTACK
+                        .onTapGesture {
+                            gameData.soundEffect.toggle()
+                            try? modelContext.save()
+                        }
+                        .foregroundStyle(Color.black)
+                        .padding(.horizontal, 20)
+                }
                 
-                if highscoreUpdate {
-                    VortexView(.fireworks) {
-                        Circle()
-                            .fill(Color.white)
-                            .blendMode(.plusLighter)
-                            .frame(width: 32)
-                            .tag("circle")
-                    }
+                Image("yahtzee")
+                    .scaledToFill()
+                    .scaleEffect(1.6)
+                    .frame(maxWidth: .infinity)
+                    .shadow(color: Color.black, radius: 0, x:8, y:8)
+                    .padding(.vertical, 50)
+                
+                Text("SCORE")
+                    .scaleEffect(animationSwitch ? 1 : 0)
+                    .animation(.spring, value: animationSwitch)
+                    .font(.system (size: 30))
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.white)
+                    .shadow(color: .black ,radius: 0, x: 4, y: 4)
+                
+                Text("\(finalScore)")
+                    .scaleEffect(animationSwitch ? 1 : 0)
+                    .animation(.spring.delay(1), value: animationSwitch)
+                    .font(.system (size: 80))
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.white)
+                    .shadow(color: .black ,radius: 0, x: 4, y: 4)
+                
+                
+                Text("NEW HIGH SCORE!!")
+                    .scaleEffect(animationSwitch ? 1 : 0)
+                    .animation(.spring.delay(2), value: animationSwitch)
+                    .font(.system(size: 30))
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.white)
+                    .shadow(color: .black ,radius: 0, x: 4, y: 4)
+                    .opacity(highscoreUpdate ? 1 : 0)
+                    .padding()
+                
+                Spacer()
+                
+                Text(ticketToGoBack ? "PRESS TO RETURN" : "")
+                    .opacity(animationSwitch ? 1 : 0)
+                    .animation(.bouncy(duration: 1).repeatForever(), value: animationSwitch)
+                    .font(.system(size: 30))
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.white)
+                    .shadow(color: .black ,radius: 0, x: 4, y: 4)
+                    .padding(.vertical, 70)
+                
+                
+            } // VSTACK
+            
+            if highscoreUpdate {
+                VortexView(.fireworks) {
+                    Circle()
+                        .fill(Color.white)
+                        .blendMode(.plusLighter)
+                        .frame(width: 32)
+                        .tag("circle")
                 }
-
-            } // ZSTACK
-            .onAppear{
-                startAnimation()
-                highscoreUpdate = ( finalScore > gameData.currentHighestScore )
             }
-            .onDisappear{
-                if highscoreUpdate { gameData.currentHighestScore = finalScore }
-                gameData.prepareToNewPlay()
-                try? modelContext.save()
+            
+        } // ZSTACK
+        .onAppear{
+            startAnimation()
+            highscoreUpdate = ( finalScore > gameData.currentHighestScore )
+            
+            if highscoreUpdate {
+                firebasemodel.updateScoreIfNeeded(newScore: finalScore, playerName: playerName)
             }
-            .onTapGesture {
-                if ticketToGoBack {
-                    router.path.removeAll()
-                }
+            
+        }
+        .onDisappear{
+            if highscoreUpdate {
+                gameData.currentHighestScore = finalScore
             }
+            gameData.prepareToNewPlay()
+            try? modelContext.save()
+        }
+        .onTapGesture {
+            if ticketToGoBack {
+                router.path.removeAll()
+            }
+        }
         
-                    
     }
     
     func startAnimation() {
@@ -154,7 +162,7 @@ struct EndView: View {
             let previewGameData = generateInitialData()
             context.insert(previewGameData)
             try? context.save()
-            router.path.append(.end(finalScore: 83))
+            router.path.append(.end(finalScore: 330, playerName: "FirePlayer"))
         }
         
         var body: some View {

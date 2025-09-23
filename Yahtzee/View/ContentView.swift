@@ -5,6 +5,7 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseAuth
 
 struct ContentView: View {
     
@@ -17,6 +18,8 @@ struct ContentView: View {
     
     @State var showingChangeNameView = false
     @State var showingContinueView = false
+    let datemodel = DateModel()
+    let firebasemodel = FirebaseModel()
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -122,7 +125,7 @@ struct ContentView: View {
                     Spacer()
                     
                     Button(action: {
-                        router.path.append(.leaderboard(playerName: playerData.first?.name ?? "Player", playerID: playerData.first?.id ?? UUID(), playerScore: gamedata.first?.currentHighestScore ?? 0))
+                        router.path.append(.leaderboard(playerName: playerData.first?.name ?? "Player", playerID: playerData.first?.id ?? UUID().uuidString, playerScore: gamedata.first?.currentHighestScore ?? 0, playerTimeStamp: datemodel.getCurrentDateString()))
                     }, label: {
                         HStack {
                             HStack {
@@ -183,19 +186,23 @@ struct ContentView: View {
                     let newPlayer = PlayerData()
                     modelContext.insert(newPlayer)
                 }
-            } // ONAPPEAR
+                // Fetchfrom Local Save
+                
+                firebasemodel.login()
+                // Firebase Login
+            } // OnAppear
             .navigationDestination(for: Page.self) { page in
                 switch page {
                 case .gameTable:
-                    if let gameData = gamedata.first {
-                        GameTableView(gameData: gameData)
+                    if let gameData = gamedata.first, let playerData = playerData.first {
+                        GameTableView(gameData: gameData, playerData: playerData)
                             .environmentObject(router)
                             .environmentObject(penObject)
                             .navigationBarBackButtonHidden()
                     }
-                case .end(let finalScore):
+                case .end(let finalScore, let playerName):
                     if let gameData = gamedata.first {
-                        EndView(gameData: gameData, finalScore: finalScore)
+                        EndView(gameData: gameData, playerName: playerName, finalScore: finalScore)
                             .environmentObject(router)
                             .navigationBarBackButtonHidden()
                     }
@@ -204,15 +211,15 @@ struct ContentView: View {
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                     
-                case .leaderboard(let playerName, let playerID, let playerScore):
-                    LeaderBoardView(playerName: playerName, playerID: playerID, playerScore: playerScore)
+                case .leaderboard(let playerName, let playerID, let playerScore, let playerTimeStamp):
+                    LeaderBoardView(playerName: playerName, playerID: playerID, playerScore: playerScore, playerTimeStamp: playerTimeStamp)
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                 }
             }
             
         } // NavigationStack
-        
+
         
         
     }

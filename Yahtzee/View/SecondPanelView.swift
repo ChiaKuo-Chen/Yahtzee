@@ -10,7 +10,7 @@ struct SecondPanelView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var penObject: PenObject
     @Bindable var gameData: GameData
-
+    
     let category: String
     let categoryModel = CategoryModel()
     let scoreModel = ScoreModel()
@@ -37,9 +37,10 @@ struct SecondPanelView: View {
             return Color(UIColor(hex: unselectPanelColor))
         }
     }
-
+    
     // MARK: - BODY
     var body: some View {
+        
         RoundedRectangle(cornerRadius: 10)
             .foregroundStyle(panelColor)
             .scaledToFit()
@@ -99,6 +100,7 @@ struct SecondPanelView: View {
     return SecondPanelView(gameData: previewGameData, category: "threes")
         .environmentObject(penObject)
         .modelContainer(container)
+        .padding(.vertical, 100)
         .padding()
         .background(Color.blue)
 }

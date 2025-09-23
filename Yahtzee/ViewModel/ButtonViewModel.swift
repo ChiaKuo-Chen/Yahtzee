@@ -16,6 +16,7 @@ class ButtonViewModel  {
 
     var gameData: GameData
     var scoreboard: ScoreBoard
+    let playerData: PlayerData
     
     var rollCount: Int {
         get { scoreboard.rollCount }
@@ -37,12 +38,14 @@ class ButtonViewModel  {
     var isGameEnd: Bool { !scoreboard.scoresArray.contains(nil) }
 
     init(
+        playerData: PlayerData,
         gameData: GameData,
         modelContext: ModelContext,
         penObject: PenObject,
         router: Router,
         audioManager: AudioManager = AudioManager()
     ) {
+        self.playerData = playerData
         self.gameData = gameData
         self.scoreboard = gameData.scoreboard[0]
         self.modelContext = modelContext
@@ -75,7 +78,7 @@ class ButtonViewModel  {
         //print("after rolling:", diceArray.getDicesNumber())
     }
 
-    func play() {
+    func play() async {
         guard let penIndex = penObject.penTarget else {
             print("penObject.penTarget is nil!")
             return
@@ -87,15 +90,19 @@ class ButtonViewModel  {
         for i in 0..<diceArray.count {
             diceArray[i].value = 0
             diceArray[i].isHeld = false
+        }
+        try? await Task.sleep(nanoseconds: 100_000_000) // delay 0.1 second
+        for i in 0..<diceArray.count {
             diceArray[i].isRoll = 0
         }
+
         rollCount = 3
 
         try? modelContext.save()
 
         // The game is finish
         if !scoreboard.scoresArray.contains(nil) {
-            router.path.append(.end(finalScore: scoreboard.returnTotalScore()))
+            router.path.append(.end(finalScore: scoreboard.returnTotalScore(), playerName: playerData.name))
         }
     }
     

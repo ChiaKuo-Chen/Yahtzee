@@ -1,18 +1,20 @@
 [
-    {
-        "id": "d41b3d8b-7f69-4a0c-b6e2-bad8fdfb4fc2",
-        "name": "G.O.D.",
-        "score": 340
-    },
-    {
-        "id": "bb43d7e2-f0f3-4e7f-a8b4-73ce631ea19c",
-        "name": "這遊戲怎麼玩",
-        "score": 336
-    },
-    {
-        "id": "c9e8cf20-c4c7-42b6-9bdf-6b5f81688f27",
-        "name": "D.O.G.",
-        "score": 332
-    }
-    
+  {
+    "id": "318289c9-d220-48e9-ad36-c9b11448bfde",
+    "name": "Alice",
+    "score": 300,
+    "timestamp": "2025-09-14T09:49:16.029418Z"
+  },
+  {
+    "id": "1ccc21a8-2f54-4836-847f-5907670a569e",
+    "name": "Bob",
+    "score": 200,
+    "timestamp": "2025-09-14T09:49:26.029418Z"
+  },
+  {
+    "id": "45a5d5f7-25b9-445b-b1c2-6680ccdeeaa6",
+    "name": "Charlie",
+    "score": 100,
+    "timestamp": "2025-09-14T09:49:36.029418Z"
+  }
 ]

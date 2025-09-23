@@ -51,10 +51,11 @@ struct RowView: View {
                     Text(categorymodel.returnRuleString(category))
                         .lineLimit(nil)
                         .fontWeight(.black)
-                        .font(category.count<6 ? .callout : .caption2)
+                        .font(category.count<8 ? (category.count<6 ? .callout : .caption) : .caption2 )
                         .multilineTextAlignment(.center)
                         .lineSpacing(8)
                         .foregroundStyle(Color.white)
+                        .shadow(color: Color.black, radius: 2, y: 2)
                 }
             
         } // HSTACK

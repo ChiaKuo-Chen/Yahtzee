@@ -64,6 +64,7 @@ struct BoardView: View {
         } // VSTACK
         .background()
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 2, y: 2)
 
     }
 }

@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Player: Identifiable, Decodable {
-    let id: UUID
-    let name: String
-    let score: Int
+struct Player: Identifiable, Codable {
+    let id: String
+    var name: String
+    var score: Int
+    var timestamp: String
 }
 
 
