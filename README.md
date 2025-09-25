@@ -1,6 +1,4 @@
 
-<img src="https://github.com/user-attachments/assets/7fd5cbfa-f469-40e7-9f8f-c167fde70ef7" width="200"/>
-<img src="https://github.com/user-attachments/assets/af604d45-1773-4b69-9399-04f827ba6b98" width="200"/>
 
 # Yahtzee 🎲 (SwiftUI)
 
@@ -11,6 +9,10 @@
 - **音效（可開關）**
 - **歷史高分紀錄（支援 Firebase）**
 - **動態骰子動畫與自訂 UI**
+
+---
+<img src="https://github.com/user-attachments/assets/7fd5cbfa-f469-40e7-9f8f-c167fde70ef7" width="200"/>
+<img src="https://github.com/user-attachments/assets/af604d45-1773-4b69-9399-04f827ba6b98" width="200"/>
 
 ---
 
