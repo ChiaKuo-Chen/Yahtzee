@@ -1,20 +1,20 @@
 [
   {
-    "id": "318289c9-d220-48e9-ad36-c9b11448bfde",
+    "localUUID": "318289c9-d220-48e9-ad36-c9b11448bfde",
     "name": "Alice",
     "score": 300,
-    "timestamp": "2025-09-14T09:49:16.029418Z"
+    "timestamp": "2025-09-14T09:49:16Z"
   },
   {
-    "id": "1ccc21a8-2f54-4836-847f-5907670a569e",
+    "localUUID": "1ccc21a8-2f54-4836-847f-5907670a569e",
     "name": "Bob",
     "score": 200,
-    "timestamp": "2025-09-14T09:49:26.029418Z"
+    "timestamp": "2025-09-14T09:49:26Z"
   },
   {
-    "id": "45a5d5f7-25b9-445b-b1c2-6680ccdeeaa6",
+    "localUUID": "45a5d5f7-25b9-445b-b1c2-6680ccdeeaa6",
     "name": "Charlie",
     "score": 100,
-    "timestamp": "2025-09-14T09:49:36.029418Z"
+    "timestamp": "2025-09-14T09:49:36Z"
   }
 ]

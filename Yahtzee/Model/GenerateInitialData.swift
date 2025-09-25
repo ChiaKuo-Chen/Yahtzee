@@ -6,8 +6,7 @@
 import Foundation
 
 func generateInitialData() -> GameData {
-    return GameData(currentHighestScore: 0,
-                    soundEffect: true,
+    return GameData(soundEffect: true,
                     scoreboard: [ScoreBoard()],
                     diceArray: generateInitialDiceArray()
                     )

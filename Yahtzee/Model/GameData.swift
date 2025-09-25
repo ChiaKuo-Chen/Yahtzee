@@ -8,14 +8,11 @@ import SwiftData
 @Model
 class GameData {
     
-    var currentHighestScore: Int
     var soundEffect: Bool
-    
     var scoreboard : [ScoreBoard]
     var diceArray: [Dice]
 
-    init(currentHighestScore: Int, soundEffect: Bool, scoreboard: [ScoreBoard], diceArray: [Dice]) {
-        self.currentHighestScore = currentHighestScore
+    init(soundEffect: Bool, scoreboard: [ScoreBoard], diceArray: [Dice]) {
         self.soundEffect = soundEffect
         self.scoreboard = scoreboard
         self.diceArray = diceArray

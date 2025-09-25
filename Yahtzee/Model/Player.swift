@@ -9,10 +9,12 @@ import Foundation
 import SwiftUI
 
 struct Player: Identifiable, Codable {
-    let id: String
+    let localUUID: String
     var name: String
     var score: Int
-    var timestamp: String
+    var timestamp: Date
+    
+    var id: String { localUUID }
 }
 
 

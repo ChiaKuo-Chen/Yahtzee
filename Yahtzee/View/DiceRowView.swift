@@ -42,7 +42,6 @@ import SwiftUI
 #Preview {
     struct Preview: View {
         @State var gameData = GameData(
-            currentHighestScore: 0,
             soundEffect: true,
             scoreboard: [ScoreBoard()],
             diceArray: [

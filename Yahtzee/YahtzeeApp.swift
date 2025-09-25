@@ -11,11 +11,26 @@ import FirebaseCore
 // Prepare for Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    return true
-  }
+//  func application(_ application: UIApplication,
+//                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//    FirebaseApp.configure()
+//    return true
+//  }
+    
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+      
+      if let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+         FileManager.default.fileExists(atPath: filePath) {
+          FirebaseApp.configure()
+          print("✅ Firebase configured.")
+      } else {
+          print("⚠️ Firebase not configured: GoogleService-Info.plist not found.")
+      }
+      
+      return true
+    }
+
 }
 
 @main

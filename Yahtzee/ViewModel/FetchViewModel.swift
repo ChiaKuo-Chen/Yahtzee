@@ -20,7 +20,7 @@ class FetchViewModel {
     
     private(set) var status: FetchStatus = .notStatred
     
-    private let fetcher = FetchService()
+    private let fetcher = FetchModel()
     
     var users: [Player]
     
@@ -28,7 +28,8 @@ class FetchViewModel {
 //        users = []
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
+        decoder.dateDecodingStrategy = .iso8601
+
         let usersData = try! Data(contentsOf: Bundle.main.url(forResource: "sampleusers", withExtension: "json")!)
         users = try! decoder.decode([Player].self, from: usersData)
     }

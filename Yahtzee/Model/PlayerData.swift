@@ -10,12 +10,16 @@ import SwiftData
 
 @Model
 class PlayerData {
-    var id: String
+    var localUUID: String
     var name: String
+    var score: Int
+    var timestamp: Date
 
-    init(id: String = UUID().uuidString, name: String = PlayerData.generateRandomName() ) {
-        self.id = id
+    init(localUUID: String = UUID().uuidString, name: String = PlayerData.generateRandomName() ) {
+        self.localUUID = localUUID
         self.name = name
+        self.score = 0
+        self.timestamp = Date()
     }
     
     private static func generateRandomName() -> String {

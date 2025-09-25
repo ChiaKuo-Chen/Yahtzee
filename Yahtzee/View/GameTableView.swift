@@ -68,12 +68,12 @@ struct GameTableView: View {
 
 #Preview {
     
-    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
+    let container = try! ModelContainer(for: GameData.self, PlayerData.self, Dice.self, ScoreBoard.self)
     let context = container.mainContext
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     let router = Router()
-    let playerData = PlayerData(id: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
+    let playerData = PlayerData(localUUID: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
     
     context.insert(previewGameData)
     try? context.save()

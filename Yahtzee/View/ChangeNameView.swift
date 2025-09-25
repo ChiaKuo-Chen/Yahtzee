@@ -11,6 +11,7 @@ import SwiftData
 struct ChangeNameView: View {
     
     // MARK: - PROPERTIES
+    
     @Bindable var playerData: PlayerData
     
     @Environment(\.modelContext) private var modelContext
@@ -21,6 +22,8 @@ struct ChangeNameView: View {
     @State private var playerName: String = ""
     @State var startAnimation : Bool = false
     
+    let firebasemodel = FirebaseModel()
+
     // MARK: - BODY
     
     var body: some View {
@@ -116,6 +119,9 @@ struct ChangeNameView: View {
     var changeNameButton: some View {
         Button {
             playerData.name = playerName
+            if firebasemodel.isFirebaseConfigured() {
+                firebasemodel.updatePlayerData(localUUID: nil, newName: playerName, newScore: nil)
+            }
             self.showingChangeNameView.toggle()
         } label: {
             Text("OK")

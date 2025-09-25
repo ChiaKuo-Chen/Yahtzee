@@ -93,7 +93,7 @@ struct ButtonView: View {
     let penObject = PenObject()
     let router = Router()
     let audioManager = AudioManager()
-    let playerData = PlayerData(id: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
+    let playerData = PlayerData(localUUID: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
     
     let viewModel = ButtonViewModel(
         playerData: playerData,

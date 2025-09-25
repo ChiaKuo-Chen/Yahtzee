@@ -11,7 +11,7 @@
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */; };
 		113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */; };
-		1142FD482E82D81800CD8487 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1142FD472E82D81800CD8487 /* GoogleService-Info.plist */; };
+		1142FD4E2E82DC0400CD8487 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
 		11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* Dice.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
@@ -23,7 +23,7 @@
 		11880A9B2E82845100AF43CC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11880A9A2E82844000AF43CC /* DateModel.swift */; };
 		11880A9D2E82994400AF43CC /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11880A9C2E82993700AF43CC /* FirebaseModel.swift */; };
 		118D70472E755F4600587152 /* sampleusers.json in Resources */ = {isa = PBXBuildFile; fileRef = 118D70462E755F4600587152 /* sampleusers.json */; };
-		118D70492E75601E00587152 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70482E75601900587152 /* FetchService.swift */; };
+		118D70492E75601E00587152 /* FetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70482E75601900587152 /* FetchModel.swift */; };
 		118D704D2E7569DB00587152 /* FetchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D704C2E7569D300587152 /* FetchViewModel.swift */; };
 		118D70512E76D1E200587152 /* LeaderBoardBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70502E76D1E000587152 /* LeaderBoardBarView.swift */; };
 		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
@@ -60,7 +60,7 @@
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonModifier.swift; sourceTree = "<group>"; };
-		1142FD472E82D81800CD8487 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/chenjiaguo/Downloads/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		11665CDC2CBBB1CB00FC5D1C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		11880A9A2E82844000AF43CC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		11880A9C2E82993700AF43CC /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		118D70462E755F4600587152 /* sampleusers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sampleusers.json; sourceTree = "<group>"; };
-		118D70482E75601900587152 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
+		118D70482E75601900587152 /* FetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchModel.swift; sourceTree = "<group>"; };
 		118D704C2E7569D300587152 /* FetchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchViewModel.swift; sourceTree = "<group>"; };
 		118D70502E76D1E000587152 /* LeaderBoardBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardBarView.swift; sourceTree = "<group>"; };
 		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */,
 				11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */,
 				115A0C782CBE659E00BA45B2 /* CategoryModel.swift */,
-				118D70482E75601900587152 /* FetchService.swift */,
+				118D70482E75601900587152 /* FetchModel.swift */,
 				116A3E342E74181800C31D47 /* Player.swift */,
 				11DDF81B2E7AC5E200532DD6 /* PlayerData.swift */,
 				11880A9A2E82844000AF43CC /* DateModel.swift */,
@@ -229,7 +229,7 @@
 				11B7ED092CBEE383008A7CB1 /* Utility */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
 				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
-				1142FD472E82D81800CD8487 /* GoogleService-Info.plist */,
+				1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */,
 			);
 			path = Yahtzee;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */,
-				1142FD482E82D81800CD8487 /* GoogleService-Info.plist in Resources */,
+				1142FD4E2E82DC0400CD8487 /* GoogleService-Info.plist in Resources */,
 				118D70472E755F4600587152 /* sampleusers.json in Resources */,
 				11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */,
 			);
@@ -330,7 +330,7 @@
 				118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */,
 				113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */,
 				116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */,
-				118D70492E75601E00587152 /* FetchService.swift in Sources */,
+				118D70492E75601E00587152 /* FetchModel.swift in Sources */,
 				1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */,
 				11F9D5442E2A795600615115 /* ButtonViewModel.swift in Sources */,
 				11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */,

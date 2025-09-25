@@ -11,10 +11,12 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     @Query var gamedata: [GameData]
-    @Query var playerData: [PlayerData]
+    @Query var playerdata: [PlayerData]
     @Environment(\.modelContext) private var modelContext
     @StateObject private var penObject = PenObject()
     @EnvironmentObject var router: Router
+
+    @State var firebasePlayerData: Player? = nil
     
     @State var showingChangeNameView = false
     @State var showingContinueView = false
@@ -49,10 +51,13 @@ struct ContentView: View {
                                 .font(.title)
                                 .foregroundStyle(Color.yellow)
                             
-                            Text(playerData.first?.name ?? "Player")
+                            Text(playerdata.first?.name ?? "Player")
                                 .font(.title)
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .minimumScaleFactor(0.5)
                         } // HSTACK
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -125,7 +130,11 @@ struct ContentView: View {
                     Spacer()
                     
                     Button(action: {
-                        router.path.append(.leaderboard(playerName: playerData.first?.name ?? "Player", playerID: playerData.first?.id ?? UUID().uuidString, playerScore: gamedata.first?.currentHighestScore ?? 0, playerTimeStamp: datemodel.getCurrentDateString()))
+                        router.path.append(.leaderboard(
+                            playerName: playerdata.first?.name ?? "Player",
+                            playerID: playerdata.first?.localUUID ?? UUID().uuidString,
+                            playerScore: playerdata.first?.score ?? 0,
+                            playerTimeStamp: Date()))
                     }, label: {
                         HStack {
                             HStack {
@@ -150,7 +159,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    Text("High Score: \(gamedata.first?.currentHighestScore ?? 0)")
+                    Text("High Score: \(playerdata.first?.score ?? 0)")
                         .bold()
                         .font(.system(size: 40))
                         .fontWeight(.black)
@@ -164,7 +173,7 @@ struct ContentView: View {
                 } // VSTACK
                 
                 if showingChangeNameView {
-                    if let playerData = playerData.first {
+                    if let playerData = playerdata.first {
                         ChangeNameView(playerData: playerData, showingChangeNameView: $showingChangeNameView)
                     }
                 }
@@ -182,27 +191,51 @@ struct ContentView: View {
                     modelContext.insert(generateInitialData())
                 }
                 
-                if playerData.isEmpty {
+                if playerdata.isEmpty {
                     let newPlayer = PlayerData()
                     modelContext.insert(newPlayer)
                 }
                 // Fetchfrom Local Save
                 
-                firebasemodel.login()
-                // Firebase Login
+                if firebasemodel.isFirebaseConfigured() {
+
+                    firebasemodel.login()
+                    // Firebase Login
+
+                    firebasemodel.fetchThisPlayer() { firebasePlayer in
+                        
+                        if let localPlayer = playerdata.first {
+                            firebasemodel.updatePlayerData(
+                                localUUID: localPlayer.localUUID,
+                                newName: (localPlayer.name != firebasePlayer?.name) ? localPlayer.name : nil,
+                                newScore: (localPlayer.score > firebasePlayer?.score ?? 0) ? localPlayer.score : nil
+                            )
+                            
+                            if firebasePlayer?.score ?? 0 > localPlayer.score {
+                                playerdata.first?.score = firebasePlayer?.score ?? 0
+                                try? modelContext.save()
+                            }
+                        }
+
+                    }
+                    // Merger Data From Local And Firebase
+
+                } else {
+                    print("Firebase not configured")
+                }
             } // OnAppear
             .navigationDestination(for: Page.self) { page in
                 switch page {
                 case .gameTable:
-                    if let gameData = gamedata.first, let playerData = playerData.first {
+                    if let gameData = gamedata.first, let playerData = playerdata.first {
                         GameTableView(gameData: gameData, playerData: playerData)
                             .environmentObject(router)
                             .environmentObject(penObject)
                             .navigationBarBackButtonHidden()
                     }
-                case .end(let finalScore, let playerName):
-                    if let gameData = gamedata.first {
-                        EndView(gameData: gameData, playerName: playerName, finalScore: finalScore)
+                case .end(let finalScore):
+                    if let gameData = gamedata.first, let playerData = playerdata.first {
+                        EndView(gameData: gameData, playerdata: playerData, finalScore: finalScore)
                             .environmentObject(router)
                             .navigationBarBackButtonHidden()
                     }
@@ -240,8 +273,9 @@ struct ContentView: View {
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
     
-    let testPlayer = PlayerData()
-    context.insert(testPlayer)
+    let previewPlayerData = PlayerData()
+    previewPlayerData.score = 135
+    context.insert(previewPlayerData)
     
     
     try? context.save()

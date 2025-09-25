@@ -11,8 +11,9 @@ struct EndView: View {
     
     // MARK: - PROPERTIES
     @Bindable var gameData: GameData
+    @Bindable var playerdata: PlayerData
+
     @Environment(\.modelContext) private var modelContext
-    
     @EnvironmentObject var router: Router
     
     @State private var ticketToGoBack : Bool = false
@@ -22,7 +23,6 @@ struct EndView: View {
     @Environment(\.displayScale) var displayScale
     
     let firebasemodel = FirebaseModel()
-    let playerName: String
     let finalScore : Int
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -116,18 +116,19 @@ struct EndView: View {
         } // ZSTACK
         .onAppear{
             startAnimation()
-            highscoreUpdate = ( finalScore > gameData.currentHighestScore )
+            highscoreUpdate = ( finalScore > playerdata.score )
             
-            if highscoreUpdate {
-                firebasemodel.updateScoreIfNeeded(newScore: finalScore, playerName: playerName)
+            if highscoreUpdate && firebasemodel.isFirebaseConfigured() {
+                firebasemodel.updatePlayerData(localUUID: nil, newName: nil, newScore: finalScore)
             }
             
         }
         .onDisappear{
             if highscoreUpdate {
-                gameData.currentHighestScore = finalScore
+                playerdata.score = finalScore
             }
             gameData.prepareToNewPlay()
+            playerdata.timestamp = Date()
             try? modelContext.save()
         }
         .onTapGesture {
@@ -149,31 +150,35 @@ struct EndView: View {
 
 
 
-#Preview {
-    
-    struct Preview: View {
-        let container: ModelContainer
-        let context: ModelContext
-        var router = Router()
-        
-        init() {
-            container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
-            context = container.mainContext
-            let previewGameData = generateInitialData()
-            context.insert(previewGameData)
-            try? context.save()
-            router.path.append(.end(finalScore: 330, playerName: "FirePlayer"))
-        }
-        
-        var body: some View {
-            ContentView()
-                .modelContainer(container)
-                .environmentObject(PenObject())
-                .environmentObject(router)
-        }
-    }
-    
-    return Preview()
-}
 
+
+
+#Preview {
+
+    let container = try! ModelContainer(
+        for: GameData.self,
+        Dice.self,
+        ScoreBoard.self,
+        PlayerData.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let context = container.mainContext
+    
+    let previewGameData = generateInitialData()
+    context.insert(previewGameData)
+    
+    let previewPlayerData = PlayerData()
+    context.insert(previewPlayerData)
+    
+    let router = Router()
+    router.path.append(.end(finalScore: 130))
+    
+    try? context.save()
+    
+    return ContentView()
+        .environmentObject(PenObject())
+        .modelContainer(container)
+        .environmentObject(router)
+    
+}
 

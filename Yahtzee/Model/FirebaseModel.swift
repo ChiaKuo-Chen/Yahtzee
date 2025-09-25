@@ -6,10 +6,15 @@
 //
 
 import FirebaseAuth
+import FirebaseCore
 import FirebaseFirestore
 
 class FirebaseModel {
     
+    func isFirebaseConfigured() -> Bool {
+        return FirebaseApp.app() != nil
+    }
+
     func login() {
         if Auth.auth().currentUser == nil {
             
@@ -25,49 +30,97 @@ class FirebaseModel {
         }
     }
     
-    func updateScoreIfNeeded(newScore: Int, playerName: String) {
-        
+    func updatePlayerData(localUUID: String?, newName: String?, newScore: Int?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let datemodel = DateModel()
         let db = Firestore.firestore()
         let docRef = db.collection("players").document(uid)
         
         docRef.getDocument { document, error in
             if let document = document, document.exists {
-                let data = document.data()
-                let oldScore = data?["score"] as? Int ?? 0
+                var updateDict: [String: Any] = [:]
+                let data = document.data() ?? [:]
                 
-                if newScore > oldScore {
-                    docRef.setData([
-                        "name": playerName,
-                        "score": newScore,
-                        "timestamp": datemodel.getCurrentDateString(),
-                    ], merge: true)
-                    //print("Updated the Score")
-                } else {
-                    //print("No Need to Update.")
+                // localUUID
+                if let localUUID = localUUID,
+                   (data["localUUID"] as? String) != localUUID {
+                    updateDict["localUUID"] = localUUID
                 }
+                
+                // name
+                if let newName = newName,
+                   (data["name"] as? String) != newName {
+                    updateDict["name"] = newName
+                }
+                
+                // score
+                if let newScore = newScore,
+                   (data["score"] as? Int) != newScore {
+                    updateDict["score"] = newScore
+                }
+                
+                if !updateDict.isEmpty {
+                    updateDict["timestamp"] = Timestamp(date: Date())
+                    docRef.setData(updateDict, merge: true)
+                    //print("Updated fields: \(updateDict.keys)")
+                } else {
+                    //print("No fields need update.")
+                }
+                
             } else {
-                // Firstime Save
-                docRef.setData([
-                    "name": playerName,
-                    "score": newScore,
-                    "timestamp": datemodel.getCurrentDateString(),
-                ])
-                //print("Create Player Data")
+                var newData: [String: Any] = [
+                    "timestamp": Timestamp(date: Date())
+                ]
+                newData["localUUID"] = localUUID ?? UUID().uuidString
+                newData["name"] = newName ?? "NewPlayer"
+                newData["score"] = newScore ?? 0
+                
+                docRef.setData(newData, merge: true)
+                //print("Created new player document")
             }
         }
     }
 
+    func fetchThisPlayer(completion: @escaping (Player?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(nil)
+            return
+        }
+
+        let db = Firestore.firestore()
+        let docRef = db.collection("players").document(uid)
+
+        docRef.getDocument { document, error in
+            if let document = document, document.exists, let data = document.data() {
+                
+                let timestamp: Date
+                if let ts = data["timestamp"] as? Timestamp {
+                    timestamp = ts.dateValue()
+                } else {
+                    timestamp = Date() // fallback
+                }
+
+                    let player = Player(
+                        localUUID: data["localUUID"] as? String ?? "00000000-0000-0000-0000-000000000000",
+                        name: data["name"] as? String ?? "Unknown",
+                        score: data["score"] as? Int ?? 0,
+                        timestamp: timestamp
+                    )
+                    completion(player)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
+
     func fetchLeaderboard(completion: @escaping ([Player]) -> Void) {
         
         let db = Firestore.firestore()
-        let datemodel = DateModel()
 
         db.collection("players")
             .order(by: "score", descending: true)
-            .limit(to: 50)
+            .limit(to: 100)
             .getDocuments { snapshot, error in
                 if let error = error {
                     print("Failed to Fetch FirebaseStore：\(error.localizedDescription)")
@@ -77,17 +130,26 @@ class FirebaseModel {
                 
                 let players: [Player] = snapshot?.documents.compactMap { doc in
                     let data = doc.data()
+                    
+                    let timestamp: Date
+                    if let ts = data["timestamp"] as? Timestamp {
+                        timestamp = ts.dateValue()
+                    } else {
+                        timestamp = Date()  // fallback
+                    }
+
                     return Player(
-                        id: doc.documentID,
+                        localUUID: data["localUUID"] as? String ?? "00000000-0000-0000-0000-000000000000",
                         name: data["name"] as? String ?? "Unknown",
                         score: data["score"] as? Int ?? 0,
-                        timestamp: data["timestamp"] as? String ?? datemodel.getCurrentDateString()
+                        timestamp: timestamp
                     )
                 } ?? []
                 
                 completion(players)
             }
     }
+    
 
 }
 

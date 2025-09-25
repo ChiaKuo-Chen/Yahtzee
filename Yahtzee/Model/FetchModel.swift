@@ -1,5 +1,5 @@
 //
-//  FetchService.swift
+//  FetchModel.swift
 //  Yahtzee
 //
 //  Created by 陳嘉國
@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct FetchService {
+struct FetchModel {
     
     private enum FetchError: Error {
         case badResponse
@@ -22,7 +22,7 @@ struct FetchService {
 
         // Build fetch url
         let fetchURL = baseURL.appending(path: "yahtzeeLeaderboardApi/data.json")
-        
+
         // Fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
 
@@ -34,6 +34,7 @@ struct FetchService {
         // Decode data
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         let users = try decoder.decode([Player].self, from: data)
         
         // Return

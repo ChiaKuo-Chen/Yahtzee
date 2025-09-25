@@ -102,7 +102,7 @@ class ButtonViewModel  {
 
         // The game is finish
         if !scoreboard.scoresArray.contains(nil) {
-            router.path.append(.end(finalScore: scoreboard.returnTotalScore(), playerName: playerData.name))
+            router.path.append(.end(finalScore: scoreboard.returnTotalScore()))
         }
     }
     

@@ -153,7 +153,6 @@ Would you like to conitinue your previous game or start a new one?
                 Dice(value: 5, isHeld: false, isRoll: 0),
             ]
             let gameData = GameData(
-                currentHighestScore: 0,
                 soundEffect: true,
                 scoreboard: initialScoreBoard,
                 diceArray: initialDiceArray

@@ -20,23 +20,29 @@ struct LeaderBoardView: View {
     @State var playerName: String
     @State var playerID: String
     @State var playerScore: Int
-    @State var playerTimeStamp: String
+    @State var playerTimeStamp: Date
+    
     @State var firebasePlayers: [Player] = []
-
+    
     let firebasemodel = FirebaseModel()
     private var localPlayer: Player {
-        Player(id: playerID,
+        Player(localUUID: playerID,
                name: playerName,
                score: playerScore,
                timestamp: playerTimeStamp)
     }
-
-
+    
+    
     private let backgroundColor = Color(uiColor: UIColor(hex: "5E936C"))
     
     var leaderBoard: [Player] {
         let combined = viewmodel.users + [localPlayer] + firebasePlayers
-        return combined.sorted { $0.score > $1.score }
+        
+        let uniquePlayersDict = Dictionary(grouping: combined, by: { $0.localUUID })
+            .compactMapValues { $0.first }
+        
+        let uniquePlayers = Array(uniquePlayersDict.values)
+        return uniquePlayers.sorted { $0.score > $1.score }
     }
     
     var top100Leaderboard: [(rank: Int, player: Player)] {
@@ -46,7 +52,7 @@ struct LeaderBoardView: View {
     }
     
     var trimmedLeaderboard: [(rank: Int, player: Player)] {
-        guard let localIndex = leaderBoard.firstIndex(where: { $0.id == localPlayer.id }) else {
+        guard let localIndex = leaderBoard.firstIndex(where: { $0.localUUID == localPlayer.localUUID }) else {
             return leaderBoard.enumerated().map { (index, player) in (index + 1, player) }
         }
         
@@ -63,7 +69,7 @@ struct LeaderBoardView: View {
         let slice = selectedOption == "你的名次" ? trimmedLeaderboard : top100Leaderboard
         return Array(slice)
     }
-        
+    
     // MARK: - BODY
     var body: some View {
         
@@ -143,34 +149,36 @@ struct LeaderBoardView: View {
                             
                         } else {
                             
-                            ForEach(leaderboardToShow, id: \.player.id) { item in
+                            ForEach(leaderboardToShow, id: \.player.localUUID) { item in
                                 
                                 let rank = item.rank
                                 let player = item.player
                                 
                                 VStack {
-                                    LeaderBoardBarView(index: rank, name: player.name, score: player.score)
-                                        .id(player.id)
-                                }
-                                .overlay {
-                                    if player.id == localPlayer.id {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(Color.white, lineWidth: 4)
-                                                .padding(.horizontal)
-                                                .padding(-4)
-                                            Text("你的名次")
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 2)
-                                                .fontWeight(.bold)
-                                                .foregroundStyle(Color.black)
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .foregroundStyle(Color.white)
-                                                )
-                                                .offset(y: -25)
-                                            // 因為 height 在 LeaderBoardBarView 是 50
+                                    ZStack {
+                                        LeaderBoardBarView(index: rank, name: player.name, score: player.score)
+                                            .id(player.localUUID)
+                                        
+                                        if player.localUUID == localPlayer.localUUID {
+                                            ZStack {
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .stroke(Color.white, lineWidth: 4)
+                                                    .padding(.horizontal)
+                                                    .padding(-4)
+                                                Text("你的名次")
+                                                    .padding(.horizontal, 4)
+                                                    .padding(.vertical, 2)
+                                                    .fontWeight(.bold)
+                                                    .foregroundStyle(Color.black)
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 8)
+                                                            .foregroundStyle(Color.white)
+                                                    )
+                                                    .offset(y: -25)
+                                                // 因為 height 在 LeaderBoardBarView 是 50
+                                            }
                                         }
+                                        
                                     }
                                 }
                             }
@@ -186,7 +194,7 @@ struct LeaderBoardView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         withAnimation {
                             if selectedOption == "你的名次" {
-                                proxy.scrollTo(localPlayer.id, anchor: .center)
+                                proxy.scrollTo(localPlayer.localUUID, anchor: .center)
                             } else {
                                 proxy.scrollTo("top")
                             }
@@ -198,13 +206,15 @@ struct LeaderBoardView: View {
                         await viewmodel.getUserData()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             withAnimation {
-                                proxy.scrollTo(localPlayer.id, anchor: .center)
+                                proxy.scrollTo(localPlayer.localUUID, anchor: .center)
                             }
                         }
                     } // Scroll To Player
-                    firebasemodel.fetchLeaderboard { players in
-                        firebasePlayers = players
-                    }
+                    if firebasemodel.isFirebaseConfigured()  {
+                        firebasemodel.fetchLeaderboard { players in
+                            firebasePlayers = players
+                        }
+                    } // Load the FirebasePlayer
                 }
             }
         } // VSTACK
@@ -214,5 +224,5 @@ struct LeaderBoardView: View {
 }
 
 #Preview {
-    LeaderBoardView(playerName: "YOU", playerID: "00000000-0000-0000-0000-000000000000", playerScore: 290, playerTimeStamp: "2025-09-14T09:49:16.029418Z")
+    LeaderBoardView(playerName: "YOU", playerID: "EB0A9E8C-499D-4300-A2CE-906B80B040A9", playerScore: 300, playerTimeStamp: Date())
 }
