@@ -121,7 +121,6 @@ struct EndView: View {
             if highscoreUpdate && firebasemodel.isFirebaseConfigured() {
                 firebasemodel.updatePlayerData(localUUID: nil, newName: nil, newScore: finalScore)
             }
-            
         }
         .onDisappear{
             if highscoreUpdate {
