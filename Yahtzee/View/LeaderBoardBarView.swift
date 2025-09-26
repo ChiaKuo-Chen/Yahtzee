@@ -52,12 +52,18 @@ struct LeaderBoardBarView: View {
     var body: some View {
         
         HStack {
-            Text("\(index)")
-                .foregroundStyle(textColor)
-                .padding(.horizontal)
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .shadow(color: textShadowColor, radius: 0, x:2, y:2)
+            ZStack {
+                Text("\(index)")
+                    .foregroundStyle(textColor)
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
+                    .shadow(color: textShadowColor, radius: 0, x:2, y:2)
+                
+                Text("1234")
+                    .padding(.horizontal, 8)
+                    .font(.largeTitle)
+                    .opacity(0)
+            } // ZSTACK
 
             Text(name)
                 .foregroundStyle(textColor)
