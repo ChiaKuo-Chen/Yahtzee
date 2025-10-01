@@ -9,14 +9,7 @@ import FirebaseCore
 
 
 // Prepare for Firebase
-
 class AppDelegate: NSObject, UIApplicationDelegate {
-//  func application(_ application: UIApplication,
-//                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//    FirebaseApp.configure()
-//    return true
-//  }
-    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       
@@ -30,7 +23,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
       return true
     }
-
 }
 
 @main
