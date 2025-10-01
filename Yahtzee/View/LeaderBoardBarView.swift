@@ -46,7 +46,14 @@ struct LeaderBoardBarView: View {
             return Color.white
         }
     }
-
+    
+    private var textSize: Font {
+        if index == 1 || index == 2 || index == 3 {
+            return .largeTitle
+        } else {
+            return .title2
+        }
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -55,19 +62,19 @@ struct LeaderBoardBarView: View {
             ZStack {
                 Text("\(index)")
                     .foregroundStyle(textColor)
-                    .font(.largeTitle)
+                    .font(textSize)
                     .fontWeight(.heavy)
                     .shadow(color: textShadowColor, radius: 0, x:2, y:2)
                 
                 Text("1234")
                     .padding(.horizontal, 8)
-                    .font(.largeTitle)
+                    .font(.title2)
                     .opacity(0)
             } // ZSTACK
 
             Text(name)
                 .foregroundStyle(textColor)
-                .font(.title2)
+                .font(textSize)
                 .minimumScaleFactor(0.02)
                 .multilineTextAlignment(.center)
                 .fontWeight(.heavy)
@@ -76,15 +83,23 @@ struct LeaderBoardBarView: View {
                 .truncationMode(.tail)
                 .shadow(color: textShadowColor, radius: 0, x:2, y:2)
 
-            
             Spacer()
             
-            Text("\(score)")
-                .foregroundStyle(scoreColor)
-                .padding(.horizontal)
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .shadow(color: Color.black, radius: 0, x:2, y:2)
+            ZStack {
+                Text("\(score)")
+                    .foregroundStyle(scoreColor)
+                    .padding(.horizontal)
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
+                    .shadow(color: Color.black, radius: 0, x:2, y:2)
+                
+                Text("000")
+                    .padding(.horizontal)
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
+                    .opacity(0)
+            } // ZSTACK
+
 
         } // HSTACK
         .frame(maxWidth: .infinity)
@@ -107,5 +122,11 @@ struct LeaderBoardBarView: View {
 }
 
 #Preview {
-    LeaderBoardBarView(index: 1, name: "Champion", score: 400)
+    VStack {
+        LeaderBoardBarView(index: 1, name: "Champion", score: 400)
+        LeaderBoardBarView(index: 2, name: "Second", score: 300)
+        LeaderBoardBarView(index: 3, name: "Third", score: 200)
+        LeaderBoardBarView(index: 10, name: "Number10", score: 100)
+        LeaderBoardBarView(index: 999, name: "SomeGuy", score: 10)
+    }
 }

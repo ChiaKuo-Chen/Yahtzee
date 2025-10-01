@@ -15,7 +15,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var penObject = PenObject()
     @EnvironmentObject var router: Router
-
+    
     @State var firebasePlayerData: Player? = nil
     
     @State var showingChangeNameView = false
@@ -81,7 +81,7 @@ struct ContentView: View {
                                 try? modelContext.save()
                             }
                             .padding(.horizontal, 20)
-
+                        
                     } // HSTACK
                     
                     Spacer()
@@ -96,7 +96,8 @@ struct ContentView: View {
                     Spacer()
                     
                     // That Red Big Dice
-                    DiceAnimateView()
+                    DiceAnimationView()
+                        .padding(.horizontal, 100)
                     
                     Spacer()
                     
@@ -120,6 +121,7 @@ struct ContentView: View {
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
                                 .shadow(color: Color.black, radius: 0, x:4, y:4)
+                            
                         } // HSTACK
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
@@ -171,7 +173,8 @@ struct ContentView: View {
                     Spacer()
                     
                 } // VSTACK
-                
+                .blur(radius: showingChangeNameView||showingContinueView ?  8 : 0)
+
                 if showingChangeNameView {
                     if let playerData = playerdata.first {
                         ChangeNameView(playerData: playerData, showingChangeNameView: $showingChangeNameView)
@@ -184,7 +187,7 @@ struct ContentView: View {
                         ContinueWindowView(gameData: gameData, showingContinueView: $showingContinueView)
                     }
                 }
-                                
+                
             } // ZSTACK
             .onAppear{
                 if gamedata.isEmpty {
@@ -198,10 +201,10 @@ struct ContentView: View {
                 // Fetchfrom Local Save
                 
                 if firebasemodel.isFirebaseConfigured() {
-
+                    
                     firebasemodel.login()
                     // Firebase Login
-
+                    
                     firebasemodel.fetchThisPlayer() { firebasePlayer in
                         
                         if let localPlayer = playerdata.first {
@@ -216,10 +219,10 @@ struct ContentView: View {
                                 try? modelContext.save()
                             }
                         }
-
+                        
                     }
                     // Merger Data From Local And Firebase
-
+                    
                 } else {
                     print("Firebase not configured")
                 }
@@ -252,7 +255,7 @@ struct ContentView: View {
             }
             
         } // NavigationStack
-
+        
         
         
     }

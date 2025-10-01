@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110B2EB12E8A7C4000B5EA48 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */; };
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
+		113005B02E87D92500570563 /* ExShadowFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113005AF2E87D91300570563 /* ExShadowFrame.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */; };
 		113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */; };
@@ -16,7 +18,7 @@
 		11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* Dice.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
 		116A3E352E74182300C31D47 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3E342E74181800C31D47 /* Player.swift */; };
-		116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */; };
+		116C27E02CCAB62B0057C193 /* DiceAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */; };
 		117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* ContentView.swift */; };
 		1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */; };
 		1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */; };
@@ -55,8 +57,21 @@
 		11FC498E2E48AA9200686175 /* PanelBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		113006202E894E4300570563 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11EED8C92CA959350096CCA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11EED8D02CA959350096CCA7;
+			remoteInfo = Yahtzee;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
+		113005AF2E87D91300570563 /* ExShadowFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExShadowFrame.swift; sourceTree = "<group>"; };
+		1130061C2E894E4300570563 /* YahtzeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YahtzeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonModifier.swift; sourceTree = "<group>"; };
@@ -65,7 +80,7 @@
 		11665CDC2CBBB1CB00FC5D1C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
 		116A3E342E74181800C31D47 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimateView.swift; sourceTree = "<group>"; };
+		116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimationView.swift; sourceTree = "<group>"; };
 		117AA7D82CC39A5D00CA9CEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWindowView.swift; sourceTree = "<group>"; };
 		1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonModifier.swift; sourceTree = "<group>"; };
@@ -101,7 +116,18 @@
 		11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1130061D2E894E4300570563 /* YahtzeeTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = YahtzeeTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		113006192E894E4300570563 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11EED8CE2CA959350096CCA7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,11 +147,12 @@
 			children = (
 				117AA7D82CC39A5D00CA9CEF /* ContentView.swift */,
 				1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */,
+				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
 				1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */,
 				118D70502E76D1E000587152 /* LeaderBoardBarView.swift */,
-				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
+				110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */,
 				11EED8D62CA959350096CCA7 /* GameTableView.swift */,
-				116C27DF2CCAB62B0057C193 /* DiceAnimateView.swift */,
+				116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */,
 				11B7ED052CBED65E008A7CB1 /* HeaderView.swift */,
 				113412002CAFC0BE00CF4120 /* BoardView.swift */,
 				11D6C2F22CB28285001F6CE9 /* RowView.swift */,
@@ -195,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				11D826192CAFC9BF005228CC /* ExUIColor.swift */,
+				113005AF2E87D91300570563 /* ExShadowFrame.swift */,
 				11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */,
 			);
 			path = Extension;
@@ -204,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				11EED8D32CA959350096CCA7 /* Yahtzee */,
+				1130061D2E894E4300570563 /* YahtzeeTests */,
 				11EED8D22CA959350096CCA7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -212,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				11EED8D12CA959350096CCA7 /* Yahtzee.app */,
+				1130061C2E894E4300570563 /* YahtzeeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +278,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1130061B2E894E4300570563 /* YahtzeeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 113006222E894E4300570563 /* Build configuration list for PBXNativeTarget "YahtzeeTests" */;
+			buildPhases = (
+				113006182E894E4300570563 /* Sources */,
+				113006192E894E4300570563 /* Frameworks */,
+				1130061A2E894E4300570563 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				113006212E894E4300570563 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1130061D2E894E4300570563 /* YahtzeeTests */,
+			);
+			name = YahtzeeTests;
+			packageProductDependencies = (
+			);
+			productName = YahtzeeTests;
+			productReference = 1130061C2E894E4300570563 /* YahtzeeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		11EED8D02CA959350096CCA7 /* Yahtzee */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11EED8DF2CA959360096CCA7 /* Build configuration list for PBXNativeTarget "Yahtzee" */;
@@ -272,9 +325,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					1130061B2E894E4300570563 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 11EED8D02CA959350096CCA7;
+					};
 					11EED8D02CA959350096CCA7 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -298,11 +355,19 @@
 			projectRoot = "";
 			targets = (
 				11EED8D02CA959350096CCA7 /* Yahtzee */,
+				1130061B2E894E4300570563 /* YahtzeeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1130061A2E894E4300570563 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11EED8CF2CA959350096CCA7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,22 +382,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		113006182E894E4300570563 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11EED8CD2CA959350096CCA7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
 				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
+				113005B02E87D92500570563 /* ExShadowFrame.swift in Sources */,
 				11FC498E2E48AA9200686175 /* PanelBackgroundView.swift in Sources */,
 				1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */,
 				11EED8D72CA959350096CCA7 /* GameTableView.swift in Sources */,
 				116A3E352E74182300C31D47 /* Player.swift in Sources */,
 				118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */,
 				113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */,
-				116C27E02CCAB62B0057C193 /* DiceAnimateView.swift in Sources */,
+				116C27E02CCAB62B0057C193 /* DiceAnimationView.swift in Sources */,
 				118D70492E75601E00587152 /* FetchModel.swift in Sources */,
 				1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */,
 				11F9D5442E2A795600615115 /* ButtonViewModel.swift in Sources */,
+				110B2EB12E8A7C4000B5EA48 /* LoadingView.swift in Sources */,
 				11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */,
 				11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */,
 				11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */,
@@ -364,7 +438,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		113006212E894E4300570563 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11EED8D02CA959350096CCA7 /* Yahtzee */;
+			targetProxy = 113006202E894E4300570563 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		113006232E894E4300570563 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBC4T5V7CF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Chiak-Kuo-Chen.YahtzeeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yahtzee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Yahtzee";
+			};
+			name = Debug;
+		};
+		113006242E894E4300570563 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBC4T5V7CF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Chiak-Kuo-Chen.YahtzeeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yahtzee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Yahtzee";
+			};
+			name = Release;
+		};
 		11EED8DD2CA959360096CCA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -495,6 +615,7 @@
 				DEVELOPMENT_TEAM = WBC4T5V7CF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Yahtzee/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -525,6 +646,7 @@
 				DEVELOPMENT_TEAM = WBC4T5V7CF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Yahtzee/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -547,6 +669,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		113006222E894E4300570563 /* Build configuration list for PBXNativeTarget "YahtzeeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				113006232E894E4300570563 /* Debug */,
+				113006242E894E4300570563 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		11EED8CC2CA959350096CCA7 /* Build configuration list for PBXProject "Yahtzee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

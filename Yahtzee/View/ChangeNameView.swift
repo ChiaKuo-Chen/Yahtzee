@@ -29,7 +29,10 @@ struct ChangeNameView: View {
     var body: some View {
         
         ZStack {
-            Color.gray.opacity(0.6)
+            Color.gray.opacity(0.3)
+                .onTapGesture {
+                    showingChangeNameView.toggle()
+                }
             // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
             
             

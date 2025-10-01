@@ -83,7 +83,7 @@ class ButtonViewModel  {
             print("penObject.penTarget is nil!")
             return
         }
-        let newScore = scoreModel.caculateScore(diceArray, category: categoryModel.returnCategory(penIndex), scoreBoard: scoreboard)
+        let newScore = scoreModel.calculateScore(diceArray, category: categoryModel.returnCategory(penIndex), scoreBoard: scoreboard)
         scoreboard.updateScoreBoard(newScore: newScore, penIndex: penIndex)
         penObject.leavePaper()
 

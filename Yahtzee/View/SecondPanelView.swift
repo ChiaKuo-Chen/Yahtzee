@@ -22,7 +22,7 @@ struct SecondPanelView: View {
     var diceArray: [Dice] { gameData.diceArray }
     var scoreboard: ScoreBoard { gameData.scoreboard[0] }
     // This Onw Would Tell the Score
-    var potentialScore: Int { scoreModel.caculateScore(diceArray, category: category, scoreBoard: scoreboard) }
+    var potentialScore: Int { scoreModel.calculateScore(diceArray, category: category, scoreBoard: scoreboard) }
     var categoryIndex: Int { categoryModel.returnIndex(category) }
     var scoreAlreadyWritten: Bool { writtenScore != nil }
     var writtenScore: Int? { scoreboard.scoresArray[categoryIndex] }

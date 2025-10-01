@@ -5,19 +5,12 @@ import Foundation
 
 class ScoreModel {
     
-    func caculateScore(_ dicerArray: [Dice], category: String, scoreBoard: ScoreBoard) -> Int {
+    func calculateScore(_ dicerArray: [Dice], category: String, scoreBoard: ScoreBoard) -> Int {
         
         let dicesNumberArray = dicerArray.getDicesNumber()
         let alreadyYathzee: Bool = scoreBoard.wetherAlreadyYahtzee()
         
-        var yathzee: Bool {
-            for i in 1 ... 6 {
-                if dicesNumberArray.filter({$0 == i}).count == 5 {
-                    return true
-                }
-            }
-            return false
-        }
+        let yathzee = Set(dicesNumberArray).count == 1
 
         switch category {
 

@@ -69,10 +69,8 @@ struct RowView: View {
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(1.2)
-                            .shadow(color: Color.black, radius: 0, x: 2, y: 2)
-                            .shadow(color: Color.black, radius: 0, x: 2, y: -2)
-                            .shadow(color: Color.black, radius: 0, x: -2, y: 2)
-                            .shadow(color: Color.black, radius: 0, x: -2, y: -2)
+                            .shadowFrame(frameSize: 1)
+                            .shadowFrame(color: Color.white, frameSize: 1)
                             .opacity(index==0 ? 1 : 0)
                     }
                 }

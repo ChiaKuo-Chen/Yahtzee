@@ -125,7 +125,7 @@ struct LeaderBoardView: View {
                     case .notStatred:
                         EmptyView()
                     case .fetching:
-                        ProgressView()
+                        LoadingView()
                     case .successFetch:
                         
                         Color.clear
