@@ -19,6 +19,8 @@
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
 		116A3E352E74182300C31D47 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116A3E342E74181800C31D47 /* Player.swift */; };
 		116C27E02CCAB62B0057C193 /* DiceAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */; };
+		11777A1C2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11777A1A2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld */; };
+		11777A302E8D51C700FE0E07 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11777A2F2E8D51C600FE0E07 /* Persistence.swift */; };
 		117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117AA7D82CC39A5D00CA9CEF /* ContentView.swift */; };
 		1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */; };
 		1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */; };
@@ -81,6 +83,8 @@
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
 		116A3E342E74181800C31D47 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceAnimationView.swift; sourceTree = "<group>"; };
+		11777A1B2E8D515B00FE0E07 /* Yahtzee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yahtzee.xcdatamodel; sourceTree = "<group>"; };
+		11777A2F2E8D51C600FE0E07 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		117AA7D82CC39A5D00CA9CEF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWindowView.swift; sourceTree = "<group>"; };
 		1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonModifier.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				11DDF81B2E7AC5E200532DD6 /* PlayerData.swift */,
 				11880A9A2E82844000AF43CC /* DateModel.swift */,
 				11880A9C2E82993700AF43CC /* FirebaseModel.swift */,
+				11777A1A2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld */,
+				11777A2F2E8D51C600FE0E07 /* Persistence.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
 				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
 				113005B02E87D92500570563 /* ExShadowFrame.swift in Sources */,
+				11777A302E8D51C700FE0E07 /* Persistence.swift in Sources */,
 				11FC498E2E48AA9200686175 /* PanelBackgroundView.swift in Sources */,
 				1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */,
 				11EED8D72CA959350096CCA7 /* GameTableView.swift in Sources */,
@@ -420,6 +427,7 @@
 				11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */,
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
 				11E32D112CF702F80072F280 /* PenObject.swift in Sources */,
+				11777A1C2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld in Sources */,
 				11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */,
 				113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */,
 				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
@@ -739,6 +747,19 @@
 			productName = Vortex;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		11777A1A2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11777A1B2E8D515B00FE0E07 /* Yahtzee.xcdatamodel */,
+			);
+			currentVersion = 11777A1B2E8D515B00FE0E07 /* Yahtzee.xcdatamodel */;
+			path = Yahtzee.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11EED8C92CA959350096CCA7 /* Project object */;
 }

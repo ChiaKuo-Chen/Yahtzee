@@ -4,9 +4,9 @@
 //
 
 import SwiftUI
+import CoreData
 import SwiftData
 import FirebaseCore
-
 
 // Prepare for Firebase
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -31,7 +31,8 @@ struct YahtzeeApp: App {
     @StateObject private var router = Router()
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
+    
+    let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
@@ -39,5 +40,6 @@ struct YahtzeeApp: App {
                 .environmentObject(router)
         }
         .modelContainer(for: [GameData.self, PlayerData.self])
+        .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }

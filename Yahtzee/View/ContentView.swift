@@ -4,18 +4,24 @@
 //
 
 import SwiftUI
+import CoreData
 import SwiftData
-import FirebaseAuth
+import FirebaseCore
 
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    @Query var gamedata: [GameData]
-    @Query var playerdata: [PlayerData]
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.managedObjectContext) private var viewContext     // CoreData
+    @FetchRequest<CorePlayer>(
+        sortDescriptors: [SortDescriptor(\.localUUID)],
+        animation: .default) var corePlayers
+
+    @Query var gamedata: [GameData] // SwiftData
+    @Query var playerdata: [PlayerData] // SwiftData
+    @Environment(\.modelContext) private var modelContext // SwiftData
+    
     @StateObject private var penObject = PenObject()
     @EnvironmentObject var router: Router
-    
     @State var firebasePlayerData: Player? = nil
     
     @State var showingChangeNameView = false
@@ -190,6 +196,14 @@ struct ContentView: View {
                 
             } // ZSTACK
             .onAppear{
+                
+                if let corePlayer = corePlayers.first {
+                    print("Name: \(corePlayer.name ?? "NoName")")
+                    print("Score: \(corePlayer.score)")
+                } else {
+                    print("No Core Player data found.")
+                }
+
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 }
@@ -264,6 +278,7 @@ struct ContentView: View {
 }
 
 #Preview {
+    // SwiftData
     let container = try! ModelContainer(
         for: GameData.self,
         Dice.self,
@@ -279,11 +294,19 @@ struct ContentView: View {
     let previewPlayerData = PlayerData()
     previewPlayerData.score = 135
     context.insert(previewPlayerData)
-    
-    
     try? context.save()
     
+    // Core Data
+    let coreDataContext = PersistenceController.preview.container.viewContext
+    
+    // Insert Core Data preview data
+    let corePlayer = CorePlayer(context: coreDataContext)
+    corePlayer.name = "PreviewPlayer"
+    corePlayer.score = 200
+    try? coreDataContext.save()
+
     return ContentView()
+        .environment(\.managedObjectContext, coreDataContext) // CoreData
         .modelContainer(container)
         .environmentObject(PenObject())
         .environmentObject(Router())
