@@ -10,7 +10,6 @@ struct GameTableView: View {
     
     // MARK: - PROPERTIES
     @Bindable var gameData: GameData
-    @Bindable var playerData: PlayerData
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var penObject: PenObject
@@ -39,7 +38,6 @@ struct GameTableView: View {
                     .padding()
                 
                 ButtonView(viewModel: ButtonViewModel(
-                    playerData: playerData,
                     gameData: gameData,
                     modelContext: modelContext,
                     penObject: penObject,
@@ -68,17 +66,16 @@ struct GameTableView: View {
 
 #Preview {
     
-    let container = try! ModelContainer(for: GameData.self, PlayerData.self, Dice.self, ScoreBoard.self)
+    let container = try! ModelContainer(for: GameData.self, Dice.self, ScoreBoard.self)
     let context = container.mainContext
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     let router = Router()
-    let playerData = PlayerData(localUUID: "00000000-0000-0000-0000-000000000000", name: "TestPlayer")
     
     context.insert(previewGameData)
     try? context.save()
 
-    return GameTableView(gameData: previewGameData, playerData: playerData)
+    return GameTableView(gameData: previewGameData)
         .modelContainer(container)
         .environmentObject(penObject)
         .environmentObject(router)

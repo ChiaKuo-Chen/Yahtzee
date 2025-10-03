@@ -32,6 +32,7 @@
 		118D70512E76D1E200587152 /* LeaderBoardBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70502E76D1E000587152 /* LeaderBoardBarView.swift */; };
 		118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */; };
 		1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */; };
+		119E9BBE2E8FBF9F00FA8B1D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119E9BBD2E8FBF9F00FA8B1D /* Launch Screen.storyboard */; };
 		11A149422E816AFD00F9C2FA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 11A149412E816AFD00F9C2FA /* FirebaseAuth */; };
 		11A149442E816AFD00F9C2FA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11A149432E816AFD00F9C2FA /* FirebaseCore */; };
 		11A149462E816AFD00F9C2FA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 11A149452E816AFD00F9C2FA /* FirebaseFirestore */; };
@@ -47,7 +48,6 @@
 		11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F22CB28285001F6CE9 /* RowView.swift */; };
 		11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */; };
 		11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExUIColor.swift */; };
-		11DDF81C2E7AC5EF00532DD6 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DDF81B2E7AC5E200532DD6 /* PlayerData.swift */; };
 		11E32D112CF702F80072F280 /* PenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E32D102CF702F80072F280 /* PenObject.swift */; };
 		11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */; };
 		11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E931D72CB67EBF0023D2BF /* AddUpView.swift */; };
@@ -96,6 +96,7 @@
 		118D70502E76D1E000587152 /* LeaderBoardBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardBarView.swift; sourceTree = "<group>"; };
 		118DC90D2CC2AD75005E8419 /* GenerateInitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateInitialData.swift; sourceTree = "<group>"; };
 		1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameView.swift; sourceTree = "<group>"; };
+		119E9BBD2E8FBF9F00FA8B1D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		11A7ADB52CC24BB000C21782 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		11A7ADB82CC24C6800C21782 /* diceRoll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceRoll.mp3; sourceTree = "<group>"; };
 		11A7ADBA2CC24E1100C21782 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		11D6C2F22CB28285001F6CE9 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRowView.swift; sourceTree = "<group>"; };
 		11D826192CAFC9BF005228CC /* ExUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
-		11DDF81B2E7AC5E200532DD6 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		11E32D102CF702F80072F280 /* PenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenObject.swift; sourceTree = "<group>"; };
 		11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahtzeeAnimateView.swift; sourceTree = "<group>"; };
 		11E931D72CB67EBF0023D2BF /* AddUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUpView.swift; sourceTree = "<group>"; };
@@ -182,7 +182,6 @@
 				115A0C782CBE659E00BA45B2 /* CategoryModel.swift */,
 				118D70482E75601900587152 /* FetchModel.swift */,
 				116A3E342E74181800C31D47 /* Player.swift */,
-				11DDF81B2E7AC5E200532DD6 /* PlayerData.swift */,
 				11880A9A2E82844000AF43CC /* DateModel.swift */,
 				11880A9C2E82993700AF43CC /* FirebaseModel.swift */,
 				11777A1A2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld */,
@@ -265,6 +264,7 @@
 				11B7ED092CBEE383008A7CB1 /* Utility */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
 				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
+				119E9BBD2E8FBF9F00FA8B1D /* Launch Screen.storyboard */,
 				1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */,
 			);
 			path = Yahtzee;
@@ -381,6 +381,7 @@
 				11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */,
 				1142FD4E2E82DC0400CD8487 /* GoogleService-Info.plist in Resources */,
 				118D70472E755F4600587152 /* sampleusers.json in Resources */,
+				119E9BBE2E8FBF9F00FA8B1D /* Launch Screen.storyboard in Resources */,
 				11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,7 +424,6 @@
 				1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */,
 				11A7ADB62CC24BB000C21782 /* AudioManager.swift in Sources */,
 				1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */,
-				11DDF81C2E7AC5EF00532DD6 /* PlayerData.swift in Sources */,
 				11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */,
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
 				11E32D112CF702F80072F280 /* PenObject.swift in Sources */,
@@ -627,6 +627,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -658,6 +659,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;

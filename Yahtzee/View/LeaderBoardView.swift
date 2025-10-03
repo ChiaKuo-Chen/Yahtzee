@@ -25,6 +25,7 @@ struct LeaderBoardView: View {
     @State var firebasePlayers: [Player] = []
     
     let firebasemodel = FirebaseModel()
+    
     private var localPlayer: Player {
         Player(localUUID: playerID,
                name: playerName,
@@ -224,5 +225,5 @@ struct LeaderBoardView: View {
 }
 
 #Preview {
-    LeaderBoardView(playerName: "YOU", playerID: "EB0A9E8C-499D-4300-A2CE-906B80B040A9", playerScore: 300, playerTimeStamp: Date())
+    LeaderBoardView(playerName: "YOU", playerID: "00000000-0000-0000-0000-000000000000", playerScore: 300, playerTimeStamp: Date())
 }

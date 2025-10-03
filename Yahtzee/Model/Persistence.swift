@@ -19,8 +19,8 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
                 
         let newPlayer = CorePlayer(context: viewContext)
-        newPlayer.localUUID = UUID()
-        newPlayer.score = 200
+        newPlayer.localUUID = UUID().uuidString
+        newPlayer.score = 135
         newPlayer.name = generateRandomName()
         newPlayer.timestamp = Date()
         

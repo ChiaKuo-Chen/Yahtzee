@@ -39,7 +39,7 @@ struct YahtzeeApp: App {
             ContentView()
                 .environmentObject(router)
         }
-        .modelContainer(for: [GameData.self, PlayerData.self])
+        .modelContainer(for: GameData.self)
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }

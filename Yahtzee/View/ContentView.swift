@@ -14,15 +14,13 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext     // CoreData
     @FetchRequest<CorePlayer>(
         sortDescriptors: [SortDescriptor(\.localUUID)],
-        animation: .default) var corePlayers
-
+        animation: .default) var corePlayerData // CoreData
+    
     @Query var gamedata: [GameData] // SwiftData
-    @Query var playerdata: [PlayerData] // SwiftData
     @Environment(\.modelContext) private var modelContext // SwiftData
     
     @StateObject private var penObject = PenObject()
     @EnvironmentObject var router: Router
-    @State var firebasePlayerData: Player? = nil
     
     @State var showingChangeNameView = false
     @State var showingContinueView = false
@@ -49,6 +47,7 @@ struct ContentView: View {
                 
                 VStack {
                     
+                    
                     HStack {
                         
                         // PLAYER NAME
@@ -57,7 +56,7 @@ struct ContentView: View {
                                 .font(.title)
                                 .foregroundStyle(Color.yellow)
                             
-                            Text(playerdata.first?.name ?? "Player")
+                            Text(corePlayerData.first?.name ?? "Player")
                                 .font(.title)
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
@@ -93,8 +92,8 @@ struct ContentView: View {
                     Spacer()
                     
                     Image("yahtzee")
+                        .resizable()
                         .scaledToFit()
-                        .scaleEffect(1.6)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .shadow(color: Color.black, radius: 0, x:8, y:8)
@@ -139,9 +138,9 @@ struct ContentView: View {
                     
                     Button(action: {
                         router.path.append(.leaderboard(
-                            playerName: playerdata.first?.name ?? "Player",
-                            playerID: playerdata.first?.localUUID ?? UUID().uuidString,
-                            playerScore: playerdata.first?.score ?? 0,
+                            playerName: corePlayerData.first?.name ?? "Player",
+                            playerID: corePlayerData.first?.localUUID ?? UUID().uuidString,
+                            playerScore: Int(corePlayerData.first?.score ?? 0),
                             playerTimeStamp: Date()))
                     }, label: {
                         HStack {
@@ -167,7 +166,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    Text("High Score: \(playerdata.first?.score ?? 0)")
+                    Text("High Score: \(corePlayerData.first?.score ?? 0)")
                         .bold()
                         .font(.system(size: 40))
                         .fontWeight(.black)
@@ -180,10 +179,10 @@ struct ContentView: View {
                     
                 } // VSTACK
                 .blur(radius: showingChangeNameView||showingContinueView ?  8 : 0)
-
+                
                 if showingChangeNameView {
-                    if let playerData = playerdata.first {
-                        ChangeNameView(playerData: playerData, showingChangeNameView: $showingChangeNameView)
+                    if let corePlayer = corePlayerData.first {
+                        ChangeNameView(corePlayer: corePlayer, showingChangeNameView: $showingChangeNameView)
                     }
                 }
                 
@@ -197,23 +196,20 @@ struct ContentView: View {
             } // ZSTACK
             .onAppear{
                 
-                if let corePlayer = corePlayers.first {
-                    print("Name: \(corePlayer.name ?? "NoName")")
-                    print("Score: \(corePlayer.score)")
-                } else {
-                    print("No Core Player data found.")
-                }
-
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 }
                 
-                if playerdata.isEmpty {
-                    let newPlayer = PlayerData()
-                    modelContext.insert(newPlayer)
+                if corePlayerData.isEmpty {
+                    let newPlayer = CorePlayer(context: viewContext)
+                    newPlayer.localUUID = UUID().uuidString
+                    newPlayer.name = String(format: "Player%04d", Int.random(in: 0...9999))
+                    newPlayer.score = 0
+                    newPlayer.timestamp = Date()
+                    try? viewContext.save()
                 }
-                // Fetchfrom Local Save
                 
+                // Fetchfrom Local Save
                 if firebasemodel.isFirebaseConfigured() {
                     
                     firebasemodel.login()
@@ -221,15 +217,19 @@ struct ContentView: View {
                     
                     firebasemodel.fetchThisPlayer() { firebasePlayer in
                         
-                        if let localPlayer = playerdata.first {
+                        if let localPlayer = corePlayerData.first {
+                            
+                            let localScore: Int = Int(localPlayer.score)
+                            
                             firebasemodel.updatePlayerData(
                                 localUUID: localPlayer.localUUID,
                                 newName: (localPlayer.name != firebasePlayer?.name) ? localPlayer.name : nil,
-                                newScore: (localPlayer.score > firebasePlayer?.score ?? 0) ? localPlayer.score : nil
+                                newScore: (localScore > firebasePlayer?.score ?? 0) ? localScore : nil
                             )
                             
+                            
                             if firebasePlayer?.score ?? 0 > localPlayer.score {
-                                playerdata.first?.score = firebasePlayer?.score ?? 0
+                                corePlayerData.first?.score = Int16(firebasePlayer?.score ?? 0)
                                 try? modelContext.save()
                             }
                         }
@@ -244,15 +244,15 @@ struct ContentView: View {
             .navigationDestination(for: Page.self) { page in
                 switch page {
                 case .gameTable:
-                    if let gameData = gamedata.first, let playerData = playerdata.first {
-                        GameTableView(gameData: gameData, playerData: playerData)
+                    if let gameData = gamedata.first {
+                        GameTableView(gameData: gameData)
                             .environmentObject(router)
                             .environmentObject(penObject)
                             .navigationBarBackButtonHidden()
                     }
                 case .end(let finalScore):
-                    if let gameData = gamedata.first, let playerData = playerdata.first {
-                        EndView(gameData: gameData, playerdata: playerData, finalScore: finalScore)
+                    if let gameData = gamedata.first, let corePlayer = corePlayerData.first  {
+                        EndView(corePlayer: corePlayer, gameData: gameData, finalScore: finalScore)
                             .environmentObject(router)
                             .navigationBarBackButtonHidden()
                     }
@@ -275,6 +275,7 @@ struct ContentView: View {
     }
     
     
+    
 }
 
 #Preview {
@@ -283,28 +284,23 @@ struct ContentView: View {
         for: GameData.self,
         Dice.self,
         ScoreBoard.self,
-        PlayerData.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let context = container.mainContext
     
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
-    
-    let previewPlayerData = PlayerData()
-    previewPlayerData.score = 135
-    context.insert(previewPlayerData)
     try? context.save()
     
     // Core Data
     let coreDataContext = PersistenceController.preview.container.viewContext
-    
-    // Insert Core Data preview data
     let corePlayer = CorePlayer(context: coreDataContext)
-    corePlayer.name = "PreviewPlayer"
-    corePlayer.score = 200
+    corePlayer.localUUID = "00000000-0000-0000-0000-000000000000"
+    corePlayer.name = String(format: "Player%04d", Int.random(in: 0...9999))
+    corePlayer.score = 240
+    corePlayer.timestamp = Date()
     try? coreDataContext.save()
-
+    
     return ContentView()
         .environment(\.managedObjectContext, coreDataContext) // CoreData
         .modelContainer(container)

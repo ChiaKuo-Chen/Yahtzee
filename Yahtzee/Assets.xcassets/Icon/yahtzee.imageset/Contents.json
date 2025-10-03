@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "yahtzeeWhite.png",
+      "filename" : "yahtzee.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "yahtzee 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "yahtzee 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

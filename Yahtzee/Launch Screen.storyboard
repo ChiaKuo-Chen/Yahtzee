@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="SIG-ay-I9r">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigRedDice" translatesAutoresizingMaskIntoConstraints="NO" id="NVN-fy-TAo">
+                                <rect key="frame" x="85.666666666666686" y="303" width="222" height="246"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yahtzeeBlack" translatesAutoresizingMaskIntoConstraints="NO" id="AZJ-oN-Er0">
+                                <rect key="frame" x="28" y="191" width="353" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="Vcg-Ve-dLY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yahtzee" translatesAutoresizingMaskIntoConstraints="NO" id="aij-3e-kL1">
+                                <rect key="frame" x="20" y="183" width="353" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="dkF-3S-SKv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NVN-fy-TAo" firstAttribute="top" secondItem="aij-3e-kL1" secondAttribute="bottom" constant="10" id="2zA-uU-1Eg"/>
+                            <constraint firstItem="SIG-ay-I9r" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="6tX-sw-Sre"/>
+                            <constraint firstItem="SIG-ay-I9r" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="EQO-wc-8yM"/>
+                            <constraint firstItem="NVN-fy-TAo" firstAttribute="top" secondItem="aij-3e-kL1" secondAttribute="bottom" constant="10" id="HOH-Di-xMF"/>
+                            <constraint firstItem="NVN-fy-TAo" firstAttribute="top" secondItem="AZJ-oN-Er0" secondAttribute="bottom" constant="2" id="NGZ-xA-dAS"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="aij-3e-kL1" secondAttribute="trailing" constant="20" id="P6v-cQ-ftE"/>
+                            <constraint firstItem="NVN-fy-TAo" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Qgn-MR-KqX"/>
+                            <constraint firstItem="AZJ-oN-Er0" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="28" id="a0d-DQ-qo8"/>
+                            <constraint firstItem="SIG-ay-I9r" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="abs-4j-rOa"/>
+                            <constraint firstItem="aij-3e-kL1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oiT-gN-FPP"/>
+                            <constraint firstItem="aij-3e-kL1" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="sSI-U5-nx0"/>
+                            <constraint firstAttribute="bottom" secondItem="SIG-ay-I9r" secondAttribute="bottom" id="sWQ-Wy-mAV"/>
+                            <constraint firstItem="NVN-fy-TAo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wjp-js-jHc"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="AZJ-oN-Er0" secondAttribute="trailing" constant="12" id="zdc-hj-pMk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="504" height="504"/>
+        <image name="bigRedDice" width="222" height="246"/>
+        <image name="yahtzee" width="188.33332824707031" height="56.333332061767578"/>
+        <image name="yahtzeeBlack" width="188.33332824707031" height="56.333332061767578"/>
+    </resources>
+</document>

@@ -10,8 +10,10 @@ import Vortex
 struct EndView: View {
     
     // MARK: - PROPERTIES
+    @Environment(\.managedObjectContext) private var viewContext     // CoreData
+    @ObservedObject var corePlayer: CorePlayer // CoreData
+
     @Bindable var gameData: GameData
-    @Bindable var playerdata: PlayerData
 
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
@@ -116,19 +118,18 @@ struct EndView: View {
         } // ZSTACK
         .onAppear{
             startAnimation()
-            highscoreUpdate = ( finalScore > playerdata.score )
+            highscoreUpdate = ( finalScore > corePlayer.score )
             
+            if highscoreUpdate {
+                corePlayer.score = Int16(finalScore)
+            }
+            corePlayer.timestamp = Date()
+            gameData.prepareToNewPlay()
+            try? viewContext.save()
+
             if highscoreUpdate && firebasemodel.isFirebaseConfigured() {
                 firebasemodel.updatePlayerData(localUUID: nil, newName: nil, newScore: finalScore)
             }
-        }
-        .onDisappear{
-            if highscoreUpdate {
-                playerdata.score = finalScore
-            }
-            gameData.prepareToNewPlay()
-            playerdata.timestamp = Date()
-            try? modelContext.save()
         }
         .onTapGesture {
             if ticketToGoBack {
@@ -158,23 +159,29 @@ struct EndView: View {
         for: GameData.self,
         Dice.self,
         ScoreBoard.self,
-        PlayerData.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let context = container.mainContext
     
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
-    
-    let previewPlayerData = PlayerData()
-    context.insert(previewPlayerData)
-    
+        
     let router = Router()
-    router.path.append(.end(finalScore: 130))
-    
+    router.path.append(.end(finalScore: 136))
+
     try? context.save()
     
+    // Core Data
+    let coreDataContext = PersistenceController.preview.container.viewContext
+    let corePlayer = CorePlayer(context: coreDataContext)
+    corePlayer.localUUID = "00000000-0000-0000-0000-000000000000"
+    corePlayer.name = "PreviewPlayer"
+    corePlayer.score = 135
+    corePlayer.timestamp = Date()
+    try? coreDataContext.save()
+
     return ContentView()
+        .environment(\.managedObjectContext, coreDataContext) // CoreData
         .environmentObject(PenObject())
         .modelContainer(container)
         .environmentObject(router)

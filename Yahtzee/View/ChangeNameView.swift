@@ -6,20 +6,18 @@
 //
 
 import SwiftUI
-import SwiftData
+import CoreData
 
 struct ChangeNameView: View {
     
     // MARK: - PROPERTIES
+    @Environment(\.managedObjectContext) private var viewContext     // CoreData
+    @ObservedObject var corePlayer: CorePlayer // CoreData
     
-    @Bindable var playerData: PlayerData
-    
-    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
-    
     @Binding var showingChangeNameView : Bool
     
-    @State private var playerName: String = ""
+    @State private var textName: String = ""
     @State var startAnimation : Bool = false
     
     let firebasemodel = FirebaseModel()
@@ -49,7 +47,7 @@ struct ChangeNameView: View {
                 HStack {
                     Spacer(minLength: 40)
 
-                    TextField("\(playerData.name)", text: $playerName)
+                    TextField(corePlayer.name ?? "PlayerName", text: $textName)
                         .font(.title)
                         .multilineTextAlignment(.center)
                         .background{
@@ -121,11 +119,14 @@ struct ChangeNameView: View {
     
     var changeNameButton: some View {
         Button {
-            playerData.name = playerName
-            if firebasemodel.isFirebaseConfigured() {
-                firebasemodel.updatePlayerData(localUUID: nil, newName: playerName, newScore: nil)
+            if textName != "" {
+                corePlayer.name = textName
+                try? viewContext.save()
+                if firebasemodel.isFirebaseConfigured() {
+                    firebasemodel.updatePlayerData(localUUID: nil, newName: corePlayer.name, newScore: nil)
+                }
+                self.showingChangeNameView.toggle()
             }
-            self.showingChangeNameView.toggle()
         } label: {
             Text("OK")
                 .font(.headline)
@@ -142,19 +143,34 @@ struct ChangeNameView: View {
     
 }
 
-#Preview {
-    ChangeNamePreviewWrapper()
-}
 
-struct ChangeNamePreviewWrapper: View {
-    @State private var showingChangeNameView = true
-    @StateObject private var router = Router()
-    @State private var playerData = PlayerData(name: "Player9527")
-
-    var body: some View {
-        ChangeNameView(
-            playerData: playerData,
-            showingChangeNameView: $showingChangeNameView
-        )
+struct ChangeNameView_Previews: PreviewProvider {
+    
+    static var previewContext: NSManagedObjectContext = {
+        let container = NSPersistentContainer(name: "Yahtzee")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Failed to load in-memory store: \(error)")
+            }
+        }
+        
+        return container.viewContext
+    }()
+    
+    static var mockPlayer: CorePlayer = {
+        let player = CorePlayer(context: previewContext)
+        player.name = "PreviewPlayer"
+        return player
+    }()
+    
+    @State static var isShowing = true
+    
+    static var previews: some View {
+        ChangeNameView(corePlayer: mockPlayer, showingChangeNameView: .constant(true))
+            .environment(\.managedObjectContext, previewContext)
+            .environmentObject(Router())
     }
 }

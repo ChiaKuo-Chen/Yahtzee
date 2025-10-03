@@ -39,23 +39,23 @@ class FirebaseModel {
         docRef.getDocument { document, error in
             if let document = document, document.exists {
                 var updateDict: [String: Any] = [:]
-                let data = document.data() ?? [:]
+                let firebaseData = document.data() ?? [:]
                 
                 // localUUID
                 if let localUUID = localUUID,
-                   (data["localUUID"] as? String) != localUUID {
+                   (firebaseData["localUUID"] as? String) != localUUID {
                     updateDict["localUUID"] = localUUID
                 }
                 
                 // name
                 if let newName = newName,
-                   (data["name"] as? String) != newName {
+                   (firebaseData["name"] as? String) != newName {
                     updateDict["name"] = newName
                 }
                 
                 // score
                 if let newScore = newScore,
-                   (data["score"] as? Int) != newScore {
+                   (firebaseData["score"] as? Int) != newScore {
                     updateDict["score"] = newScore
                 }
                 
@@ -76,7 +76,6 @@ class FirebaseModel {
                 newData["score"] = newScore ?? 0
                 
                 docRef.setData(newData, merge: true)
-                //print("Created new player document")
             }
         }
     }

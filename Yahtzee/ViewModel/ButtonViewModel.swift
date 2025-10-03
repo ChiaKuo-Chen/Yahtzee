@@ -16,7 +16,6 @@ class ButtonViewModel  {
 
     var gameData: GameData
     var scoreboard: ScoreBoard
-    let playerData: PlayerData
     
     var rollCount: Int {
         get { scoreboard.rollCount }
@@ -38,14 +37,12 @@ class ButtonViewModel  {
     var isGameEnd: Bool { !scoreboard.scoresArray.contains(nil) }
 
     init(
-        playerData: PlayerData,
         gameData: GameData,
         modelContext: ModelContext,
         penObject: PenObject,
         router: Router,
         audioManager: AudioManager = AudioManager()
     ) {
-        self.playerData = playerData
         self.gameData = gameData
         self.scoreboard = gameData.scoreboard[0]
         self.modelContext = modelContext
