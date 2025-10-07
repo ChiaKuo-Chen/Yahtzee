@@ -18,14 +18,12 @@
 
 ## 操作示意圖
 
-### 封面
-![封面](assets/demo1.gif)
+<p align="center">
+  <img src="assets/demo1.gif" width="45%" />
+  <img src="assets/demo2.gif" width="45%" />
+</p>
 
-### 職骰畫面
-![遊戲畫面](assets/demo2.gif)
-
-### 結算畫面
-![結算畫面](assets/demo3.gif)
-
-### 高分榜
-![高分榜](assets/demo4.gif)
+<p align="center">
+  <img src="assets/demo3.gif" width="45%" />
+  <img src="assets/demo4.gif" width="45%" />
+</p>
