@@ -10,7 +10,7 @@ class ScoreModel {
         let dicesNumberArray = dicerArray.getDicesNumber()
         let alreadyYathzee: Bool = scoreBoard.wetherAlreadyYahtzee()
         
-        let yathzee = Set(dicesNumberArray).count == 1
+        let yathzee = Set(dicesNumberArray).count == 1 && !dicesNumberArray.contains(0)
 
         switch category {
 
