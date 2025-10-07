@@ -12,11 +12,11 @@
 ## 操作示意圖
 
 <p align="center">
-  <img src="assets/demo1.gif" width="45%" />
-  <img src="assets/demo2.gif" width="45%" />
+  <img src="assets/demo1.gif" width="33%" />
+  <img src="assets/demo2.gif" width="33%" />
 </p>
 
 <p align="center">
-  <img src="assets/demo3.gif" width="45%" />
-  <img src="assets/demo4.gif" width="45%" />
+  <img src="assets/demo3.gif" width="33%" />
+  <img src="assets/demo4.gif" width="33%" />
 </p>
