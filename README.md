@@ -16,6 +16,16 @@
 - 自訂 Modifier 與 Extension 提升元件可重用性  
 - 音效管理與動畫效果
 
+## 操作示意圖
 
-<img src="https://github.com/user-attachments/assets/7fd5cbfa-f469-40e7-9f8f-c167fde70ef7" width="200"/>
-<img src="https://github.com/user-attachments/assets/af604d45-1773-4b69-9399-04f827ba6b98" width="200"/>
+### 封面
+![封面](assets/demo1.gif)
+
+### 職骰畫面
+![遊戲畫面](assets/demo2.gif)
+
+### 結算畫面
+![結算畫面](assets/demo3.gif)
+
+### 高分榜
+![高分榜](assets/demo4.gif)
