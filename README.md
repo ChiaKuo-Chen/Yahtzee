@@ -18,12 +18,7 @@
 
 ## 操作示意圖
 
-<p align="center">
-  <img src="assets/demo1.gif" width="45%" />
-  <img src="assets/demo2.gif" width="45%" />
-</p>
-
-<p align="center">
-  <img src="assets/demo3.gif" width="45%" />
-  <img src="assets/demo4.gif" width="45%" />
-</p>
+<video src="assets/demo0.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
+<video src="assets/demo2.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
+<video src="assets/demo3.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
+<video src="assets/demo4.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
