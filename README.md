@@ -21,4 +21,3 @@
 <video src="assets/demo0.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
 <video src="assets/demo2.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
 <video src="assets/demo3.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
-<video src="assets/demo4.mp4" autoplay loop muted playsinline style="width:45%; margin:5px;"></video>
