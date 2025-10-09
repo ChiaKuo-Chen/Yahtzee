@@ -11,9 +11,9 @@
 
 ## 操作示意圖
 
-<p align="center">
+<div style="display: flex; justify-content: space-between;">
   <img src="assets/newDemo1.gif" width="16%" />
   <img src="assets/demo2.gif" width="16%" />
   <img src="assets/demo3.gif" width="16%" />
   <img src="assets/demo4.gif" width="16%" />
-</p>
+</div>
