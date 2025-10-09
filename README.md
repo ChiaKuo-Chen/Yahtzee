@@ -1,4 +1,4 @@
-# Yahtzee 🎲
+# 🎲 Yahtzee
 這是一款使用 **SwiftUI** 開發的 Yahtzee 骰子遊戲。  
 除了完整的遊戲規則外，還包含以下特色功能：
 
