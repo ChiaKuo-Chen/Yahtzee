@@ -13,7 +13,6 @@
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */; };
 		113841ED2E4B2AA300B2E404 /* ShrinkButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */; };
-		1142FD4E2E82DC0400CD8487 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */; };
 		115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A0C782CBE659E00BA45B2 /* CategoryModel.swift */; };
 		11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDC2CBBB1CB00FC5D1C /* Dice.swift */; };
 		11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */; };
@@ -45,6 +44,8 @@
 		11B7ED062CBED65E008A7CB1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED052CBED65E008A7CB1 /* HeaderView.swift */; };
 		11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */; };
 		11CCF33A2E49E73200613DFC /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 11CCF3392E49E73200613DFC /* Vortex */; };
+		11D37C842E97DE9B00CCCE28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */; };
+		11D37C852E97DE9B00CCCE28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */; };
 		11D6C2F32CB28285001F6CE9 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F22CB28285001F6CE9 /* RowView.swift */; };
 		11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */; };
 		11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExUIColor.swift */; };
@@ -77,7 +78,6 @@
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		113841EC2E4B2A9100B2E404 /* ShrinkButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonModifier.swift; sourceTree = "<group>"; };
-		1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/chenjiaguo/Downloads/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		115A0C782CBE659E00BA45B2 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		11665CDC2CBBB1CB00FC5D1C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDiceInfo.swift; sourceTree = "<group>"; };
@@ -105,6 +105,7 @@
 		11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		11B7ED052CBED65E008A7CB1 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPanelView.swift; sourceTree = "<group>"; };
+		11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11D6C2F22CB28285001F6CE9 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRowView.swift; sourceTree = "<group>"; };
 		11D826192CAFC9BF005228CC /* ExUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
@@ -264,8 +265,8 @@
 				11B7ED092CBEE383008A7CB1 /* Utility */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
 				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
+				11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */,
 				119E9BBD2E8FBF9F00FA8B1D /* Launch Screen.storyboard */,
-				1142FD4D2E82DC0400CD8487 /* GoogleService-Info.plist */,
 			);
 			path = Yahtzee;
 			sourceTree = "<group>";
@@ -371,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11D37C842E97DE9B00CCCE28 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,10 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A7ADB92CC24C6800C21782 /* diceRoll.mp3 in Resources */,
-				1142FD4E2E82DC0400CD8487 /* GoogleService-Info.plist in Resources */,
 				118D70472E755F4600587152 /* sampleusers.json in Resources */,
 				119E9BBE2E8FBF9F00FA8B1D /* Launch Screen.storyboard in Resources */,
 				11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */,
+				11D37C852E97DE9B00CCCE28 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,8 +630,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -660,8 +663,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
