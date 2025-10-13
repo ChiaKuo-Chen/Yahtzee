@@ -4,8 +4,9 @@
 
 ## ✨ 功能
 - **遊戲核心流程與互動體驗**：擲骰、保留與填分，結合音效與動畫提升使用者體驗  
-- **資料管理與雲端同步**：利用 SwiftData、CoreData 及 Firebase 實現進度存檔與排行榜功能  
-- SwiftUI + MVVM 架構設計，提升維護性與擴展性  
+- **資料儲存與同步**：
+-- 本地儲存：使用 SwiftData/CoreData 實現遊戲進度保存
+-- 雲端儲存：透過 Firebase 建立排行榜功能（後端支援 JSON API）
 - 自訂 Modifier 與 Extension，提升元件可重用性  
 - 音效管理系統，支援即時開關控制  
 
