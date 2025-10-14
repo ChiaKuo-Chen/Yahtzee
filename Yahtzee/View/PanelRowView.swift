@@ -6,7 +6,7 @@
 import SwiftUI
 import SwiftData
 
-struct RowView: View {
+struct PanelRowView: View {
     
     // MARK: - PROPERTIES
     @Bindable var gameData: GameData
@@ -95,7 +95,7 @@ struct RowView: View {
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     
-    RowView(gameData: previewGameData, category: "ones", backGroundColor: "27ae60")
+    PanelRowView(gameData: previewGameData, category: "ones", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
 }
@@ -105,7 +105,7 @@ struct RowView: View {
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     
-    RowView(gameData: previewGameData, category: "threeOfAKind", backGroundColor: "27ae60")
+    PanelRowView(gameData: previewGameData, category: "threeOfAKind", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
 }
@@ -116,7 +116,7 @@ struct RowView: View {
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     
-    return RowView(gameData: previewGameData, category: "yahtzee", backGroundColor: "27ae60")
+    return PanelRowView(gameData: previewGameData, category: "yahtzee", backGroundColor: "27ae60")
         .environmentObject(penObject)
         .modelContainer(container)
     

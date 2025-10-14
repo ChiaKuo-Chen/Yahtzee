@@ -21,44 +21,44 @@ struct BoardView: View {
         VStack(spacing: 0) {
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "ones", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "ones", backGroundColor: boardBackgroundColor1)
                 
-                RowView(gameData: gameData, category: "threeOfAKind", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "threeOfAKind", backGroundColor: boardBackgroundColor1)
             }
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "twos", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "twos", backGroundColor: boardBackgroundColor2)
                 
-                RowView(gameData: gameData, category: "fourOfAKind", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "fourOfAKind", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "threes", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "threes", backGroundColor: boardBackgroundColor1)
                 
-                RowView(gameData: gameData, category: "fullHouse", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "fullHouse", backGroundColor: boardBackgroundColor1)
             }
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "fours", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "fours", backGroundColor: boardBackgroundColor2)
                 
-                RowView(gameData: gameData, category: "smallStraight", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "smallStraight", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "fives", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "fives", backGroundColor: boardBackgroundColor1)
                 
-                RowView(gameData: gameData, category: "largeStraight", backGroundColor: boardBackgroundColor1)            }
+                PanelRowView(gameData: gameData, category: "largeStraight", backGroundColor: boardBackgroundColor1)            }
             
             HStack(spacing: 0) {
-                RowView(gameData: gameData, category: "sixes", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "sixes", backGroundColor: boardBackgroundColor2)
                 
-                RowView(gameData: gameData, category: "yahtzee", backGroundColor: boardBackgroundColor2)
+                PanelRowView(gameData: gameData, category: "yahtzee", backGroundColor: boardBackgroundColor2)
             }
             
             HStack(spacing: 0) {
                 AddUpView(addUp: gameData.scoreboard[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
                 
-                RowView(gameData: gameData, category: "chance", backGroundColor: boardBackgroundColor1)
+                PanelRowView(gameData: gameData, category: "chance", backGroundColor: boardBackgroundColor1)
             }
             
         } // VSTACK

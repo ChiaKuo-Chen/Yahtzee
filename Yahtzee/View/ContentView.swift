@@ -64,8 +64,8 @@ struct ContentView: View {
                                 .truncationMode(.tail)
                                 .minimumScaleFactor(0.5)
                         } // HSTACK
-                        .padding(.horizontal, 10)
                         .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
                         .background(Color.black
                             .opacity(0.4)
                             .clipShape(RoundedRectangle(cornerRadius: 8)))
@@ -77,18 +77,13 @@ struct ContentView: View {
                         Spacer()
                         
                         // Audio Switch
-                        Image(systemName: gamedata.first?.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
-                            .font(.system(size: 45, weight: .regular))
-                            .foregroundStyle(Color.black)
-                            .frame(alignment: .topTrailing)
-                            .onTapGesture {
-                                gamedata.first?.soundEffect.toggle()
-                                try? modelContext.save()
-                            }
-                            .padding(.horizontal, 20)
-                        
+                        if let gameData = gamedata.first {
+                            AudioSwitchView(gameData: gameData)
+                        }
+
                     } // HSTACK
-                    
+                    .padding(.horizontal, 10)
+
                     Spacer()
                     
                     Image("yahtzee")

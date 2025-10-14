@@ -29,8 +29,28 @@ struct GameTableView: View {
             
             VStack {
                 
-                HeaderView(gameData: gameData, showingScore: true)
-                    .foregroundStyle(Color.white)
+                HStack {
+                    Button(action: {
+                        router.path.removeAll()
+                    }, label: {
+                        Image(systemName: "house.circle")
+                            .font(.system(size: 40))
+                            .frame(alignment: .trailing)
+                    })
+                    
+                    Spacer()
+                    
+                        
+                    Text("SCORE : \(String(gameData.scoreboard[0].returnTotalScore()))")
+                            .font(.system(size: 30))
+                            .fontWeight(.heavy)
+                            .padding(.vertical, 10)
+                        
+                    Spacer()
+                    
+                    AudioSwitchView(gameData: gameData)
+                }
+                .foregroundStyle(Color.white)
                 
                 BoardView(gameData: gameData)
                 

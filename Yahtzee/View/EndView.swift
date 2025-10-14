@@ -12,9 +12,9 @@ struct EndView: View {
     // MARK: - PROPERTIES
     @Environment(\.managedObjectContext) private var viewContext     // CoreData
     @ObservedObject var corePlayer: CorePlayer // CoreData
-
+    
     @Bindable var gameData: GameData
-
+    
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
     
@@ -42,19 +42,24 @@ struct EndView: View {
             LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
+            if highscoreUpdate {
+                VortexView(.fireworks) {
+                    Circle()
+                        .fill(Color.white)
+                        .blendMode(.plusLighter)
+                        .frame(width: 32)
+                        .tag("circle")
+                }
+            }
+
             VStack(alignment: .center) {
                 
                 HStack {
                     Spacer()
                     
-                    Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
-                        .font(.system(size: 30))
-                        .onTapGesture {
-                            gameData.soundEffect.toggle()
-                            try? modelContext.save()
-                        }
-                        .foregroundStyle(Color.black)
-                        .padding(.horizontal, 20)
+                    // Audio Switch
+                    AudioSwitchView(gameData: gameData)
+                        .padding(.horizontal, 10)
                 }
                 
                 Image("yahtzee")
@@ -105,15 +110,6 @@ struct EndView: View {
                 
             } // VSTACK
             
-            if highscoreUpdate {
-                VortexView(.fireworks) {
-                    Circle()
-                        .fill(Color.white)
-                        .blendMode(.plusLighter)
-                        .frame(width: 32)
-                        .tag("circle")
-                }
-            }
             
         } // ZSTACK
         .onAppear{
@@ -126,7 +122,7 @@ struct EndView: View {
             corePlayer.timestamp = Date()
             gameData.prepareToNewPlay()
             try? viewContext.save()
-
+            
             if highscoreUpdate && firebasemodel.isFirebaseConfigured() {
                 firebasemodel.updatePlayerData(localUUID: nil, newName: nil, newScore: finalScore)
             }
@@ -154,7 +150,7 @@ struct EndView: View {
 
 
 #Preview {
-
+    
     let container = try! ModelContainer(
         for: GameData.self,
         Dice.self,
@@ -165,10 +161,10 @@ struct EndView: View {
     
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
-        
+    
     let router = Router()
     router.path.append(.end(finalScore: 136))
-
+    
     try? context.save()
     
     // Core Data
@@ -179,7 +175,7 @@ struct EndView: View {
     corePlayer.score = 135
     corePlayer.timestamp = Date()
     try? coreDataContext.save()
-
+    
     return ContentView()
         .environment(\.managedObjectContext, coreDataContext) // CoreData
         .environmentObject(PenObject())
