@@ -13,11 +13,11 @@ func generateInitialData() -> GameData {
 }
 
 func generateInitialDiceArray() -> [Dice] {
-    var retrunValue : [Dice] = []
+    var returnValue : [Dice] = []
     for _ in 0..<5 {
-        retrunValue.append(Dice(value: 0, isHeld: false, isRoll: 0))
+        returnValue.append(Dice(value: 0, isHeld: false, isRoll: 0))
     }
-    return retrunValue
+    return returnValue
 }
 
 func generateInitialScoreBoard() -> [ScoreBoard] {

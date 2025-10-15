@@ -67,7 +67,7 @@ struct ContinueWindowView: View {
 
                     Text(
 """
-Would you like to conitinue your previous game or start a new one?
+Would you like to continue your previous game or start a new one?
 """)
                     .multilineTextAlignment(.center)
                     .font(.title3)

@@ -18,7 +18,7 @@ struct PanelBackgroundView: View {
         case "ones":
 
             Rectangle()
-                .foregroundStyle(Color(UIColor(hex: backGroundColor)))
+                .foregroundStyle(Color(hex: backGroundColor))
                 .overlay{
                     VStack {
                         Rectangle()
@@ -34,7 +34,7 @@ struct PanelBackgroundView: View {
         case "twos", "threes", "fours", "fives", "sixes":
 
             Rectangle()
-                .foregroundStyle(Color(UIColor(hex: backGroundColor)))
+                .foregroundStyle(Color(hex: backGroundColor))
                 .overlay{
                         Rectangle()
                             .frame(width: 6)
@@ -44,7 +44,7 @@ struct PanelBackgroundView: View {
         case "addUps":
 
             Rectangle()
-                .foregroundStyle(Color(UIColor(hex: backGroundColor)))
+                .foregroundStyle(Color(hex: backGroundColor))
                 .overlay{
                     VStack {
                         Rectangle()
@@ -61,7 +61,7 @@ struct PanelBackgroundView: View {
         default:
             
             Rectangle()
-                .foregroundStyle(Color(UIColor(hex: backGroundColor)))
+                .foregroundStyle(Color(hex: backGroundColor))
 
         }
     }

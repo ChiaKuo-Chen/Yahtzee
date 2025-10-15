@@ -48,7 +48,7 @@
 		11D37C852E97DE9B00CCCE28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */; };
 		11D6C2F32CB28285001F6CE9 /* PanelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F22CB28285001F6CE9 /* PanelRowView.swift */; };
 		11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */; };
-		11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExUIColor.swift */; };
+		11D8261A2CAFC9BF005228CC /* ExColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D826192CAFC9BF005228CC /* ExColor.swift */; };
 		11E32D112CF702F80072F280 /* PenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E32D102CF702F80072F280 /* PenObject.swift */; };
 		11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */; };
 		11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E931D72CB67EBF0023D2BF /* AddUpView.swift */; };
@@ -108,7 +108,7 @@
 		11D37C832E97DE9B00CCCE28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11D6C2F22CB28285001F6CE9 /* PanelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelRowView.swift; sourceTree = "<group>"; };
 		11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRowView.swift; sourceTree = "<group>"; };
-		11D826192CAFC9BF005228CC /* ExUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
+		11D826192CAFC9BF005228CC /* ExColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExColor.swift; sourceTree = "<group>"; };
 		11E32D102CF702F80072F280 /* PenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenObject.swift; sourceTree = "<group>"; };
 		11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahtzeeAnimateView.swift; sourceTree = "<group>"; };
 		11E931D72CB67EBF0023D2BF /* AddUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUpView.swift; sourceTree = "<group>"; };
@@ -155,10 +155,10 @@
 				117433082E9E2E7400D0BF98 /* AudioSwitchView.swift */,
 				116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */,
 				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
-				11EED8D62CA959350096CCA7 /* GameTableView.swift */,
 				1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */,
 				118D70502E76D1E000587152 /* LeaderBoardBarView.swift */,
 				110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */,
+				11EED8D62CA959350096CCA7 /* GameTableView.swift */,
 				113412002CAFC0BE00CF4120 /* BoardView.swift */,
 				11D6C2F22CB28285001F6CE9 /* PanelRowView.swift */,
 				11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */,
@@ -227,7 +227,7 @@
 		11D8261B2CAFC9C7005228CC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				11D826192CAFC9BF005228CC /* ExUIColor.swift */,
+				11D826192CAFC9BF005228CC /* ExColor.swift */,
 				113005AF2E87D91300570563 /* ExShadowFrame.swift */,
 				11665CDE2CBBBF3200FC5D1C /* getDiceInfo.swift */,
 			);
@@ -436,7 +436,7 @@
 				11D6C2F72CB2A1F8001F6CE9 /* DiceRowView.swift in Sources */,
 				11880A9D2E82994400AF43CC /* FirebaseModel.swift in Sources */,
 				117AA7D92CC39A5D00CA9CEF /* ContentView.swift in Sources */,
-				11D8261A2CAFC9BF005228CC /* ExUIColor.swift in Sources */,
+				11D8261A2CAFC9BF005228CC /* ExColor.swift in Sources */,
 				118D70512E76D1E200587152 /* LeaderBoardBarView.swift in Sources */,
 				115A0C792CBE659E00BA45B2 /* CategoryModel.swift in Sources */,
 				11A8E7B82CBA7210005B5E19 /* ScoreModel.swift in Sources */,

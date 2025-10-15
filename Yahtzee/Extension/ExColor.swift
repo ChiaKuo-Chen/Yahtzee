@@ -5,6 +5,12 @@
 
 import SwiftUI
 
+extension Color {
+    init(hex: String, alpha: Double = 1.0) {
+        self.init(UIColor(hex: hex, alpha: alpha))
+    }
+}
+
 extension UIColor {
     
     convenience init(red: Int, green: Int, blue: Int) {

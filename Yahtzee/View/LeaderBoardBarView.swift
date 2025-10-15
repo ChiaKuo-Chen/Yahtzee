@@ -13,29 +13,20 @@ struct LeaderBoardBarView: View {
     let name: String
     let score: Int
     
-    private var scoreColor: Color {
+    private var rankColor: Color {
         switch index {
-        case 1: Color(uiColor: UIColor(hex: "FCEF91"))
-        case 2: Color(uiColor: UIColor(hex: "F8F4E1"))
-        case 3: Color(uiColor: UIColor(hex: "FAA533"))
-        default: Color(uiColor: UIColor(hex: "FFD93D"))
+        case 1: Color(hex: "FFD700")
+        case 2: Color(hex: "F8F4E1")
+        case 3: Color(hex: "FAA533")
+        default: Color.black
         }
     }
     
     private var barBackgroundColor: Color {
         if index == 1 || index == 2 || index == 3 {
-            return Color.blue
+            return Color(hex: "4B0082")
         } else {
-            return Color(uiColor: UIColor(hex: "93DA97"))
-        }
-    }
-
-    private var textColor: Color {
-        switch index {
-        case 1: Color(uiColor: UIColor(hex: "FCEF91"))
-        case 2: Color(uiColor: UIColor(hex: "F8F4E1"))
-        case 3: Color(uiColor: UIColor(hex: "FAA533"))
-        default: Color.black
+            return Color(hex: "93DA97")
         }
     }
     
@@ -49,7 +40,7 @@ struct LeaderBoardBarView: View {
     
     private var textSize: Font {
         if index == 1 || index == 2 || index == 3 {
-            return .largeTitle
+            return .title
         } else {
             return .title2
         }
@@ -61,19 +52,21 @@ struct LeaderBoardBarView: View {
         HStack {
             ZStack {
                 Text("\(index)")
-                    .foregroundStyle(textColor)
+                    .foregroundStyle(rankColor)
                     .font(textSize)
                     .fontWeight(.heavy)
                     .shadow(color: textShadowColor, radius: 0, x:2, y:2)
                 
+                // or whatever with .frame(minWidth: )
                 Text("1234")
                     .padding(.horizontal, 8)
                     .font(.title2)
                     .opacity(0)
+
             } // ZSTACK
 
             Text(name)
-                .foregroundStyle(textColor)
+                .foregroundStyle(rankColor)
                 .font(textSize)
                 .minimumScaleFactor(0.02)
                 .multilineTextAlignment(.center)
@@ -87,12 +80,12 @@ struct LeaderBoardBarView: View {
             
             ZStack {
                 Text("\(score)")
-                    .foregroundStyle(scoreColor)
+                    .foregroundStyle(rankColor)
                     .padding(.horizontal)
-                    .font(.largeTitle)
+                    .font(textSize)
                     .fontWeight(.heavy)
-                    .shadow(color: Color.black, radius: 0, x:2, y:2)
-                
+                    .shadow(color: textShadowColor, radius: 0, x:2, y:2)
+
                 Text("000")
                     .padding(.horizontal)
                     .font(.largeTitle)
@@ -103,7 +96,7 @@ struct LeaderBoardBarView: View {
 
         } // HSTACK
         .frame(maxWidth: .infinity)
-        .frame(height: 50)
+        .frame(height: index <= 3 ? 55 : 50)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .shadow(color: Color.black, radius: 0, y: 4)

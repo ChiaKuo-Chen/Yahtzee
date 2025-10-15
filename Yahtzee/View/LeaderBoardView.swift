@@ -2,7 +2,7 @@
 //  FetchView.swift
 //  Yahtzee
 //
-//  Created by 陳嘉國 on 2025/9/13.
+//  Created by 陳嘉國
 //
 
 import SwiftUI
@@ -34,7 +34,7 @@ struct LeaderBoardView: View {
     }
     
     
-    private let backgroundColor = Color(uiColor: UIColor(hex: "5E936C"))
+    private let backgroundColor = Color(hex: "5E936C")
     
     var leaderBoard: [Player] {
         let combined = viewmodel.users + [localPlayer] + firebasePlayers
@@ -94,7 +94,7 @@ struct LeaderBoardView: View {
                         .fontWeight(.bold)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
-                        .background(selectedOption == option ? Color(uiColor: UIColor(hex: "E8FFD7")) : Color.gray)
+                        .background(selectedOption == option ? Color(hex: "E8FFD7") : Color.gray)
                         .clipShape(RoundedRectangle(cornerRadius:20))
                         .onTapGesture {
                             selectedOption = option
@@ -142,7 +142,7 @@ struct LeaderBoardView: View {
                             .padding(.vertical, 10)
                             .padding(.horizontal, 40)
                             .frame(height: 600)
-                            .background(Color(uiColor: UIColor(hex: "E8FFD7")).opacity(0.6).clipShape(RoundedRectangle(cornerRadius: 20)))
+                            .background(Color(hex: "E8FFD7").opacity(0.6).clipShape(RoundedRectangle(cornerRadius: 20)))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.white, lineWidth: 2)

@@ -69,7 +69,7 @@ struct GameTableView: View {
             } // VSTACK
                         
         } // ZTSACK
-        .background(Color(UIColor(hex: backgroundColor))
+        .background(Color(hex: backgroundColor)
             .ignoresSafeArea(.all))
         .onAppear{
             audioManager.isMuted = !gameData.soundEffect

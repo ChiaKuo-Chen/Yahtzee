@@ -23,13 +23,23 @@ struct ButtonView: View {
             }, // ACTION
                    label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .foregroundStyle(Color.yellow)
-                        .fontWeight(.bold)
-                        .frame(maxHeight: 60)
-                        .frame(maxWidth: .infinity)
-                        .shadow(color: .black, radius: 0, x: 2, y: 2)
-                    
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .foregroundStyle(Color.yellow)
+                            .overlay(Color.white.opacity(0.5))
+
+                        Rectangle()
+                            .foregroundStyle(Color.yellow)
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 40))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 40)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+                    .frame(maxHeight: 60)
+                    .frame(maxWidth: .infinity)
+                    .shadow(color: .gray, radius: 0, x: 0, y: 2)
+
                     HStack {
                         Text("ROLL")
                             .bold()
@@ -56,14 +66,23 @@ struct ButtonView: View {
                     }
                 }, label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .foregroundStyle(Color.green)
-                            .fontWeight(.bold)
-                            .frame(height: 60)
-                            .frame(maxWidth: .infinity)
-                            .shadow(color: .black, radius: 0, x: 2, y: 2)
-                        
-                        
+                        VStack(spacing: 0) {
+                            Rectangle()
+                                .foregroundStyle(Color.green)
+                                .overlay(Color.white.opacity(0.5))
+
+                            Rectangle()
+                                .foregroundStyle(Color.green)
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 40))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 40)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                        .frame(maxHeight: 60)
+                        .frame(maxWidth: .infinity)
+                        .shadow(color: .gray, radius: 0, x: 0, y: 2)
+
                         Text("PLAY")
                             .bold()
                             .foregroundStyle(Color.white)
