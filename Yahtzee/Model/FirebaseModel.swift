@@ -31,6 +31,7 @@ class FirebaseModel {
     }
     
     func updatePlayerData(localUUID: String?, newName: String?, newScore: Int?) {
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let db = Firestore.firestore()
@@ -91,21 +92,8 @@ class FirebaseModel {
 
         docRef.getDocument { document, error in
             if let document = document, document.exists, let data = document.data() {
-                
-                let timestamp: Date
-                if let ts = data["timestamp"] as? Timestamp {
-                    timestamp = ts.dateValue()
-                } else {
-                    timestamp = Date() // fallback
-                }
-
-                    let player = Player(
-                        localUUID: data["localUUID"] as? String ?? "00000000-0000-0000-0000-000000000000",
-                        name: data["name"] as? String ?? "Unknown",
-                        score: data["score"] as? Int ?? 0,
-                        timestamp: timestamp
-                    )
-                    completion(player)
+                let player = Player.from(data: data)
+                completion(player)
             } else {
                 completion(nil)
             }
@@ -128,23 +116,9 @@ class FirebaseModel {
                 }
                 
                 let players: [Player] = snapshot?.documents.compactMap { doc in
-                    let data = doc.data()
-                    
-                    let timestamp: Date
-                    if let ts = data["timestamp"] as? Timestamp {
-                        timestamp = ts.dateValue()
-                    } else {
-                        timestamp = Date()  // fallback
-                    }
-
-                    return Player(
-                        localUUID: data["localUUID"] as? String ?? "00000000-0000-0000-0000-000000000000",
-                        name: data["name"] as? String ?? "Unknown",
-                        score: data["score"] as? Int ?? 0,
-                        timestamp: timestamp
-                    )
+                    return Player.from(data: doc.data())
                 } ?? []
-                
+
                 completion(players)
             }
     }

@@ -16,7 +16,6 @@ struct LoadingView: View {
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
     // MARK: - BODY
-
     var body: some View {
         ZStack {
 
