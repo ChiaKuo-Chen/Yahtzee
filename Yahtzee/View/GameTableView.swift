@@ -3,17 +3,20 @@
 //  Yahtzee
 //
 
+// GamePage, the whold game is playing in Here.
+
 import SwiftUI
 import SwiftData
 
 struct GameTableView: View {
     
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData
-
-    @Environment(\.modelContext) private var modelContext
+    @Bindable var gameData: GameData // SwiftData
+    @Environment(\.modelContext) private var modelContext // SwiftData
+    
+    // Pen
     @EnvironmentObject var penObject: PenObject
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: Router // This decide the which Page we would see.
     
     @StateObject var audioManager = AudioManager()
     
@@ -30,6 +33,7 @@ struct GameTableView: View {
             VStack {
                 
                 HStack {
+                    // ReturnToHomePage
                     Button(action: {
                         router.path.removeAll()
                     }, label: {
@@ -54,6 +58,8 @@ struct GameTableView: View {
                 
                 BoardView(gameData: gameData)
                 
+                
+                // When Dice is rolled, this will show the result.
                 DiceRowView(gameData: gameData)
                     .padding()
                 

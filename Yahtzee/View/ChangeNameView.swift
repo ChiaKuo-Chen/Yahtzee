@@ -15,23 +15,23 @@ struct ChangeNameView: View {
     @ObservedObject var corePlayer: CorePlayer // CoreData
     
     @EnvironmentObject var router: Router
-    @Binding var showingChangeNameView : Bool
+    @Binding var showingChangeNameView : Bool // Show This Entire Window, or not (dismiss).
     
     @State private var textName: String = ""
     @State var startAnimation : Bool = false
     
-    let firebasemodel = FirebaseModel()
+    let firebasemodel = FirebaseModel()  // For FireStore On Google(FireBase)
 
     // MARK: - BODY
     
     var body: some View {
         
         ZStack {
+            // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
             Color.gray.opacity(0.3)
                 .onTapGesture {
                     showingChangeNameView.toggle()
                 }
-            // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
             
             
             VStack(alignment: .center, spacing: 0) {
@@ -47,6 +47,7 @@ struct ChangeNameView: View {
                 HStack {
                     Spacer(minLength: 40)
 
+                    // Player Name in gray RoundedRectangle.
                     TextField(corePlayer.name ?? "PlayerName", text: $textName)
                         .font(.title)
                         .multilineTextAlignment(.center)
@@ -62,7 +63,7 @@ struct ChangeNameView: View {
                 .padding(.vertical, 5)
                 .background(Color.white)
 
-                
+                // Warning Word.
                 HStack {
                     Image(systemName: "exclamationmark.triangle")
                     Text("Please do not use your real name or other personal information.")

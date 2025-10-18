@@ -8,6 +8,8 @@ import CoreData
 import SwiftData
 import FirebaseCore
 
+// Home page, which user see after they open it.
+
 struct ContentView: View {
     
     // MARK: - PROPERTIES
@@ -19,13 +21,12 @@ struct ContentView: View {
     @Query var gamedata: [GameData] // SwiftData
     @Environment(\.modelContext) private var modelContext // SwiftData
     
-    @StateObject private var penObject = PenObject()
-    @EnvironmentObject var router: Router
+    @StateObject private var penObject = PenObject() // Use in GamePage
+    @EnvironmentObject var router: Router // This decide the which Page we would see.
     
     @State var showingChangeNameView = false
     @State var showingContinueView = false
-    let datemodel = DateModel()
-    let firebasemodel = FirebaseModel()
+    let firebasemodel = FirebaseModel()  // For FireStore On Google(FireBase)
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -101,10 +102,12 @@ struct ContentView: View {
                     
                     Spacer()
                     
+                    // Play Button
                     Button(action: {
                         if gamedata[0].scoreboard[0].isNewGame() {
                             router.path.append(.gameTable)
                         } else {
+                            // If in last time, gmae is not finished.
                             showingContinueView.toggle()
                         }
                     }, label: {
@@ -131,6 +134,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
+                    // Ranking Button
                     Button(action: {
                         router.path.append(.leaderboard(
                             playerName: corePlayerData.first?.name ?? "Player",
@@ -175,13 +179,14 @@ struct ContentView: View {
                 } // VSTACK
                 .blur(radius: showingChangeNameView||showingContinueView ?  8 : 0)
                 
+                // Show Window when You press the top left name.
                 if showingChangeNameView {
                     if let corePlayer = corePlayerData.first {
                         ChangeNameView(corePlayer: corePlayer, showingChangeNameView: $showingChangeNameView)
                     }
                 }
                 
-                
+                // Show Window when You press play button, and last game is not finished yet.
                 if showingContinueView {
                     if let gameData = gamedata.first {
                         ContinueWindowView(gameData: gameData, showingContinueView: $showingContinueView)
@@ -238,6 +243,8 @@ struct ContentView: View {
             } // OnAppear
             .navigationDestination(for: Page.self) { page in
                 switch page {
+                    
+                    // GamePage
                 case .gameTable:
                     if let gameData = gamedata.first {
                         GameTableView(gameData: gameData)
@@ -245,17 +252,22 @@ struct ContentView: View {
                             .environmentObject(penObject)
                             .navigationBarBackButtonHidden()
                     }
+                    
+                    // EndPage, Game finished.
                 case .end(let finalScore):
                     if let gameData = gamedata.first, let corePlayer = corePlayerData.first  {
                         EndView(corePlayer: corePlayer, gameData: gameData, finalScore: finalScore)
                             .environmentObject(router)
                             .navigationBarBackButtonHidden()
                     }
+                    
+                    // When all thd dice's value is equal.
                 case .yahtzee:
                     YahtzeeAnimateView()
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                     
+                    // Ranking page
                 case .leaderboard(let playerName, let playerID, let playerScore, let playerTimeStamp):
                     LeaderBoardView(playerName: playerName, playerID: playerID, playerScore: playerScore, playerTimeStamp: playerTimeStamp)
                         .environmentObject(penObject)

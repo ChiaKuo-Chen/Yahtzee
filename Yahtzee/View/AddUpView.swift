@@ -5,6 +5,9 @@
 
 import SwiftUI
 
+// This one is for the yathzee rule.
+// # - Upper section: Sum of 1s to 6s; bonus +35 if total ≥ 63
+
 struct AddUpView: View {
     
     // MARK: - PROPERTIES

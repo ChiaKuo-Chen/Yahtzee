@@ -4,6 +4,10 @@
 
 import SwiftUI
 
+// # - Upper section: Sum of 1s to 6s; bonus +35 if total ≥ 63
+// So, Upper section, has the background which has one bar
+// This view is for showing that bar, without geometry.
+
 struct PanelBackgroundView: View {
     
     // MARK: - PROPERTIES

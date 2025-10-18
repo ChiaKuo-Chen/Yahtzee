@@ -8,7 +8,7 @@ import SwiftData
 struct BoardView: View {
     
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData
+    @Bindable var gameData: GameData // Swift Data
 
     let boardBackgroundColor1 = "27ae60"
     let boardBackgroundColor2 = "16a085"
@@ -16,7 +16,6 @@ struct BoardView: View {
     // MARK: - BODY
     
     var body: some View {
-        
         
         VStack(spacing: 0) {
             

@@ -11,13 +11,14 @@ import SwiftData
 struct AudioSwitchView: View {
 
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData
-    @Environment(\.modelContext) private var modelContext
+    @Bindable var gameData: GameData // SwiftData
+    @Environment(\.modelContext) private var modelContext // SwiftData
 
     // MARK: - BODY
 
     var body: some View {
         
+        // It would switch ON/OFF
         Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
             .font(.system(size: 40))
             .onTapGesture {

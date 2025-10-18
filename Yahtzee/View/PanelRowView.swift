@@ -40,7 +40,7 @@ struct PanelRowView: View {
                     )
             }
             
-            // SECOND PANEL
+            // SECOND PANEL, the most complex panel in a row.
             SecondPanelView(gameData: gameData, category: category)
             
             // THIRD PANEL

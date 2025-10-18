@@ -8,12 +8,13 @@ import SwiftUI
 struct DiceAnimationView: View {
 
     // MARK: - PROPERTIES
-    @State private var pulsateAnimation: Bool = false
+    @State private var pulsateAnimation: Bool = false 
 
     // MARK: - BODY
 
     var body: some View {
         
+        // Big Red Dice
         ZStack {
             Image("bigRedDice")
                 .resizable()

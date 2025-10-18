@@ -14,7 +14,7 @@ struct ContinueWindowView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
 
-    @Binding var showingContinueView : Bool
+    @Binding var showingContinueView : Bool  // Show This Entire Window, or not (dismiss).
     @State var startAnimation : Bool = false
     
     // MARK: - BODY
@@ -22,11 +22,12 @@ struct ContinueWindowView: View {
     var body: some View {
                     
             ZStack {
+                
+                // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
                 Color.gray.opacity(0.3)
                     .onTapGesture {
                         showingContinueView.toggle()
                     }
-                // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
                 
                 VStack(spacing: 0) {
                     
@@ -43,7 +44,7 @@ struct ContinueWindowView: View {
                             HStack {
                                 Spacer()
                                 
-                                
+                                // Dismiss Button (Dismiss this entire Window.)
                                 Button(action: {
                                     self.showingContinueView.toggle()
                                 }, label: {
@@ -103,9 +104,12 @@ Would you like to continue your previous game or start a new one?
     
     var newGameButton: some View {
         Button {
+            // New ScoreBoard
             gameData.prepareToNewPlay()
             try? modelContext.save()
+            // Dismiss this window
             self.showingContinueView.toggle()
+            // Go to the Gamepage
             router.path.append(.gameTable)
         } label: {
             Text("NEW GAME")
@@ -123,7 +127,9 @@ Would you like to continue your previous game or start a new one?
 
     var continueGameButton: some View {
         Button {
+            // Dismiss this window
             self.showingContinueView.toggle()
+            // Go to the Gamepage
             router.path.append(.gameTable)
         } label: {
             Text("CONTINUE")

@@ -9,12 +9,13 @@ import SwiftUI
 struct LeaderBoardBarView: View {
     
     // MARK: - PROPERTIES
-    let index: Int
+    let rankIndex: Int // 1 = Champion, 2 = runner up, 3 = third place
     let name: String
     let score: Int
     
+    // Special Color For Top3
     private var rankColor: Color {
-        switch index {
+        switch rankIndex {
         case 1: Color(hex: "FFD700")
         case 2: Color(hex: "F8F4E1")
         case 3: Color(hex: "FAA533")
@@ -22,8 +23,9 @@ struct LeaderBoardBarView: View {
         }
     }
     
+    // Special Color For Top3
     private var barBackgroundColor: Color {
-        if index == 1 || index == 2 || index == 3 {
+        if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return Color(hex: "4B0082")
         } else {
             return Color(hex: "93DA97")
@@ -31,15 +33,16 @@ struct LeaderBoardBarView: View {
     }
     
     private var textShadowColor: Color {
-        if index == 1 || index == 2 || index == 3 {
+        if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return Color.black
         } else {
             return Color.white
         }
     }
-    
+
+    // Special TextSize For Top3 (a little Bigger)
     private var textSize: Font {
-        if index == 1 || index == 2 || index == 3 {
+        if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return .title
         } else {
             return .title2
@@ -51,7 +54,7 @@ struct LeaderBoardBarView: View {
         
         HStack {
             ZStack {
-                Text("\(index)")
+                Text("\(rankIndex)")
                     .foregroundStyle(rankColor)
                     .font(textSize)
                     .fontWeight(.heavy)
@@ -96,7 +99,7 @@ struct LeaderBoardBarView: View {
 
         } // HSTACK
         .frame(maxWidth: .infinity)
-        .frame(height: index <= 3 ? 55 : 50)
+        .frame(height: rankIndex <= 3 ? 55 : 50)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .shadow(color: Color.black, radius: 0, y: 4)
@@ -116,10 +119,10 @@ struct LeaderBoardBarView: View {
 
 #Preview {
     VStack {
-        LeaderBoardBarView(index: 1, name: "Champion", score: 400)
-        LeaderBoardBarView(index: 2, name: "Second", score: 300)
-        LeaderBoardBarView(index: 3, name: "Third", score: 200)
-        LeaderBoardBarView(index: 10, name: "Number10", score: 100)
-        LeaderBoardBarView(index: 999, name: "SomeGuy", score: 10)
+        LeaderBoardBarView(rankIndex: 1, name: "Champion", score: 400)
+        LeaderBoardBarView(rankIndex: 2, name: "Second", score: 300)
+        LeaderBoardBarView(rankIndex: 3, name: "Third", score: 200)
+        LeaderBoardBarView(rankIndex: 10, name: "Number10", score: 100)
+        LeaderBoardBarView(rankIndex: 999, name: "SomeGuy", score: 10)
     }
 }

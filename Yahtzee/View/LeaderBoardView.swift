@@ -5,6 +5,8 @@
 //  Created by 陳嘉國
 //
 
+// Ranking Page, show the players rank and score.
+
 import SwiftUI
 
 struct LeaderBoardView: View {
@@ -14,16 +16,17 @@ struct LeaderBoardView: View {
     
     @State private var selectedOption = "你的名次"
     let options = ["你的名次", "TOP100"]
+    
+    // Mock PlayerData
+    // Which set on the GitHub.
     @State var viewmodel = FetchViewModel()
     
+    // Local PlayerData
+    // (The one who has this phone, runed this game and pressed the ranking button.)
     @State var playerName: String
     @State var playerID: String
     @State var playerScore: Int
     @State var playerTimeStamp: Date
-    
-    @State var firebasePlayers: [Player] = []
-    
-    let firebasemodel = FirebaseModel()
     
     private var localPlayer: Player {
         Player(localUUID: playerID,
@@ -32,10 +35,16 @@ struct LeaderBoardView: View {
                timestamp: playerTimeStamp)
     }
     
+    // FireBase PlayerData
+    // Player record on the Google FireStore
+    @State var firebasePlayers: [Player] = []
+    let firebasemodel = FirebaseModel()  // For DataStore On Google(FireBase)
     
     private let backgroundColor = Color(hex: "5E936C")
     
+    // RankingBaord
     var leaderBoard: [Player] {
+        // Mock PlayerData + Local PlayerData + Firebase PlayerData
         let combined = viewmodel.users + [localPlayer] + firebasePlayers
         
         let uniquePlayersDict = Dictionary(grouping: combined, by: { $0.localUUID })
@@ -45,17 +54,20 @@ struct LeaderBoardView: View {
         return uniquePlayers.sorted { $0.score > $1.score }
     }
     
+    // RankingBaord Top 100
     var top100Leaderboard: [(rank: Int, player: Player)] {
         Array(leaderBoard.prefix(100).enumerated().map { (index, player) in
             (rank: index+1, player: player)
         })
     }
     
+    // RankingBaord, rank around the LocalPlayer
     var trimmedLeaderboard: [(rank: Int, player: Player)] {
         guard let localIndex = leaderBoard.firstIndex(where: { $0.localUUID == localPlayer.localUUID }) else {
             return leaderBoard.enumerated().map { (index, player) in (index + 1, player) }
         }
         
+        // For Xth, show X-10 ~ X+10
         let lowerBound = max(localIndex - 10, 0)
         let upperBound = min(localIndex + 10, leaderBoard.count - 1)
         let sliced = leaderBoard[lowerBound...upperBound]
@@ -65,6 +77,7 @@ struct LeaderBoardView: View {
         })
     }
     
+    // Switch On Top
     var leaderboardToShow: [(rank: Int, player: Player)] {
         let slice = selectedOption == "你的名次" ? trimmedLeaderboard : top100Leaderboard
         return Array(slice)
@@ -76,6 +89,7 @@ struct LeaderBoardView: View {
         
         VStack(alignment: .center) {
             
+            // Return to HamePage
             HStack(spacing: 10) {
                 Button(action: {
                     router.path.removeAll()
@@ -156,7 +170,7 @@ struct LeaderBoardView: View {
                                 
                                 VStack {
                                     ZStack {
-                                        LeaderBoardBarView(index: rank, name: player.name, score: player.score)
+                                        LeaderBoardBarView(rankIndex: rank, name: player.name, score: player.score)
                                             .id(player.localUUID)
                                         
                                         if player.localUUID == localPlayer.localUUID {
