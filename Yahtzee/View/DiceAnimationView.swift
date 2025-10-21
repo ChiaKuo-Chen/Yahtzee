@@ -1,8 +1,8 @@
 //
-// DiceAnimationView.swift
-// Yahtzee
+//  DiceAnimationView.swift
+//  Yahtzee
 //
-// A simple animation of a big red dice that gently swings left and right repeatedly.
+//  A simple animation of a big red dice that gently swings left and right repeatedly.
 //
 //  Created by 陳嘉國
 //

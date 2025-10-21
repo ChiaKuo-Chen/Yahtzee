@@ -2,7 +2,12 @@
 //  getDiceNumber.swift
 //  Yahtzee
 //
-
+//
+//  This file adds extensions to arrays of `Dice` elements, providing utility
+//  methods to extract dice values and held statuses.
+//
+//  Created by 陳嘉國
+//
 
 import Foundation
 

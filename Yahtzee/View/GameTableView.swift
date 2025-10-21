@@ -2,9 +2,9 @@
 //  ContentView.swift
 //  Yahtzee
 //
-//  GamePage - 遊戲主畫面，包含所有遊戲互動元素與遊戲邏輯介面。
-//  使用 SwiftData 綁定遊戲資料，包含擲骰子、計分板顯示與控制按鈕等。
-//  支援音效開關與導航回首頁。
+//  GamePage - The main game screen containing all game interaction elements and logic interface.
+//  Uses SwiftData to bind game data, including dice rolling, scoreboard display, and buttons.
+//  Supports sound effects toggle and navigation back to the home page.
 //
 //  Created by 陳嘉國
 //

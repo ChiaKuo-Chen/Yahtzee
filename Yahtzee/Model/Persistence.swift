@@ -2,7 +2,12 @@
 //  Persistence.swift
 //  Dex
 //
-//  Created by 陳嘉國 
+//  This file sets up the Core Data persistence layer for the Yahtzee app.
+//  It includes the main data container for storing player scores and configurations,
+//  as well as a preview version for SwiftUI previews.
+//
+//
+//  Created by 陳嘉國
 //
 
 import CoreData

@@ -2,6 +2,10 @@
 //  User.swift
 //  Yahtzee
 //
+//  Defines the Player model used to represent user data for the Yahtzee leaderboard.
+//  This includes identifying information, player score, and timestamp.
+//  Supports decoding from both local JSON files and Firebase Firestore data.
+//
 //  Created by 陳嘉國
 //
 
@@ -17,6 +21,10 @@ struct Player: Identifiable, Codable {
     
     var id: String { localUUID }
     
+    
+    // Creates a Player instance from a Firebase Firestore dictionary.
+    // - Parameter data: Dictionary retrieved from Firestore representing a player.
+    // - Returns: A `Player` instance with properly parsed values.
     static func from(data: [String: Any]) -> Player {
         let timestamp: Date
         if let ts = data["timestamp"] as? Timestamp {

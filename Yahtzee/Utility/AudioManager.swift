@@ -1,7 +1,13 @@
 //
+//  AudioManager.swift
 //  Yahtzee
 //
+//  This file defines the `AudioManager` class, responsible for handling
+//  sound playback and mute state throughout the Yahtzee game.
 //
+//  Created by 陳嘉國
+//
+
 
 import SwiftUI
 import AVFoundation

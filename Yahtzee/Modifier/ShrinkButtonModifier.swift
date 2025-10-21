@@ -2,6 +2,9 @@
 //  ScaleButtonModifier.swift
 //  Yahtzee
 //
+//  A custom button style that slightly shrinks and fades the button
+//  when it is pressed, providing tactile visual feedback.
+//
 //  Created by 陳嘉國
 //
 

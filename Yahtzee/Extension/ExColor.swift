@@ -2,6 +2,12 @@
 //  Extension.swift
 //  Yahtzee
 //
+//
+//  Extensions for creating `Color` and `UIColor` instances from hexadecimal strings
+//  or RGB integer values. Provides convenience initializers for cleaner color setup.
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 
