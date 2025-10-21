@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Player.swift
 //  Yahtzee
 //
 //  Defines the Player model used to represent user data for the Yahtzee leaderboard.

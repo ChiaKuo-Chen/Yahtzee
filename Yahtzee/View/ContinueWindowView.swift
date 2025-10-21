@@ -1,5 +1,5 @@
 //
-//  ContinueButtonView.swift
+//  ContinueWindowView.swift
 //  Yahtzee
 //
 //  Continue dialog that lets user choose between continuing previous game or starting a new one.

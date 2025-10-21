@@ -1,5 +1,5 @@
 //
-//  Extension.swift
+//  ExColor.swift
 //  Yahtzee
 //
 //

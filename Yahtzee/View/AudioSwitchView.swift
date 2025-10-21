@@ -1,5 +1,5 @@
 //
-//  ChangeNameView.swift
+//  AudioSwitchView.swift
 //  Yahtzee
 //
 //  A modal view that allows the player to change their display name.

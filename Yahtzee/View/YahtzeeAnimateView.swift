@@ -1,4 +1,5 @@
-//  TextAnimateView.swift
+//
+//  YahtzeeAnimateView.swift
 //  Yahtzee
 //
 //  This view presents an animated "Yahtzee" visual as a celebration effect,

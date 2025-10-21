@@ -1,5 +1,5 @@
 //
-//  YahtzeeTests.swift
+//  ScoreModelTests.swift
 //  YahtzeeTests
 //
 //  Created by 陳嘉國

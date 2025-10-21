@@ -1,5 +1,5 @@
 //
-//  BackGroundView.swift
+//  PanelBackgroundView.swift
 //  Yahtzee
 //
 //  This SwiftUI view renders the background of a scoring panel (used in Yahtzee’s upper section).

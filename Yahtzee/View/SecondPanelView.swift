@@ -12,6 +12,7 @@
 
 import SwiftUI
 import SwiftData
+
 struct SecondPanelView: View {
     
     // MARK: - PROPERTIES

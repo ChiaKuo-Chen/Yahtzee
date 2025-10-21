@@ -1,5 +1,5 @@
 //
-//  getDiceNumber.swift
+//  getDiceInfo.swift
 //  Yahtzee
 //
 //

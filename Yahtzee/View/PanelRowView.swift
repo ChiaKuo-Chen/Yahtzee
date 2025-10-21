@@ -1,5 +1,5 @@
 //
-//  RowView.swift
+//  PanelRowView.swift
 //  Yahtzee
 //
 //  A full row representing a single scoring category in the Yahtzee score sheet.

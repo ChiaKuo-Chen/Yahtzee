@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  GameTableView.swift
 //  Yahtzee
 //
 //  GamePage - The main game screen containing all game interaction elements and logic interface.

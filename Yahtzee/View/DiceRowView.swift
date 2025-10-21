@@ -1,5 +1,5 @@
 //
-//  RollView.swift
+//  DiceRowView.swift
 //  Yahtzee
 //
 //  This view displays a horizontal row of dice used in the Yahtzee game.
