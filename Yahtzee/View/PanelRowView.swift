@@ -2,6 +2,14 @@
 //  RowView.swift
 //  Yahtzee
 //
+//  A full row representing a single scoring category in the Yahtzee score sheet.
+//  Contains:
+//  1. An icon (left)
+//  2. The main score panel (middle, interactive)
+//  3. The rule description (right)
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 import SwiftData
@@ -9,19 +17,29 @@ import SwiftData
 struct PanelRowView: View {
     
     // MARK: - PROPERTIES
+
+    // Game state data, including dice and scores
     @Bindable var gameData: GameData
+
+    // Rule-related helper (image names, rule descriptions)
     let categorymodel = CategoryModel()
+
+    // This row's scoring category (e.g., "threes", "yahtzee", etc.)
     let category: String
+
+    // Background color hex string for this row
     let backGroundColor: String
+
+    // A shorthand for matching numeric upper-section categories
     let list23456 = ["twos", "threes", "fours", "fives", "sixes"]
-    
+
     // MARK: - BODY
     
     var body: some View {
         
         HStack {
             
-            // FIRST PANEL
+            // FIRST PANEL: Category icon (e.g., "dice3", "yahtzee", etc.)
             if category != "yahtzee" {
                 Image(categorymodel.returnPicString(category))
                     .resizable()
@@ -31,6 +49,7 @@ struct PanelRowView: View {
                             .stroke(Color(UIColor.white), lineWidth: 2)
                     )
             } else {
+                // Yahtzee uses special red panel background
                 Image("redPanel")
                     .resizable()
                     .scaledToFit()
@@ -40,27 +59,27 @@ struct PanelRowView: View {
                     )
             }
             
-            // SECOND PANEL, the most complex panel in a row.
+            // SECOND PANEL: Interactive score cell
             SecondPanelView(gameData: gameData, category: category)
             
-            // THIRD PANEL
+            // THIRD PANEL: Rule description text
             Image("emptyPanel")
                 .resizable()
                 .scaledToFit()
-                .overlay{
+                .overlay {
                     Text(categorymodel.returnRuleString(category))
                         .lineLimit(nil)
                         .fontWeight(.black)
-                        .font(category.count<8 ? (category.count<6 ? .callout : .caption) : .caption2 )
+                        .font(category.count < 8 ? (category.count < 6 ? .callout : .caption) : .caption2)
                         .multilineTextAlignment(.center)
                         .lineSpacing(8)
                         .foregroundStyle(Color.white)
                         .shadow(color: Color.black, radius: 2, y: 2)
                 }
-            
         } // HSTACK
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
+        // Special visual treatment for Yahtzee row
         .overlay(
             HStack {
                 if category == "yahtzee" {
@@ -71,7 +90,7 @@ struct PanelRowView: View {
                             .scaleEffect(1.2)
                             .shadowFrame(frameSize: 1)
                             .shadowFrame(color: Color.white, frameSize: 1)
-                            .opacity(index==0 ? 1 : 0)
+                            .opacity(index == 0 ? 1 : 0) // Only show on the left Cell
                     }
                 }
             } // HSTACK
@@ -82,11 +101,17 @@ struct PanelRowView: View {
         
     }
     
-    // MARK: - TO SIMPLY THE CODE
-    var categoryIndex : Int { categorymodel.returnIndex(category) }
-    var scoreAlreadyWritten : Bool { ( writtenScore != nil ) }
-    var writtenScore : Int? { gameData.scoreboard[0].scoresArray[categoryIndex] }
-    
+    // MARK: - TO SIMPLIFY THE CODE
+
+    // Index of the category in scoreboard
+    var categoryIndex: Int { categorymodel.returnIndex(category) }
+
+    // Whether this score has been written (non-nil)
+    var scoreAlreadyWritten: Bool { writtenScore != nil }
+
+    // Written score (if any)
+    var writtenScore: Int? { gameData.scoreboard[0].scoresArray[categoryIndex] }
+
 }
 
 

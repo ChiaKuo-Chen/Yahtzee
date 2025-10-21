@@ -2,6 +2,13 @@
 //  LeaderBoardBarView.swift
 //  Yahtzee
 //
+//  View to display a leaderboard entry with rank, player name, and score.
+//  Highlights top 3 ranks with special colors, sizes, and styling for emphasis.
+//  Designed to adapt appearance dynamically based on rankIndex.
+//
+//  Supports truncation and scaling for long names and scores, ensuring readability.
+//
+//  Created by 陳嘉國
 //
 
 import SwiftUI
@@ -23,7 +30,7 @@ struct LeaderBoardBarView: View {
         }
     }
     
-    // Special Color For Top3
+    // Special Color For Top3 background
     private var barBackgroundColor: Color {
         if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return Color(hex: "4B0082")
@@ -32,6 +39,7 @@ struct LeaderBoardBarView: View {
         }
     }
     
+    // Text shadow color based on rank for better contrast
     private var textShadowColor: Color {
         if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return Color.black
@@ -40,7 +48,7 @@ struct LeaderBoardBarView: View {
         }
     }
 
-    // Special TextSize For Top3 (a little Bigger)
+    // Font size changes slightly for top 3 ranks
     private var textSize: Font {
         if rankIndex == 1 || rankIndex == 2 || rankIndex == 3 {
             return .title
@@ -60,7 +68,7 @@ struct LeaderBoardBarView: View {
                     .fontWeight(.heavy)
                     .shadow(color: textShadowColor, radius: 0, x:2, y:2)
                 
-                // or whatever with .frame(minWidth: )
+                // Invisible text for minimum width alignment
                 Text("1234")
                     .padding(.horizontal, 8)
                     .font(.title2)
@@ -89,6 +97,7 @@ struct LeaderBoardBarView: View {
                     .fontWeight(.heavy)
                     .shadow(color: textShadowColor, radius: 0, x:2, y:2)
 
+                // Invisible text to reserve space for consistent layout
                 Text("000")
                     .padding(.horizontal)
                     .font(.largeTitle)

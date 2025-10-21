@@ -2,31 +2,38 @@
 //  HomeView.swift
 //  Yahtzee
 //
+//  The main home screen users see after launching the app.
+//  Displays player info, current high score, play button, and rankings.
+//  Manages CoreData and SwiftData models, syncs data with Firebase,
+//  and navigates to different pages based on user interaction.
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 import CoreData
 import SwiftData
 import FirebaseCore
 
-// Home page, which user see after they open it.
-
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    @Environment(\.managedObjectContext) private var viewContext     // CoreData
+    
+    @Environment(\.managedObjectContext) private var viewContext     // CoreData context
     @FetchRequest<CorePlayer>(
         sortDescriptors: [SortDescriptor(\.localUUID)],
-        animation: .default) var corePlayerData // CoreData
+        animation: .default) var corePlayerData                      // CoreData fetched player
     
-    @Query var gamedata: [GameData] // SwiftData
-    @Environment(\.modelContext) private var modelContext // SwiftData
+    @Query var gamedata: [GameData]                                 // SwiftData game data
+    @Environment(\.modelContext) private var modelContext           // SwiftData context
     
-    @StateObject private var penObject = PenObject() // Use in GamePage
-    @EnvironmentObject var router: Router // This decide the which Page we would see.
+    @StateObject private var penObject = PenObject()                // Used in GamePage for drawing
+    @EnvironmentObject var router: Router                            // Navigation controller
     
-    @State var showingChangeNameView = false
-    @State var showingContinueView = false
-    let firebasemodel = FirebaseModel()  // For FireStore On Google(FireBase)
+    @State var showingChangeNameView = false                        // Controls showing player name change popup
+    @State var showingContinueView = false                          // Controls showing continue game popup
+    let firebasemodel = FirebaseModel()                             // Firebase Firestore handler
+    
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
                                            Color(UIColor(hex: "16a085")),
@@ -35,23 +42,20 @@ struct ContentView: View {
     
     // MARK: - BODY
     
-    
     var body: some View {
-        
         
         NavigationStack(path: $router.path) {
             ZStack {
                 
-                // BACKGROUND
+                // Background gradient for the home screen
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 
                 VStack {
                     
-                    
                     HStack {
                         
-                        // PLAYER NAME
+                        // Player name display and tap to open change name view
                         HStack {
                             Image(systemName: "person.circle.fill")
                                 .font(.title)
@@ -64,7 +68,7 @@ struct ContentView: View {
                                 .lineLimit(1)
                                 .truncationMode(.tail)
                                 .minimumScaleFactor(0.5)
-                        } // HSTACK
+                        }
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
                         .background(Color.black
@@ -77,16 +81,16 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        // Audio Switch
+                        // Audio toggle switch if game data exists
                         if let gameData = gamedata.first {
                             AudioSwitchView(gameData: gameData)
                         }
-
-                    } // HSTACK
+                    }
                     .padding(.horizontal, 10)
-
+                    
                     Spacer()
                     
+                    // Yahtzee logo image
                     Image("yahtzee")
                         .resizable()
                         .scaledToFit()
@@ -96,18 +100,17 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    // That Red Big Dice
+                    // Animated big red dice for visual effect
                     DiceAnimationView()
                         .padding(.horizontal, 100)
                     
                     Spacer()
                     
-                    // Play Button
+                    // Play button: if previous game unfinished, show continue popup
                     Button(action: {
                         if gamedata[0].scoreboard[0].isNewGame() {
                             router.path.append(.gameTable)
                         } else {
-                            // If in last time, gmae is not finished.
                             showingContinueView.toggle()
                         }
                     }, label: {
@@ -125,16 +128,15 @@ struct ContentView: View {
                                 .foregroundStyle(Color.white)
                                 .shadow(color: Color.black, radius: 0, x:4, y:4)
                             
-                        } // HSTACK
+                        }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
-                    } // LABEL
-                    ) // BUTTON
+                    })
                     .buttonStyle(ShadowButtonModifier())
                     
                     Spacer()
                     
-                    // Ranking Button
+                    // Rankings button: navigates to leaderboard page with player info
                     Button(action: {
                         router.path.append(.leaderboard(
                             playerName: corePlayerData.first?.name ?? "Player",
@@ -143,28 +145,27 @@ struct ContentView: View {
                             playerTimeStamp: Date()))
                     }, label: {
                         HStack {
-                            HStack {
-                                Image("leaderBoardIcon")
-                                    .resizable()
-                                    .frame(width: 60, height: 40)
-                                    .padding(.horizontal, 8)
-                                    .shadow(color: Color.black, radius: 0, x:2, y:2)
-                                
-                                Text("Rankings")
-                                    .bold()
-                                    .font(.system(size: 40))
-                                    .fontWeight(.black)
-                                    .foregroundStyle(Color.white)
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 8)
-                            .shadow(color: Color.black, radius: 0, x:4, y:4)
+                            Image("leaderBoardIcon")
+                                .resizable()
+                                .frame(width: 60, height: 40)
+                                .padding(.horizontal, 8)
+                                .shadow(color: Color.black, radius: 0, x:2, y:2)
+                            
+                            Text("Rankings")
+                                .bold()
+                                .font(.system(size: 40))
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
                         }
-                    }) // BUTTON
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .shadow(color: Color.black, radius: 0, x:4, y:4)
+                    })
                     .buttonStyle(ShadowButtonModifier())
                     
                     Spacer()
                     
+                    // Display current highest score
                     Text("High Score: \(corePlayerData.first?.score ?? 0)")
                         .bold()
                         .font(.system(size: 40))
@@ -175,31 +176,31 @@ struct ContentView: View {
                         .shadow(color: Color.black, radius: 0, x:4, y:4)
                     
                     Spacer()
-                    
-                } // VSTACK
-                .blur(radius: showingChangeNameView||showingContinueView ?  8 : 0)
+                }
+                .blur(radius: showingChangeNameView || showingContinueView ? 8 : 0)
                 
-                // Show Window when You press the top left name.
+                // Show Change Name popup
                 if showingChangeNameView {
                     if let corePlayer = corePlayerData.first {
                         ChangeNameView(corePlayer: corePlayer, showingChangeNameView: $showingChangeNameView)
                     }
                 }
                 
-                // Show Window when You press play button, and last game is not finished yet.
+                // Show Continue Game popup
                 if showingContinueView {
                     if let gameData = gamedata.first {
                         ContinueWindowView(gameData: gameData, showingContinueView: $showingContinueView)
                     }
                 }
+            }
+            .onAppear {
                 
-            } // ZSTACK
-            .onAppear{
-                
+                // Insert initial game data if empty
                 if gamedata.isEmpty {
                     modelContext.insert(generateInitialData())
                 }
                 
+                // Insert initial player data if empty
                 if corePlayerData.isEmpty {
                     let newPlayer = CorePlayer(context: viewContext)
                     newPlayer.localUUID = UUID().uuidString
@@ -209,42 +210,35 @@ struct ContentView: View {
                     try? viewContext.save()
                 }
                 
-                // Fetchfrom Local Save
+                // Sync with Firebase if configured
                 if firebasemodel.isFirebaseConfigured() {
-                    
                     firebasemodel.login()
-                    // Firebase Login
                     
                     firebasemodel.fetchThisPlayer() { firebasePlayer in
                         
                         if let localPlayer = corePlayerData.first {
-                            
                             let localScore: Int = Int(localPlayer.score)
                             
+                            // Update Firebase if local data is newer
                             firebasemodel.updatePlayerData(
                                 localUUID: localPlayer.localUUID,
                                 newName: (localPlayer.name != firebasePlayer?.name) ? localPlayer.name : nil,
                                 newScore: (localScore > firebasePlayer?.score ?? 0) ? localScore : nil
                             )
                             
-                            
+                            // Update local CoreData if Firebase has higher score
                             if firebasePlayer?.score ?? 0 > localPlayer.score {
                                 corePlayerData.first?.score = Int16(firebasePlayer?.score ?? 0)
                                 try? modelContext.save()
                             }
                         }
-                        
                     }
-                    // Merger Data From Local And Firebase
-                    
                 } else {
                     print("Firebase not configured")
                 }
-            } // OnAppear
+            }
             .navigationDestination(for: Page.self) { page in
                 switch page {
-                    
-                    // GamePage
                 case .gameTable:
                     if let gameData = gamedata.first {
                         GameTableView(gameData: gameData)
@@ -252,38 +246,26 @@ struct ContentView: View {
                             .environmentObject(penObject)
                             .navigationBarBackButtonHidden()
                     }
-                    
-                    // EndPage, Game finished.
                 case .end(let finalScore):
-                    if let gameData = gamedata.first, let corePlayer = corePlayerData.first  {
+                    if let gameData = gamedata.first, let corePlayer = corePlayerData.first {
                         EndView(corePlayer: corePlayer, gameData: gameData, finalScore: finalScore)
                             .environmentObject(router)
                             .navigationBarBackButtonHidden()
                     }
-                    
-                    // When all thd dice's value is equal.
                 case .yahtzee:
                     YahtzeeAnimateView()
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
-                    
-                    // Ranking page
                 case .leaderboard(let playerName, let playerID, let playerScore, let playerTimeStamp):
                     LeaderBoardView(playerName: playerName, playerID: playerID, playerScore: playerScore, playerTimeStamp: playerTimeStamp)
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                 }
             }
-            
-        } // NavigationStack
-        
-        
-        
+        }
     }
-    
-    
-    
 }
+
 
 #Preview {
     // SwiftData

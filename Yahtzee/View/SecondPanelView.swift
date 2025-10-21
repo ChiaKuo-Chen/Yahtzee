@@ -2,6 +2,13 @@
 //  SecondPanelView.swift
 //  Yahtzee
 //
+//  A single panel in the score table (like a cell).
+//  Displays either the calculated score for a rule (e.g. "Threes")
+//  or a fixed score if already written.
+//  Allows player to select which rule to apply the current dice to.
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 import SwiftData
@@ -9,40 +16,63 @@ struct SecondPanelView: View {
     
     // MARK: - PROPERTIES
     
-    // Pen, for wirte down the Score on the Spefic Cell On ScoreBoad(Paper)
+    // Object representing the "pen", i.e., which score cell the player wants to write in.
     @EnvironmentObject var penObject: PenObject
-    @Bindable var gameData: GameData // SwiftData
     
-    // In yahtzee. the Score calculate from Rule, This Tell us what is rule now.
+    // Shared game data, includes dice results and the scoreboard.
+    @Bindable var gameData: GameData
+    
+    // MARK: - CONSTANTS
+    
+    // The current rule category this panel represents (e.g., "threes", "yahtzee", etc.)
     let category: String
-    // It sort the all possible rule.
+
+    // Contains rule category definitions (e.g., index lookup).
     let categoryModel = CategoryModel()
-    // With this rules, it could calculate the >>> Score <<<.
+
+    // Score calculator for dice based on rule.
     let scoreModel = ScoreModel()
     
     private let unselectPanelColor = "#d8ffb2"
+    
+    // Lighting effect colors for visual style
     private let lightingColor = [Color.white.opacity(1), Color.clear,
                                  Color.clear, Color.clear]
     
-    // Dice Result
+    // MARK: - COMPUTED PROPERTIES
+    
+    // Current dice array from game data.
     var diceArray: [Dice] { gameData.diceArray }
-    // ScoreBaord, the paper which record the score.
+
+    // The main scoreboard (we assume single player for now).
     var scoreboard: ScoreBoard { gameData.scoreboard[0] }
-    // This Onw Would Tell the Score
-    var potentialScore: Int { scoreModel.calculateScore(diceArray, category: category, scoreBoard: scoreboard) }
-    // Rule Index
-    var categoryIndex: Int { categoryModel.returnIndex(category) }
-    // If the score already written, in can not be change or overwrite it.
-    var scoreAlreadyWritten: Bool { writtenScore != nil }
-    // If the score already written, show that score.
-    var writtenScore: Int? { scoreboard.scoresArray[categoryIndex] }
+    // The score this panel *would* have, if selected and applied.
     
-    // Pen, for wirte down the Score on the Spefic Cell On ScoreBoad(Paper)
-    var penTarget: Int? { penObject.penTarget }
+    var potentialScore: Int {
+        scoreModel.calculateScore(diceArray, category: category, scoreBoard: scoreboard)
+    }
     
-    // The PanelCell is seleceted, it's color is green,
-    // other cell should be light green
-    // or white, if it already write down the score.
+    // The index for this category in the scoreboard array.
+    var categoryIndex: Int {
+        categoryModel.returnIndex(category)
+    }
+    
+    // Whether this panel already has a score written (cannot be changed).
+    var scoreAlreadyWritten: Bool {
+        writtenScore != nil
+    }
+    
+    // The actual written score, if any.
+    var writtenScore: Int? {
+        scoreboard.scoresArray[categoryIndex]
+    }
+    
+    // The current "pen target", i.e., selected cell to write score into.
+    var penTarget: Int? {
+        penObject.penTarget
+    }
+    
+    // Background color for the panel, depending on state.
     var panelColor: Color {
         if scoreAlreadyWritten {
             return Color.white
@@ -52,7 +82,7 @@ struct SecondPanelView: View {
             return Color(UIColor(hex: unselectPanelColor))
         }
     }
-    
+
     // MARK: - BODY
     var body: some View {
         
@@ -67,6 +97,7 @@ struct SecondPanelView: View {
                     radius: 0,
                     x: scoreAlreadyWritten ? 0 : -2,
                     y: scoreAlreadyWritten ? 0 : 3)
+        // MARK: - Score Display
             .overlay {
                 if scoreAlreadyWritten {
                     Text("\(writtenScore!)")
@@ -80,8 +111,8 @@ struct SecondPanelView: View {
                         .foregroundStyle(categoryIndex == penTarget ? .black : .gray)
                 }
             }
+        // MARK: - Lighting Overlay (visual only)
             .overlay{
-                // Lighting, visual effects Only.
                 if panelColor == Color(UIColor(hex: unselectPanelColor)) {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(
@@ -93,7 +124,10 @@ struct SecondPanelView: View {
                         )
                 }
             }
+        // MARK: - Raise effect
             .offset(y: scoreAlreadyWritten ? 0 : -6)
+        
+        // MARK: - Tapping Behavior
             .onTapGesture {
                 if scoreAlreadyWritten {
                     penObject.leavePaper()
@@ -112,7 +146,6 @@ struct SecondPanelView: View {
     let previewGameData = generateInitialData()
     let penObject = PenObject()
     
-    // 範例選一個 category
     return SecondPanelView(gameData: previewGameData, category: "threes")
         .environmentObject(penObject)
         .modelContainer(container)

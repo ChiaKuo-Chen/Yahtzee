@@ -2,6 +2,10 @@
 //  ContinueButtonView.swift
 //  Yahtzee
 //
+//  Continue dialog that lets user choose between continuing previous game or starting a new one.
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 import SwiftData
@@ -14,7 +18,7 @@ struct ContinueWindowView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
 
-    @Binding var showingContinueView : Bool  // Show This Entire Window, or not (dismiss).
+    @Binding var showingContinueView: Bool  // Controls visibility of this dialog
     @State var startAnimation : Bool = false
     
     // MARK: - BODY
@@ -23,7 +27,7 @@ struct ContinueWindowView: View {
                     
             ZStack {
                 
-                // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
+                // Background overlay to block interactions and dismiss on tap outside window
                 Color.gray.opacity(0.3)
                     .onTapGesture {
                         showingContinueView.toggle()
@@ -31,7 +35,7 @@ struct ContinueWindowView: View {
                 
                 VStack(spacing: 0) {
                     
-                        
+                    // Title bar with dismiss button
                     Text("CONTINUE?")
                         .font(.title)
                         .fontWeight(.black)
@@ -78,6 +82,7 @@ Would you like to continue your previous game or start a new one?
                     .padding()
                     .background(Color.white)
 
+                    // Buttons for New Game and Continue
                     HStack {
                         newGameButton
                         continueGameButton
@@ -104,7 +109,7 @@ Would you like to continue your previous game or start a new one?
     
     var newGameButton: some View {
         Button {
-            // New ScoreBoard
+            // Prepare new game data, save, dismiss dialog, navigate to game
             gameData.prepareToNewPlay()
             try? modelContext.save()
             // Dismiss this window
@@ -127,9 +132,8 @@ Would you like to continue your previous game or start a new one?
 
     var continueGameButton: some View {
         Button {
-            // Dismiss this window
+            // Dismiss dialog and navigate to game with current data
             self.showingContinueView.toggle()
-            // Go to the Gamepage
             router.path.append(.gameTable)
         } label: {
             Text("CONTINUE")

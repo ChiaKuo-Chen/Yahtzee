@@ -1,12 +1,21 @@
 //
 //  BackGroundView.swift
 //  Yahtzee
+//
+//  This SwiftUI view renders the background of a scoring panel (used in Yahtzee’s upper section).
+//  It visually distinguishes different scoring categories (e.g., "ones", "twos", ..., "addUps")
+//  using vertical gray bars as markers within the background rectangle.
+//
+//  Category behavior:
+//  - "ones": two vertical bars, second one visible (simulates beginning of upper section)
+//  - "twos" to "sixes": single vertical bar (standard mid-section appearance)
+//  - "addUps": two vertical bars, first one visible (simulates end of upper section)
+//  - default: plain background without markers
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
-
-// # - Upper section: Sum of 1s to 6s; bonus +35 if total ≥ 63
-// So, Upper section, has the background which has one bar
-// This view is for showing that bar, without geometry.
 
 struct PanelBackgroundView: View {
     

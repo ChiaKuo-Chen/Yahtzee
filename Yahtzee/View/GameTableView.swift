@@ -2,8 +2,12 @@
 //  ContentView.swift
 //  Yahtzee
 //
-
-// GamePage, the whold game is playing in Here.
+//  GamePage - 遊戲主畫面，包含所有遊戲互動元素與遊戲邏輯介面。
+//  使用 SwiftData 綁定遊戲資料，包含擲骰子、計分板顯示與控制按鈕等。
+//  支援音效開關與導航回首頁。
+//
+//  Created by 陳嘉國
+//
 
 import SwiftUI
 import SwiftData
@@ -11,15 +15,19 @@ import SwiftData
 struct GameTableView: View {
     
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData // SwiftData
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
     @Environment(\.modelContext) private var modelContext // SwiftData
     
-    // Pen
+    // Object representing the "pen", i.e., which score cell the player wants to write in.
     @EnvironmentObject var penObject: PenObject
-    @EnvironmentObject var router: Router // This decide the which Page we would see.
+    
+    // Navigation router
+    @EnvironmentObject var router: Router
     
     @StateObject var audioManager = AudioManager()
     
+    // Background color in hex
     private let backgroundColor = "043940"
     
     // MARK: - BODY
@@ -33,7 +41,7 @@ struct GameTableView: View {
             VStack {
                 
                 HStack {
-                    // ReturnToHomePage
+                    // Button to return to the home page by clearing navigation path
                     Button(action: {
                         router.path.removeAll()
                     }, label: {
@@ -44,7 +52,7 @@ struct GameTableView: View {
                     
                     Spacer()
                     
-                        
+                    // Display the total score from the scoreboard
                     Text("SCORE : \(String(gameData.scoreboard[0].returnTotalScore()))")
                             .font(.system(size: 30))
                             .fontWeight(.heavy)
@@ -52,17 +60,19 @@ struct GameTableView: View {
                         
                     Spacer()
                     
+                    // Audio toggle switch for sound effects
                     AudioSwitchView(gameData: gameData)
                 }
                 .foregroundStyle(Color.white)
                 
+                // Main game board showing score categories and input
                 BoardView(gameData: gameData)
                 
-                
-                // When Dice is rolled, this will show the result.
+                // Display dice roll results
                 DiceRowView(gameData: gameData)
                     .padding()
                 
+                // Control buttons for rolling dice, scoring, etc.
                 ButtonView(viewModel: ButtonViewModel(
                     gameData: gameData,
                     modelContext: modelContext,
@@ -78,11 +88,13 @@ struct GameTableView: View {
         .background(Color(hex: backgroundColor)
             .ignoresSafeArea(.all))
         .onAppear{
+            // Initialize audio mute state based on saved game settings
             audioManager.isMuted = !gameData.soundEffect
+            // Reset pen target when view appears
             penObject.penTarget = nil
-            
         }
         .onChange(of: gameData.soundEffect) {
+            // Sync audio mute state whenever the sound effect setting changes
             audioManager.isMuted = !gameData.soundEffect
         }
         

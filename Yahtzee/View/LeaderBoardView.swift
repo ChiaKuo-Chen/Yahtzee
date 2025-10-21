@@ -1,11 +1,14 @@
 //
-//  FetchView.swift
+//  LeaderBoardView.swift
 //  Yahtzee
+//
+//  Ranking page to display player rankings and scores.
+//  Shows local player's ranking context or top 100 leaderboard.
+//  Combines mock data, local device player data, and Firebase data.
+//  Supports smooth scrolling to local player's rank and toggling views.
 //
 //  Created by 陳嘉國
 //
-
-// Ranking Page, show the players rank and score.
 
 import SwiftUI
 
@@ -17,12 +20,10 @@ struct LeaderBoardView: View {
     @State private var selectedOption = "你的名次"
     let options = ["你的名次", "TOP100"]
     
-    // Mock PlayerData
-    // Which set on the GitHub.
+    // Mock PlayerData for demo/testing (from GitHub)
     @State var viewmodel = FetchViewModel()
     
-    // Local PlayerData
-    // (The one who has this phone, runed this game and pressed the ranking button.)
+    // Local player data (device-specific player info)
     @State var playerName: String
     @State var playerID: String
     @State var playerScore: Int
@@ -35,14 +36,13 @@ struct LeaderBoardView: View {
                timestamp: playerTimeStamp)
     }
     
-    // FireBase PlayerData
-    // Player record on the Google FireStore
+    // Firebase player data fetched from Firestore
     @State var firebasePlayers: [Player] = []
     let firebasemodel = FirebaseModel()  // For DataStore On Google(FireBase)
     
     private let backgroundColor = Color(hex: "5E936C")
     
-    // RankingBaord
+    // Combined leaderboard with unique players, sorted by score descending
     var leaderBoard: [Player] {
         // Mock PlayerData + Local PlayerData + Firebase PlayerData
         let combined = viewmodel.users + [localPlayer] + firebasePlayers
@@ -54,14 +54,14 @@ struct LeaderBoardView: View {
         return uniquePlayers.sorted { $0.score > $1.score }
     }
     
-    // RankingBaord Top 100
+    // Top 100 players of rank indices
     var top100Leaderboard: [(rank: Int, player: Player)] {
         Array(leaderBoard.prefix(100).enumerated().map { (index, player) in
             (rank: index+1, player: player)
         })
     }
     
-    // RankingBaord, rank around the LocalPlayer
+    // Players ranked ±10 positions around local player
     var trimmedLeaderboard: [(rank: Int, player: Player)] {
         guard let localIndex = leaderBoard.firstIndex(where: { $0.localUUID == localPlayer.localUUID }) else {
             return leaderBoard.enumerated().map { (index, player) in (index + 1, player) }
@@ -77,7 +77,7 @@ struct LeaderBoardView: View {
         })
     }
     
-    // Switch On Top
+    // Select leaderboard slice based on UI toggle
     var leaderboardToShow: [(rank: Int, player: Player)] {
         let slice = selectedOption == "你的名次" ? trimmedLeaderboard : top100Leaderboard
         return Array(slice)
@@ -89,7 +89,7 @@ struct LeaderBoardView: View {
         
         VStack(alignment: .center) {
             
-            // Return to HamePage
+            // Navigation bar with home button and toggle options
             HStack(spacing: 10) {
                 Button(action: {
                     router.path.removeAll()
@@ -122,6 +122,7 @@ struct LeaderBoardView: View {
             .padding(.top, 8)
             
             HStack {
+                // Explanation note for ranking tie-break rule
                 Text("※最高得分存在相同者時，\n將會以時間上較先取得該分數的一方作為較高名次")
                     .fontWeight(.black)
                     .font(.footnote)
@@ -133,6 +134,7 @@ struct LeaderBoardView: View {
                 Spacer()
             } // HSTACK
             
+            // Scrollable leaderboard content
             ScrollViewReader { proxy in
                 ScrollView {
                     switch viewmodel.status {

@@ -1,9 +1,12 @@
 //
-//  AudioSwitchView.swift
+//  ChangeNameView.swift
 //  Yahtzee
 //
+//  A modal view that allows the player to change their display name.
+//  Updates local CoreData storage and syncs with Firebase if configured.
+//
 //  Created by 陳嘉國
-
+//
 
 import SwiftUI
 import SwiftData
@@ -11,14 +14,14 @@ import SwiftData
 struct AudioSwitchView: View {
 
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData // SwiftData
-    @Environment(\.modelContext) private var modelContext // SwiftData
+    @Bindable var gameData: GameData // SwiftData-bound game data for sound effect toggle
+    @Environment(\.modelContext) private var modelContext // SwiftData context for saving changes
 
     // MARK: - BODY
 
     var body: some View {
         
-        // It would switch ON/OFF
+        // Speaker icon that toggles sound effect on tap
         Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
             .font(.system(size: 40))
             .onTapGesture {

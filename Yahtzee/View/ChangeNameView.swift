@@ -2,6 +2,9 @@
 //  ChangeNameView.swift
 //  Yahtzee
 //
+//  A modal view that allows the player to change their display name.
+//  Updates local CoreData storage and syncs with Firebase if configured.
+//
 //  Created by 陳嘉國
 //
 
@@ -11,23 +14,23 @@ import CoreData
 struct ChangeNameView: View {
     
     // MARK: - PROPERTIES
-    @Environment(\.managedObjectContext) private var viewContext     // CoreData
-    @ObservedObject var corePlayer: CorePlayer // CoreData
+    @Environment(\.managedObjectContext) private var viewContext     // CoreData context for saving data
+    @ObservedObject var corePlayer: CorePlayer // Player object from CoreData
     
     @EnvironmentObject var router: Router
-    @Binding var showingChangeNameView : Bool // Show This Entire Window, or not (dismiss).
+    @Binding var showingChangeNameView : Bool // Controls whether this modal is shown
     
-    @State private var textName: String = ""
+    @State private var textName: String = "" // TextField input for new name
     @State var startAnimation : Bool = false
     
-    let firebasemodel = FirebaseModel()  // For FireStore On Google(FireBase)
+    let firebasemodel = FirebaseModel()  // For syncing with Firestore on Google (Firebase)
 
     // MARK: - BODY
     
     var body: some View {
         
         ZStack {
-            // BACKGROUND TO AVOID USER TOUCH THING OTHER THAN WINDOW
+            // Background overlay to prevent interactions outside modal
             Color.gray.opacity(0.3)
                 .onTapGesture {
                     showingChangeNameView.toggle()
@@ -36,6 +39,7 @@ struct ChangeNameView: View {
             
             VStack(alignment: .center, spacing: 0) {
                 
+                // Title bar
                 Text("PlayerName")
                     .font(.title)
                     .fontWeight(.black)
@@ -47,7 +51,7 @@ struct ChangeNameView: View {
                 HStack {
                     Spacer(minLength: 40)
 
-                    // Player Name in gray RoundedRectangle.
+                    // TextField for entering new player name, with gray rounded background
                     TextField(corePlayer.name ?? "PlayerName", text: $textName)
                         .font(.title)
                         .multilineTextAlignment(.center)
@@ -63,7 +67,7 @@ struct ChangeNameView: View {
                 .padding(.vertical, 5)
                 .background(Color.white)
 
-                // Warning Word.
+                // Warning about privacy
                 HStack {
                     Image(systemName: "exclamationmark.triangle")
                     Text("Please do not use your real name or other personal information.")
