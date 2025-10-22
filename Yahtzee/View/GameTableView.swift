@@ -2,7 +2,7 @@
 //  GameTableView.swift
 //  Yahtzee
 //
-//  GamePage - The main game screen containing all game interaction elements and logic interface.
+//  GamePage - The main game screen
 //  Uses SwiftData to bind game data, including dice rolling, scoreboard display, and buttons.
 //  Supports sound effects toggle and navigation back to the home page.
 //
@@ -17,12 +17,14 @@ struct GameTableView: View {
     // MARK: - PROPERTIES
     // The main game data model containing dice, scores, and game state
     @Bindable var gameData: GameData // SwiftData bound model
-    @Environment(\.modelContext) private var modelContext // SwiftData
+    
+    // SwiftData model context (used for saving / inserting new game data)
+    @Environment(\.modelContext) private var modelContext
     
     // Object representing the "pen", i.e., which score cell the player wants to write in.
     @EnvironmentObject var penObject: PenObject
     
-    // Navigation router
+    // Router environment object for navigation control.
     @EnvironmentObject var router: Router
     
     @StateObject var audioManager = AudioManager()

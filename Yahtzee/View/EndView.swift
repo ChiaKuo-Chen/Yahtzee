@@ -6,7 +6,7 @@
 //  It displays:
 //  - Final score with animated presentation
 //  - "New High Score" indicator (if applicable)
-//  - Fireworks animation using Vortex
+//  - Fireworks animation using Vortex (if "New High Score")
 //  - Saves data to CoreData and uploads to Firebase (if enabled)
 //  - Allows player to tap anywhere to return to the main screen
 //
@@ -21,19 +21,19 @@ struct EndView: View {
     
     // MARK: - PROPERTIES
     
-    // CoreData context for CorePlayer saving (used with @ObservedObject)
+    // Core Data context for saving player data
     @Environment(\.managedObjectContext) private var viewContext
     
     // CorePlayer stores the highest score & player info (CoreData)
     @ObservedObject var corePlayer: CorePlayer
     
-    // GameData model for gameplay state (SwiftData)
-    @Bindable var gameData: GameData
-    
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
+
     // SwiftData model context (used for saving / inserting new game data)
     @Environment(\.modelContext) private var modelContext
     
-    // Navigation router
+    // Router environment object for navigation control.
     @EnvironmentObject var router: Router
 
     // MARK: - STATE
@@ -151,6 +151,7 @@ struct EndView: View {
         } // ZSTACK
         .onAppear{
             // Update local high score if needed
+            highscoreUpdate = ( finalScore > corePlayer.score )
             if highscoreUpdate {
                 corePlayer.score = Int16(finalScore)
             }
@@ -171,6 +172,8 @@ struct EndView: View {
                     newScore: finalScore
                 )
             }
+            
+            startAnimation()
         }
         .onTapGesture {
             if ticketToGoBack {
@@ -194,7 +197,7 @@ struct EndView: View {
 
 
 #Preview {
-    // Create in-memory SwiftData container for preview
+    // SwiftData
     let container = try! ModelContainer(
         for: GameData.self,
         Dice.self,
@@ -202,25 +205,24 @@ struct EndView: View {
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let context = container.mainContext
-
-    // Insert initial game data
+    
+    // Mock New Player
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
+    try? context.save()
+    
+    // Core Data
+    let coreDataContext = PersistenceController.preview.container.viewContext
+    let corePlayer = CorePlayer(context: coreDataContext)
+    corePlayer.localUUID = "00000000-0000-0000-0000-000000000000"
+    corePlayer.name = String(format: "Player%04d", Int.random(in: 0...9999))
+    corePlayer.score = 135
+    corePlayer.timestamp = Date()
+    try? coreDataContext.save()
 
     // Mock router with path to end view
     let router = Router()
     router.path.append(.end(finalScore: 136))
-
-    try? context.save()
-
-    // Core Data setup (for CorePlayer)
-    let coreDataContext = PersistenceController.preview.container.viewContext
-    let corePlayer = CorePlayer(context: coreDataContext)
-    corePlayer.localUUID = "00000000-0000-0000-0000-000000000000"
-    corePlayer.name = "PreviewPlayer"
-    corePlayer.score = 135
-    corePlayer.timestamp = Date()
-    try? coreDataContext.save()
 
     // Return content view with environments injected
     return ContentView()

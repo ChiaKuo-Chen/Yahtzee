@@ -2,7 +2,7 @@
 //  DiceAnimationView.swift
 //  Yahtzee
 //
-//  A simple animation of a big red dice that gently swings left and right repeatedly.
+//  A simple animation of a big red dice.
 //
 //  Created by 陳嘉國
 //
@@ -18,7 +18,7 @@ struct DiceAnimationView: View {
 
     var body: some View {
         
-        // Big Red Dice swinging back and forth
+        // Big Red Dice
         ZStack {
             Image("bigRedDice")
                 .resizable()

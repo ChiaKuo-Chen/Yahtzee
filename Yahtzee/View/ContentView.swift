@@ -1,9 +1,9 @@
 //
-//  HomeView.swift
+//  ContentView.swift
 //  Yahtzee
 //
 //  The main home screen users see after launching the app.
-//  Displays player info, current high score, play button, and rankings.
+//  Displays player info, play button, rankings and current high score.
 //  Manages CoreData and SwiftData models, syncs data with Firebase,
 //  and navigates to different pages based on user interaction.
 //
@@ -19,20 +19,25 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     
-    @Environment(\.managedObjectContext) private var viewContext     // CoreData context
+    @Environment(\.managedObjectContext) private var viewContext  // CoreData managed object context
     @FetchRequest<CorePlayer>(
         sortDescriptors: [SortDescriptor(\.localUUID)],
-        animation: .default) var corePlayerData                      // CoreData fetched player
+        animation: .default) var corePlayerData   // Fetches CorePlayer entities sorted by UUID
+
+    // The main game data model containing dice, scores, and game state
+    @Query var gamedata: [GameData]
     
-    @Query var gamedata: [GameData]                                 // SwiftData game data
-    @Environment(\.modelContext) private var modelContext           // SwiftData context
+    // SwiftData model context (used for saving / inserting new game data)
+    @Environment(\.modelContext) private var modelContext
     
-    @StateObject private var penObject = PenObject()                // Used in GamePage for drawing
-    @EnvironmentObject var router: Router                            // Navigation controller
+    // Object representing the "pen", i.e., which score cell the player wants to write in.
+    @StateObject private var penObject = PenObject()
     
-    @State var showingChangeNameView = false                        // Controls showing player name change popup
-    @State var showingContinueView = false                          // Controls showing continue game popup
-    let firebasemodel = FirebaseModel()                             // Firebase Firestore handler
+    // Navigation router
+    @EnvironmentObject var router: Router
+    @State var showingChangeNameView = false // Controls showing player name change popup
+    @State var showingContinueView = false   // Controls showing continue game popup
+    let firebasemodel = FirebaseModel()      // Firebase Firestore handler
     
     private let backgroundGradientColor = [Color.white,
                                            Color(UIColor(hex: "27ae60")),
@@ -84,6 +89,7 @@ struct ContentView: View {
                         // Audio toggle switch if game data exists
                         if let gameData = gamedata.first {
                             AudioSwitchView(gameData: gameData)
+                                .padding(.horizontal, 10)
                         }
                     }
                     .padding(.horizontal, 10)
@@ -277,6 +283,7 @@ struct ContentView: View {
     )
     let context = container.mainContext
     
+    // Mock New Player
     let previewGameData = generateInitialData()
     context.insert(previewGameData)
     try? context.save()

@@ -2,7 +2,8 @@
 //  ContinueWindowView.swift
 //  Yahtzee
 //
-//  Continue dialog that lets user choose between continuing previous game or starting a new one.
+//  If last game is not finished yet, this will show up when user press Play button.
+//  Lets user choose starting a new game or continuing previous one.
 //
 //  Created by 陳嘉國
 //
@@ -13,9 +14,13 @@ import SwiftData
 struct ContinueWindowView: View {
     
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData
-
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
+    
+    // SwiftData model context (used for saving / inserting new game data)
     @Environment(\.modelContext) private var modelContext
+
+    // Router environment object for navigation control.
     @EnvironmentObject var router: Router
 
     @Binding var showingContinueView: Bool  // Controls visibility of this dialog
@@ -67,7 +72,6 @@ struct ContinueWindowView: View {
 
                                 }) // BUTTON TO DISMISS THE WINDOW
                             } // HSTACK
-
                         }
 
                     Text(

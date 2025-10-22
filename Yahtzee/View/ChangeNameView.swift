@@ -2,7 +2,7 @@
 //  ChangeNameView.swift
 //  Yahtzee
 //
-//  A modal view that allows the player to change their display name.
+//  Allows the player to change their display name.
 //  Updates local CoreData storage and syncs with Firebase if configured.
 //
 //  Created by 陳嘉國
@@ -14,13 +14,14 @@ import CoreData
 struct ChangeNameView: View {
     
     // MARK: - PROPERTIES
-    @Environment(\.managedObjectContext) private var viewContext     // CoreData context for saving data
+    @Environment(\.managedObjectContext) private var viewContext  // CoreData managed object context
     @ObservedObject var corePlayer: CorePlayer // Player object from CoreData
     
+    // Router environment object for navigation control.
     @EnvironmentObject var router: Router
-    @Binding var showingChangeNameView : Bool // Controls whether this modal is shown
-    
-    @State private var textName: String = "" // TextField input for new name
+    @Binding var showingChangeNameView : Bool  // Controls visibility of this dialog
+
+    @State private var textName: String = ""   // TextField input for new name
     @State var startAnimation : Bool = false
     
     let firebasemodel = FirebaseModel()  // For syncing with Firestore on Google (Firebase)

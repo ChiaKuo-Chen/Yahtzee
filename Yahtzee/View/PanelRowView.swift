@@ -18,8 +18,8 @@ struct PanelRowView: View {
     
     // MARK: - PROPERTIES
 
-    // Game state data, including dice and scores
-    @Bindable var gameData: GameData
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
 
     // Rule-related helper (image names, rule descriptions)
     let categorymodel = CategoryModel()

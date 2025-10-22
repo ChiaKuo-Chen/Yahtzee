@@ -2,11 +2,9 @@
 //  LeaderBoardBarView.swift
 //  Yahtzee
 //
-//  View to display a leaderboard entry with rank, player name, and score.
+//  Display a leaderboard entry with rank, player name, and score.
 //  Highlights top 3 ranks with special colors, sizes, and styling for emphasis.
 //  Designed to adapt appearance dynamically based on rankIndex.
-//
-//  Supports truncation and scaling for long names and scores, ensuring readability.
 //
 //  Created by 陳嘉國
 //

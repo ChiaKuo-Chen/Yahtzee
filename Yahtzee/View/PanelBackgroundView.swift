@@ -20,6 +20,7 @@ import SwiftUI
 struct PanelBackgroundView: View {
     
     // MARK: - PROPERTIES
+    // The current rule category this panel represents (e.g., "threes", "yahtzee", etc.)
     var category: String
     var backGroundColor: String
     

@@ -5,6 +5,7 @@
 //  A single panel in the score table (like a cell).
 //  Displays either the calculated score for a rule (e.g. "Threes")
 //  or a fixed score if already written.
+//
 //  Allows player to select which rule to apply the current dice to.
 //
 //  Created by 陳嘉國
@@ -20,15 +21,15 @@ struct SecondPanelView: View {
     // Object representing the "pen", i.e., which score cell the player wants to write in.
     @EnvironmentObject var penObject: PenObject
     
-    // Shared game data, includes dice results and the scoreboard.
-    @Bindable var gameData: GameData
-    
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
+
     // MARK: - CONSTANTS
     
     // The current rule category this panel represents (e.g., "threes", "yahtzee", etc.)
     let category: String
 
-    // Contains rule category definitions (e.g., index lookup).
+    // Rule-related helper (image names, rule descriptions)
     let categoryModel = CategoryModel()
 
     // Score calculator for dice based on rule.
@@ -47,8 +48,8 @@ struct SecondPanelView: View {
 
     // The main scoreboard (we assume single player for now).
     var scoreboard: ScoreBoard { gameData.scoreboard[0] }
+
     // The score this panel *would* have, if selected and applied.
-    
     var potentialScore: Int {
         scoreModel.calculateScore(diceArray, category: category, scoreBoard: scoreboard)
     }

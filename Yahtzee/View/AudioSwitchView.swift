@@ -2,8 +2,9 @@
 //  AudioSwitchView.swift
 //  Yahtzee
 //
-//  A modal view that allows the player to change their display name.
-//  Updates local CoreData storage and syncs with Firebase if configured.
+//  This view displays the switch button
+//  Allows the player to open/close their sound effect.
+//  Updates swiftData storage.
 //
 //  Created by 陳嘉國
 //
@@ -14,8 +15,11 @@ import SwiftData
 struct AudioSwitchView: View {
 
     // MARK: - PROPERTIES
-    @Bindable var gameData: GameData // SwiftData-bound game data for sound effect toggle
-    @Environment(\.modelContext) private var modelContext // SwiftData context for saving changes
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
+    
+    // SwiftData model context (used for saving / inserting new game data)
+    @Environment(\.modelContext) private var modelContext
 
     // MARK: - BODY
 

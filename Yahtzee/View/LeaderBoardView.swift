@@ -15,8 +15,9 @@ import SwiftUI
 struct LeaderBoardView: View {
     
     // MARK: - PROPERTIES
+    // Router environment object for navigation control.
     @EnvironmentObject var router: Router
-    
+
     @State private var selectedOption = "你的名次"
     let options = ["你的名次", "TOP100"]
     

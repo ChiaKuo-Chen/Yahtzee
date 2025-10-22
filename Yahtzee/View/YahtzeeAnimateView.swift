@@ -3,7 +3,8 @@
 //  Yahtzee
 //
 //  This view presents an animated "Yahtzee" visual as a celebration effect,
-//  typically shown when the player scores a Yahtzee.
+//  typically shown when five dice all showing the same number.
+//
 //  It scales in the image with animation, waits for 2 seconds, then dismisses itself.
 //
 //  Created by 陳嘉國

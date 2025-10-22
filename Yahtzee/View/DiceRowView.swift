@@ -17,9 +17,9 @@ import SwiftData
 struct DiceRowView: View {
     
     // MARK: - PROPERTIES
-    // Shared game data containing dice states, scoreboard, and settings.
-    @Bindable var gameData: GameData
-    
+    // The main game data model containing dice, scores, and game state
+    @Bindable var gameData: GameData // SwiftData bound model
+
     // MARK: - BODY
     var body: some View {
         HStack {
