@@ -18,3 +18,10 @@
   <img src="assets/demo3.gif" width="16%" />
   <img src="assets/demo4.gif" width="16%" />
 </div>
+
+## 🚀 How to Run
+1. Clone this repository  
+   ```bash
+   git clone https://github.com/ChiaKuo-Chen/Yahtzee.git
+2. Open Yahtzee.xcodeproj in Xcode.
+3. Choose an iPhone simulator and click Run ▶️.
