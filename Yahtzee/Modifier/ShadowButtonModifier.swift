@@ -10,11 +10,11 @@
 
 import SwiftUI
 
-/// A custom `ButtonStyle` that gives the appearance of a button being pressed
-/// by changing its offset and adding layered shadows.
+// A custom `ButtonStyle` that gives the appearance of a button being pressed
+// by changing its offset and adding layered shadows.
 struct ShadowButtonModifier: ButtonStyle {
     
-    /// A vertical gradient overlay simulating lighting on the button.
+    // A vertical gradient overlay simulating lighting on the button.
     private let lightingColor = [
         Color.white.opacity(0.4),
         Color.clear,

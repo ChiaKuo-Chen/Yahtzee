@@ -40,9 +40,9 @@ struct ContentView: View {
     let firebasemodel = FirebaseModel()      // Firebase Firestore handler
     
     private let backgroundGradientColor = [Color.white,
-                                           Color(UIColor(hex: "27ae60")),
-                                           Color(UIColor(hex: "16a085")),
-                                           Color(UIColor(hex: "27ae60")),
+                                           Color(hex: "27ae60"),
+                                           Color(hex: "16a085"),
+                                           Color(hex: "27ae60"),
                                            Color.green ]
     
     // MARK: - BODY

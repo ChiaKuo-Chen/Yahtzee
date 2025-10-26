@@ -2,7 +2,6 @@
 //  ExColor.swift
 //  Yahtzee
 //
-//
 //  Extensions for creating `Color` and `UIColor` instances from hexadecimal strings
 //  or RGB integer values. Provides convenience initializers for cleaner color setup.
 //
@@ -14,6 +13,10 @@ import SwiftUI
 extension Color {
     init(hex: String, alpha: Double = 1.0) {
         self.init(UIColor(hex: hex, alpha: alpha))
+    }
+    
+    static func hex(_ hex: String, alpha: Double = 1.0) -> Color {
+        return Color(UIColor(hex: hex, alpha: alpha))
     }
 }
 

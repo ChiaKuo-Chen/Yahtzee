@@ -6,7 +6,6 @@
 //  It includes the main data container for storing player scores and configurations,
 //  as well as a preview version for SwiftUI previews.
 //
-//
 //  Created by 陳嘉國
 //
 
