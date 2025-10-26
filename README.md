@@ -12,7 +12,6 @@
 - 音效管理系統，支援即時開關控制  
 
 ## 🎮 操作示意圖
-
 <div style="display: flex; justify-content: space-between;">
   <img src="assets/newDemo1.gif" width="16%" />
   <img src="assets/demo2.gif" width="16%" />
