@@ -19,6 +19,14 @@
   <img src="assets/demo4.gif" width="16%" />
 </div>
 
+Previewed on iPad Air 11 (Xcode Simulator)
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/ipadDemo00.jpg" width="16%" />
+  <img src="assets/ipadDemo01.jpg" width="16%" />
+  <img src="assets/ipadDemo02.jpg" width="16%" />
+  <img src="assets/ipadDemo03.jpg" width="16%" />
+</div>
+
 ## 🚀 How to Run
 1. Clone this repository  
    ```bash
