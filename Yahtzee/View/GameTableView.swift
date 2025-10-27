@@ -39,6 +39,7 @@ struct GameTableView: View {
         
         ZStack {
             
+            Color(hex: backgroundColor)
             
             VStack {
                 
@@ -64,12 +65,13 @@ struct GameTableView: View {
                     
                     // Audio toggle switch for sound effects
                     AudioSwitchView(gameData: gameData)
-                }
+                } // HStack
+                .padding(.horizontal, 20)
                 .foregroundStyle(Color.white)
                 
                 // Main game board showing score categories and input
                 BoardView(gameData: gameData)
-                
+
                 // Display dice roll results
                 DiceRowView(gameData: gameData)
                     .padding()
@@ -88,7 +90,8 @@ struct GameTableView: View {
                         
         } // ZTSACK
         .background(Color(hex: backgroundColor)
-            .ignoresSafeArea(.all))
+        .ignoresSafeArea(.all))
+        .ignoresSafeArea()
         .onAppear{
             // Initialize audio mute state based on saved game settings
             audioManager.isMuted = !gameData.soundEffect

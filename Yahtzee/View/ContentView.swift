@@ -56,7 +56,7 @@ struct ContentView: View {
                 LinearGradient(colors: backgroundGradientColor, startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 
-                VStack {
+                VStack(spacing: 8) {
                     
                     HStack {
                         
@@ -121,6 +121,8 @@ struct ContentView: View {
                         }
                     }, label: {
                         HStack {
+                            Spacer()
+
                             Image("whiteDiceIcon")
                                 .resizable()
                                 .frame(width: 60, height: 60)
@@ -134,10 +136,12 @@ struct ContentView: View {
                                 .foregroundStyle(Color.white)
                                 .shadow(color: Color.black, radius: 0, x:4, y:4)
                             
+                            Spacer()
                         }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
                     })
+                    .padding(.horizontal, 30)
                     .buttonStyle(ShadowButtonModifier())
                     
                     Spacer()
@@ -151,6 +155,8 @@ struct ContentView: View {
                             playerTimeStamp: Date()))
                     }, label: {
                         HStack {
+                            Spacer()
+                            
                             Image("leaderBoardIcon")
                                 .resizable()
                                 .frame(width: 60, height: 40)
@@ -162,11 +168,14 @@ struct ContentView: View {
                                 .font(.system(size: 40))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
+                            
+                            Spacer()
                         }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
                         .shadow(color: Color.black, radius: 0, x:4, y:4)
                     })
+                    .padding(.horizontal, 30)
                     .buttonStyle(ShadowButtonModifier())
                     
                     Spacer()
@@ -178,7 +187,7 @@ struct ContentView: View {
                         .fontWeight(.black)
                         .foregroundStyle(Color.white)
                         .padding(.horizontal, 28)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 0)
                         .shadow(color: Color.black, radius: 0, x:4, y:4)
                     
                     Spacer()

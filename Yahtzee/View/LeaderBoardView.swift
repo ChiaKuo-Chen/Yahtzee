@@ -101,6 +101,7 @@ struct LeaderBoardView: View {
                         .foregroundStyle(Color.white)
                 })
                 
+                
                 ForEach(options, id: \.self) { option in
                     Text(option)
                         .foregroundStyle(selectedOption == option ? Color.black : Color.white)

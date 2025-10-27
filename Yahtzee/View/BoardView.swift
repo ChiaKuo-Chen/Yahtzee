@@ -60,17 +60,18 @@ struct BoardView: View {
             HStack(spacing: 0) {
                 PanelRowView(gameData: gameData, category: "fives", backGroundColor: boardBackgroundColor1)
                 
-                PanelRowView(gameData: gameData, category: "largeStraight", backGroundColor: boardBackgroundColor1)            }
+                PanelRowView(gameData: gameData, category: "largeStraight", backGroundColor: boardBackgroundColor1)
+            }
             
             HStack(spacing: 0) {
                 PanelRowView(gameData: gameData, category: "sixes", backGroundColor: boardBackgroundColor2)
                 
                 PanelRowView(gameData: gameData, category: "yahtzee", backGroundColor: boardBackgroundColor2)
             }
+
             
             // Bottom row contains the upper section AddUpView (bonus +35 if ≥ 63)
             // and the 'chance' category panel
-
             HStack(spacing: 0) {
                 AddUpView(addUp: gameData.scoreboard[0].returnAddUpScore(), backGroundColor: boardBackgroundColor1)
                 

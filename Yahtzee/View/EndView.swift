@@ -107,6 +107,8 @@ struct EndView: View {
                     .shadow(color: .black, radius: 0, x: 8, y: 8)
                     .padding(.vertical, 50)
                 
+                Spacer()
+
                 // SCORE TITLE
                 Text("SCORE")
                     .scaleEffect(animationSwitch ? 1 : 0)
