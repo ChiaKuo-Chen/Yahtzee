@@ -87,11 +87,8 @@ struct GameTableView: View {
                 .padding()
 
             } // VSTACK
-                        
         } // ZTSACK
-        .background(Color(hex: backgroundColor)
-        .ignoresSafeArea(.all))
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all)
         .onAppear{
             // Initialize audio mute state based on saved game settings
             audioManager.isMuted = !gameData.soundEffect
@@ -102,7 +99,7 @@ struct GameTableView: View {
             // Sync audio mute state whenever the sound effect setting changes
             audioManager.isMuted = !gameData.soundEffect
         }
-        
+
     }
     
 }

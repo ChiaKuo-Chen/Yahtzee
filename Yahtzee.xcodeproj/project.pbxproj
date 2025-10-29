@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		110B2EB12E8A7C4000B5EA48 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */; };
 		1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119711B2CC3B9CA00273BA6 /* EndView.swift */; };
+		111AB7E82EB1FCFA00FCFA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111AB7E72EB1FCFA00FCFA76 /* Assets.xcassets */; };
 		113005B02E87D92500570563 /* ExShadowFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113005AF2E87D91300570563 /* ExShadowFrame.swift */; };
 		113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113412002CAFC0BE00CF4120 /* BoardView.swift */; };
 		1136DD972E82ABBB00B1209D /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136DD962E82ABBB00B1209D /* LeaderBoardView.swift */; };
@@ -26,6 +27,7 @@
 		1185C49E2E7C970B00BD38D1 /* ShadowButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */; };
 		11880A9B2E82845100AF43CC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11880A9A2E82844000AF43CC /* DateModel.swift */; };
 		11880A9D2E82994400AF43CC /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11880A9C2E82993700AF43CC /* FirebaseModel.swift */; };
+		118BF6A72EB0B3B400D0F854 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118BF6A62EB0B3AE00D0F854 /* TestView.swift */; };
 		118D70472E755F4600587152 /* sampleusers.json in Resources */ = {isa = PBXBuildFile; fileRef = 118D70462E755F4600587152 /* sampleusers.json */; };
 		118D70492E75601E00587152 /* FetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D70482E75601900587152 /* FetchModel.swift */; };
 		118D704D2E7569DB00587152 /* FetchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D704C2E7569D300587152 /* FetchViewModel.swift */; };
@@ -41,6 +43,9 @@
 		11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADBA2CC24E1100C21782 /* ButtonView.swift */; };
 		11A7ADBF2CC2587C00C21782 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7ADBE2CC2587C00C21782 /* GameData.swift */; };
 		11A8E7B82CBA7210005B5E19 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */; };
+		11B13A322EB1EE3C006E7FAB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B13A312EB1EE34006E7FAB /* SettingsView.swift */; };
+		11B13A342EB1F0F0006E7FAB /* FormRowLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B13A332EB1F0EF006E7FAB /* FormRowLinkView.swift */; };
+		11B13A362EB1F108006E7FAB /* FormRowStaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B13A352EB1F104006E7FAB /* FormRowStaticView.swift */; };
 		11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */; };
 		11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */; };
 		11CCF33A2E49E73200613DFC /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 11CCF3392E49E73200613DFC /* Vortex */; };
@@ -54,7 +59,6 @@
 		11EACDAF2E27DCF60061AFD3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EACDAE2E27DCF60061AFD3 /* Router.swift */; };
 		11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EED8D42CA959350096CCA7 /* YahtzeeApp.swift */; };
 		11EED8D72CA959350096CCA7 /* GameTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EED8D62CA959350096CCA7 /* GameTableView.swift */; };
-		11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11EED8D82CA959360096CCA7 /* Assets.xcassets */; };
 		11F9D5442E2A795600615115 /* ButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D5432E2A794F00615115 /* ButtonViewModel.swift */; };
 		11FC498E2E48AA9200686175 /* PanelBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,7 @@
 /* Begin PBXFileReference section */
 		110B2EB02E8A7C3D00B5EA48 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1119711B2CC3B9CA00273BA6 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
+		111AB7E72EB1FCFA00FCFA76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		113005AF2E87D91300570563 /* ExShadowFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExShadowFrame.swift; sourceTree = "<group>"; };
 		1130061C2E894E4300570563 /* YahtzeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YahtzeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		113412002CAFC0BE00CF4120 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 		1185C49D2E7C970000BD38D1 /* ShadowButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonModifier.swift; sourceTree = "<group>"; };
 		11880A9A2E82844000AF43CC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		11880A9C2E82993700AF43CC /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		118BF6A62EB0B3AE00D0F854 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		118D70462E755F4600587152 /* sampleusers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sampleusers.json; sourceTree = "<group>"; };
 		118D70482E75601900587152 /* FetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchModel.swift; sourceTree = "<group>"; };
 		118D704C2E7569D300587152 /* FetchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +108,9 @@
 		11A7ADBA2CC24E1100C21782 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		11A7ADBE2CC2587C00C21782 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		11A8E7B72CBA7210005B5E19 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		11B13A312EB1EE34006E7FAB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		11B13A332EB1F0EF006E7FAB /* FormRowLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowLinkView.swift; sourceTree = "<group>"; };
+		11B13A352EB1F104006E7FAB /* FormRowStaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowStaticView.swift; sourceTree = "<group>"; };
 		11B4A6262CCFDCB300EBD59F /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		11B7ED072CBED9FF008A7CB1 /* SecondPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPanelView.swift; sourceTree = "<group>"; };
 		11D65BBA2EA2660A0001CCC5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -115,7 +124,6 @@
 		11EED8D12CA959350096CCA7 /* Yahtzee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yahtzee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11EED8D42CA959350096CCA7 /* YahtzeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahtzeeApp.swift; sourceTree = "<group>"; };
 		11EED8D62CA959350096CCA7 /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
-		11EED8D82CA959360096CCA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11F9D5432E2A794F00615115 /* ButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewModel.swift; sourceTree = "<group>"; };
 		11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +159,9 @@
 			children = (
 				117AA7D82CC39A5D00CA9CEF /* ContentView.swift */,
 				1199C1C82E7D3B0A003E3233 /* ChangeNameView.swift */,
+				11B13A312EB1EE34006E7FAB /* SettingsView.swift */,
+				11B13A332EB1F0EF006E7FAB /* FormRowLinkView.swift */,
+				11B13A352EB1F104006E7FAB /* FormRowStaticView.swift */,
 				117433082E9E2E7400D0BF98 /* AudioSwitchView.swift */,
 				116C27DF2CCAB62B0057C193 /* DiceAnimationView.swift */,
 				1182F97B2CD4CBA100A5DD02 /* ContinueWindowView.swift */,
@@ -164,6 +175,7 @@
 				11E931D72CB67EBF0023D2BF /* AddUpView.swift */,
 				11FC498D2E48AA9100686175 /* PanelBackgroundView.swift */,
 				11D6C2F62CB2A1F8001F6CE9 /* DiceRowView.swift */,
+				118BF6A62EB0B3AE00D0F854 /* TestView.swift */,
 				11A7ADBA2CC24E1100C21782 /* ButtonView.swift */,
 				11E7DD0E2CAE992400E8B298 /* YahtzeeAnimateView.swift */,
 				1119711B2CC3B9CA00273BA6 /* EndView.swift */,
@@ -263,7 +275,7 @@
 				11D8261B2CAFC9C7005228CC /* Extension */,
 				11B7ED092CBEE383008A7CB1 /* Utility */,
 				11A7ADB72CC24C4800C21782 /* Sound */,
-				11EED8D82CA959360096CCA7 /* Assets.xcassets */,
+				111AB7E72EB1FCFA00FCFA76 /* Assets.xcassets */,
 				119E9BBD2E8FBF9F00FA8B1D /* Launch Screen.storyboard */,
 				11D65BBA2EA2660A0001CCC5 /* GoogleService-Info.plist */,
 			);
@@ -382,7 +394,7 @@
 				118D70472E755F4600587152 /* sampleusers.json in Resources */,
 				11D65BBB2EA2660A0001CCC5 /* GoogleService-Info.plist in Resources */,
 				119E9BBE2E8FBF9F00FA8B1D /* Launch Screen.storyboard in Resources */,
-				11EED8D92CA959360096CCA7 /* Assets.xcassets in Resources */,
+				111AB7E82EB1FCFA00FCFA76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118BF6A72EB0B3B400D0F854 /* TestView.swift in Sources */,
 				1119711C2CC3B9CA00273BA6 /* EndView.swift in Sources */,
 				117433092E9E2E8000D0BF98 /* AudioSwitchView.swift in Sources */,
 				11665CDF2CBBBF3200FC5D1C /* getDiceInfo.swift in Sources */,
@@ -411,6 +424,7 @@
 				116A3E352E74182300C31D47 /* Player.swift in Sources */,
 				118DC90E2CC2AD75005E8419 /* GenerateInitialData.swift in Sources */,
 				113412012CAFC0BE00CF4120 /* BoardView.swift in Sources */,
+				11B13A322EB1EE3C006E7FAB /* SettingsView.swift in Sources */,
 				116C27E02CCAB62B0057C193 /* DiceAnimationView.swift in Sources */,
 				118D70492E75601E00587152 /* FetchModel.swift in Sources */,
 				1199C1C92E7D3B12003E3233 /* ChangeNameView.swift in Sources */,
@@ -419,6 +433,7 @@
 				11E931D82CB67EBF0023D2BF /* AddUpView.swift in Sources */,
 				11665CDD2CBBB1CB00FC5D1C /* Dice.swift in Sources */,
 				11D6C2F32CB28285001F6CE9 /* PanelRowView.swift in Sources */,
+				11B13A362EB1F108006E7FAB /* FormRowStaticView.swift in Sources */,
 				11B7ED082CBED9FF008A7CB1 /* SecondPanelView.swift in Sources */,
 				118D704D2E7569DB00587152 /* FetchViewModel.swift in Sources */,
 				11A7ADBB2CC24E1100C21782 /* ButtonView.swift in Sources */,
@@ -427,6 +442,7 @@
 				1182F97C2CD4CBA100A5DD02 /* ContinueWindowView.swift in Sources */,
 				11EED8D52CA959350096CCA7 /* YahtzeeApp.swift in Sources */,
 				11E7DD0F2CAE992400E8B298 /* YahtzeeAnimateView.swift in Sources */,
+				11B13A342EB1F0F0006E7FAB /* FormRowLinkView.swift in Sources */,
 				11E32D112CF702F80072F280 /* PenObject.swift in Sources */,
 				11777A1C2E8D515B00FE0E07 /* Yahtzee.xcdatamodeld in Sources */,
 				11B4A6272CCFDCB300EBD59F /* ScoreBoard.swift in Sources */,

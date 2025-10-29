@@ -21,13 +21,16 @@ struct AudioSwitchView: View {
     // SwiftData model context (used for saving / inserting new game data)
     @Environment(\.modelContext) private var modelContext
 
+    var fontSize: CGFloat = 40
+
     // MARK: - BODY
 
     var body: some View {
         
+
         // Speaker icon that toggles sound effect on tap
         Image(systemName: gameData.soundEffect != false ? "speaker.wave.2.circle" : "speaker.slash.circle")
-            .font(.system(size: 40))
+            .font(.system(size: fontSize))
             .onTapGesture {
                 gameData.soundEffect.toggle()
                 try? modelContext.save()

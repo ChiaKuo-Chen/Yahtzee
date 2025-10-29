@@ -35,6 +35,9 @@ struct ContentView: View {
     
     // Navigation router
     @EnvironmentObject var router: Router
+    
+    @State private var showingSettingsView: Bool = false // Controls showing ettingsView
+
     @State var showingChangeNameView = false // Controls showing player name change popup
     @State var showingContinueView = false   // Controls showing continue game popup
     let firebasemodel = FirebaseModel()      // Firebase Firestore handler
@@ -57,50 +60,13 @@ struct ContentView: View {
                     .ignoresSafeArea(.all)
                 
                 VStack(spacing: 8) {
-                    
-                    HStack {
-                        
-                        // Player name display and tap to open change name view
-                        HStack {
-                            Image(systemName: "person.circle.fill")
-                                .font(.title)
-                                .foregroundStyle(Color.yellow)
-                            
-                            Text(corePlayerData.first?.name ?? "Player")
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundStyle(Color.white)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .minimumScaleFactor(0.5)
-                        }
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .background(Color.black
-                            .opacity(0.4)
-                            .clipShape(RoundedRectangle(cornerRadius: 8)))
-                        .padding(.horizontal, 20)
-                        .onTapGesture {
-                            showingChangeNameView.toggle()
-                        }
-                        
-                        Spacer()
-                        
-                        // Audio toggle switch if game data exists
-                        if let gameData = gamedata.first {
-                            AudioSwitchView(gameData: gameData)
-                                .padding(.horizontal, 10)
-                        }
-                    }
-                    .padding(.horizontal, 10)
-                    
-                    Spacer()
-                    
+                                                            
                     // Yahtzee logo image
                     Image("yahtzee")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical, 5)
                         .padding()
                         .shadow(color: Color.black, radius: 0, x:8, y:8)
                     
@@ -191,9 +157,57 @@ struct ContentView: View {
                         .shadow(color: Color.black, radius: 0, x:4, y:4)
                     
                     Spacer()
-                }
+                }// VStack
                 .blur(radius: showingChangeNameView || showingContinueView ? 8 : 0)
-                
+                // MARK: - Toolbar
+                .toolbar {
+                    // Player name display and tap to open change name view
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        HStack {
+                            Image(systemName: "person.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(Color.yellow)
+                            
+                            Text(corePlayerData.first?.name ?? "Player")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .minimumScaleFactor(0.5)
+                        }
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(Color.black
+                            .opacity(0.4)
+                            .clipShape(RoundedRectangle(cornerRadius: 8)))
+                    }
+                    
+                    // Switch Icon and see Developer Information
+                    ToolbarItem(placement: .topBarTrailing){
+                        Button(action: {
+                            // Show add todo view
+                            self.showingSettingsView.toggle()
+                        }, label: {
+                            Image(systemName: "gearshape.circle")
+                                .font(.system(size: 30))
+                                .foregroundStyle(.black)
+                        }) //: SETTING BUTTON
+                        .sheet(isPresented: $showingSettingsView,
+                               content: {
+                            SettingsView()
+                        }) // sheet
+                    }
+
+                    // Audio toggle switch if game data exists
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if let gameData = gamedata.first {
+                            AudioSwitchView(gameData: gameData, fontSize: 30)
+                        }
+                    }
+                    
+                }
+
                 // Show Change Name popup
                 if showingChangeNameView {
                     if let corePlayer = corePlayerData.first {
@@ -208,6 +222,7 @@ struct ContentView: View {
                     }
                 }
             }
+            // MARK: - OnAppear
             .onAppear {
                 
                 // Insert initial game data if empty
@@ -251,7 +266,8 @@ struct ContentView: View {
                 } else {
                     print("Firebase not configured")
                 }
-            }
+            } // OnAppear
+            // MARK: - NavigationDestination
             .navigationDestination(for: Page.self) { page in
                 switch page {
                 case .gameTable:
@@ -276,7 +292,7 @@ struct ContentView: View {
                         .environmentObject(penObject)
                         .navigationBarBackButtonHidden()
                 }
-            }
+            } // NavigationDestination
         }
     }
 }
