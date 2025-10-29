@@ -163,24 +163,29 @@ struct ContentView: View {
                 .toolbar {
                     // Player name display and tap to open change name view
                     ToolbarItem(placement: .navigationBarLeading) {
-                        HStack {
-                            Image(systemName: "person.circle.fill")
-                                .font(.title)
-                                .foregroundStyle(Color.yellow)
-                            
-                            Text(corePlayerData.first?.name ?? "Player")
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundStyle(Color.white)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .minimumScaleFactor(0.5)
-                        }
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .background(Color.black
-                            .opacity(0.4)
-                            .clipShape(RoundedRectangle(cornerRadius: 8)))
+                        
+                        Button(action: {
+                            showingChangeNameView.toggle()
+                        }, label: {
+                            HStack {
+                                Image(systemName: "person.circle.fill")
+                                    .font(.title)
+                                    .foregroundStyle(Color.yellow)
+                                
+                                Text(corePlayerData.first?.name ?? "Player")
+                                    .font(.title)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.white)
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                    .minimumScaleFactor(0.5)
+                            }
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .background(Color.black
+                                .opacity(0.4)
+                                .clipShape(RoundedRectangle(cornerRadius: 8)))
+                        })
                     }
                     
                     // Switch Icon and see Developer Information
