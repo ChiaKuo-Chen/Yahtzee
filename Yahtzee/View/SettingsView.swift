@@ -78,7 +78,7 @@ struct SettingsView: View {
                         link: "https://github.com/ChiaKuo-Chen"
                     )
                 } header: {
-                    Text("Visit Me on GitHub")
+                    Text("Know More About Yahtzee")
                 }
                 .padding(.vertical, 3)
                 
