@@ -195,7 +195,9 @@ struct ContentView: View {
                         }) //: SETTING BUTTON
                         .sheet(isPresented: $showingSettingsView,
                                content: {
-                            SettingsView()
+                            if let gameData = gamedata.first {
+                                SettingsView(gameData: gameData)
+                            }
                         }) // sheet
                     }
 

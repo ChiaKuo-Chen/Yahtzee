@@ -40,7 +40,8 @@ struct GameTableView: View {
         ZStack {
             
             Color(hex: backgroundColor)
-            
+                .ignoresSafeArea(.all)
+
             VStack {
                 
                 HStack {
@@ -88,7 +89,6 @@ struct GameTableView: View {
 
             } // VSTACK
         } // ZTSACK
-        .ignoresSafeArea(.all)
         .onAppear{
             // Initialize audio mute state based on saved game settings
             audioManager.isMuted = !gameData.soundEffect

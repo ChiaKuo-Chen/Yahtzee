@@ -13,7 +13,6 @@ import SwiftUI
 struct FormRowLinkView: View {
     
     // MARK: - PROPERTIES
-    
     // The name of the SF Symbol icon to display (optional).
     var iconSystemName: String? = nil
     // The name of a custom image from the app's asset catalog (optional).
@@ -24,7 +23,7 @@ struct FormRowLinkView: View {
     var text: String
     // The external link to open when the button is tapped.
     var link: String
-    
+
     // MARK: - BODY
     
     var body: some View {
@@ -32,7 +31,7 @@ struct FormRowLinkView: View {
             ZStack {
                 // Icon background container
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(color)
+                    .foregroundStyle(color)
                 
                 // Display a custom image if provided
                 if let imageName = imageName {
@@ -59,9 +58,9 @@ struct FormRowLinkView: View {
             
             // Link button that opens an external URL
             Button(action: {
-                guard let url = URL(string: self.link),
-                      UIApplication.shared.canOpenURL(url) else { return }
-                UIApplication.shared.open(url)
+                if let url = URL(string: link) {
+                    UIApplication.shared.open(url)
+                }
             }, label: {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
@@ -78,7 +77,7 @@ struct FormRowLinkView: View {
         iconSystemName: "globe",
         color: .pink,
         text: "Website",
-        link: "https://github.com/ChiaKuo-Chen"
+        link: "https://zh.wikipedia.org/zh-tw/%E5%BF%AB%E8%89%87%E9%AA%B0%E5%AD%90"
     )
     .padding()
 }

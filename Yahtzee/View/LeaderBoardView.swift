@@ -140,7 +140,7 @@ struct LeaderBoardView: View {
             ScrollViewReader { proxy in
                 ScrollView {
                     switch viewmodel.status {
-                    case .notStatred:
+                    case .nonStarted:
                         EmptyView()
                     case .fetching:
                         LoadingView()
@@ -218,7 +218,7 @@ struct LeaderBoardView: View {
                             }
                         }
                     }
-                }
+                } // OnChange
                 .onAppear{
                     Task {
                         await viewmodel.getUserData()
@@ -233,7 +233,16 @@ struct LeaderBoardView: View {
                             firebasePlayers = players
                         }
                     } // Load the FirebasePlayer
-                }
+                } // OnAppear
+                .refreshable {
+                    await viewmodel.getUserData()
+                    if firebasemodel.isFirebaseConfigured() {
+                        firebasemodel.fetchLeaderboard { players in
+                            firebasePlayers = players
+                        }
+                    }
+                } // Refresh
+
             }
         } // VSTACK
         .background(backgroundColor)

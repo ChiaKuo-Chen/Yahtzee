@@ -20,14 +20,14 @@ class FetchViewModel {
     
     // Enum representing the current fetch status.
     enum FetchStatus {
-        case notStatred                 // Initial state, no fetch started yet
+        case nonStarted                 // Initial state, no fetch started yet
         case fetching                  // Fetch is in progress
         case successFetch              // Fetch completed successfully
         case failed(error: Error)      // Fetch failed with an error
     }
     
     // The current fetch status, only settable inside this class.
-    private(set) var status: FetchStatus = .notStatred
+    private(set) var status: FetchStatus = .nonStarted
     
     // The fetcher object responsible for performing the actual fetch operation.
     private let fetcher = FetchModel()
