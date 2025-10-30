@@ -13,20 +13,20 @@
 
 ## 🎮 操作示意圖
 <div style="display: flex; justify-content: space-between;">
-  <img src="assets/newDemo1.gif" width="16%" />
-  <img src="assets/demo2.gif" width="16%" />
-  <img src="assets/demo3.gif" width="16%" />
-  <img src="assets/demo4.gif" width="16%" /> 
-  <img src="assets/demo5.jpg" width="16%" />
+  <img src="assets/demo00.gif" width="16%" />
+  <img src="assets/demo01.gif" width="16%" />
+  <img src="assets/demo02.gif" width="16%" />
+  <img src="assets/demo03.gif" width="16%" /> 
+  <img src="assets/demo04.jpg" width="16%" />
 </div>
 
 Previewed on iPad Air 11 (Xcode Simulator)
 <div style="display: flex; justify-content: space-between;">
-  <img src="assets/ipadDemo00.jpg" width="16%" />
-  <img src="assets/ipadDemo01.jpg" width="16%" />
-  <img src="assets/ipadDemo02.jpg" width="16%" />
-  <img src="assets/ipadDemo03.jpg" width="16%" />
-  <img src="assets/ipadDemo04.jpg" width="16%" />
+  <img src="assets/iPadDemo00.jpg" width="16%" />
+  <img src="assets/iPadDemo01.jpg" width="16%" />
+  <img src="assets/iPadDemo02.jpg" width="16%" />
+  <img src="assets/iPadDemo03.jpg" width="16%" />
+  <img src="assets/iPadDemo04.jpg" width="16%" />
 </div>
 
 ## 🚀 How to Run
