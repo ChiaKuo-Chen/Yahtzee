@@ -16,7 +16,8 @@
   <img src="assets/newDemo1.gif" width="16%" />
   <img src="assets/demo2.gif" width="16%" />
   <img src="assets/demo3.gif" width="16%" />
-  <img src="assets/demo4.gif" width="16%" />
+  <img src="assets/demo4.gif" width="16%" /> 
+  <img src="assets/demo5.jpg" width="16%" />
 </div>
 
 Previewed on iPad Air 11 (Xcode Simulator)
@@ -25,6 +26,7 @@ Previewed on iPad Air 11 (Xcode Simulator)
   <img src="assets/ipadDemo01.jpg" width="16%" />
   <img src="assets/ipadDemo02.jpg" width="16%" />
   <img src="assets/ipadDemo03.jpg" width="16%" />
+  <img src="assets/ipadDemo04.jpg" width="16%" />
 </div>
 
 ## 🚀 How to Run
